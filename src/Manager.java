@@ -1,5 +1,6 @@
 import java.util.*;
 import java.io.*;
+
 public class Manager{
 
 	public static ArrayList<Pais> leerPaisTxt(String archivo) {
@@ -17,6 +18,7 @@ public class Manager{
             	int mundiales = Integer.parseInt(datos[2]);
             	int participaciones = Integer.parseInt(datos[3]);
             	String cultura = datos[4];
+            	String datosFutbol = datos[5];
 
             	ArrayList<Jugador> jugadores = new ArrayList<>();
 				for (int i = 5; i < datos.length; i++) {
@@ -26,7 +28,7 @@ public class Manager{
 					}
 				}
 
-            	Pais p = new Pais(nombre, continente, mundiales, participaciones, cultura, jugadores);
+            	Pais p = new Pais(nombre, continente, mundiales, participaciones, cultura, datosFutbol, jugadores);
             	lista.add(p);
         	}
 
