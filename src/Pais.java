@@ -3,21 +3,25 @@ import java.util.ArrayList;
 public class Pais {
 	private String nombre,continente;
 	private int mundiales,participantes;
-	private String cultura;
+	private String cultura, datosFutbol;
 	private ArrayList<Jugador> jugadores;
 
-	public Pais(String nombre, String continente, int mundiales, int participantes, String cultura,
-			ArrayList<Jugador> jugadores) {
+	public Pais(String nombre, String continente, int mundiales, int participantes,
+            String cultura, String datosFutbol, ArrayList<Jugador> jugadores) {
+
 		this.nombre = nombre;
 		this.continente = continente;
 		this.mundiales = mundiales;
 		this.participantes = participantes;
 		this.cultura = cultura;
+		this.datosFutbol = datosFutbol;
 		this.jugadores = jugadores;
+
 		if (jugadores.size() != 3) {
-    		throw new IllegalArgumentException("Un país debe tener exactamente 3 jugadores");
+			throw new IllegalArgumentException("Un país debe tener exactamente 3 jugadores");
 		}
 	}
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -54,11 +58,21 @@ public class Pais {
 	public void setJugadores(ArrayList<Jugador> jugadores) {
 		this.jugadores = jugadores;
 	}
+	
+	public String getDatosFutbol() {
+		return datosFutbol;
+	}
+
+	public void setDatosFutbol(String datosFutbol) {
+		this.datosFutbol = datosFutbol;
+	}
+
 	@Override
 	public String toString() {
 		return nombre + " (" + continente + ") - Mundiales: " + mundiales +
        					", Participaciones: " + participantes +
        					"\nCultura: " + cultura +
+       					"\nDatos Futbolisticos: " + datosFutbol +
        					"\nJugadores: " + jugadores;
 	}
 	
