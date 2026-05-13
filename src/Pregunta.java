@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+
 
 public class Pregunta {
 	protected Tipo tipo;
