@@ -1,5 +1,8 @@
 
 public class Tipo {
+	//constantes para evitar errores
+	public static final String VERDADERO_FALSO = "Verdadero o Falso";
+    public static final String OPCION_MULTIPLE = "Opcion Multiple";
 	String nombre;
 	String descripcion;
 	public Tipo(String nombre, String descripcion) {
