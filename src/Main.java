@@ -36,13 +36,7 @@ public class Main {
             System.out.println("- " + j);
         }
 
-        // ❌ Intentar agregar un jugador extra (debe fallar)
-        System.out.println("\nIntentando agregar un 4to jugador...");
-        prueba.agregarJugador(new Jugador("JugadorExtra", "Portero", 1));
 
-        // 🗑 Eliminar un jugador
-        System.out.println("\nEliminando jugador con número 10...");
-        prueba.eliminarJugador(10);
 
         // 🔄 Mostrar jugadores después de eliminar
         System.out.println("\nJugadores después de eliminar:");
@@ -50,9 +44,6 @@ public class Main {
             System.out.println("- " + j);
         }
 
-        // ➕ Intentar agregar nuevamente
-        System.out.println("\nAgregando nuevo jugador...");
-        prueba.agregarJugador(new Jugador("NuevoJugador", "Portero", 1));
 
         // 🔄 Mostrar resultado final
         System.out.println("\nJugadores finales:");

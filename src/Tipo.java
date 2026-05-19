@@ -4,11 +4,10 @@ public class Tipo {
 	public static final String VERDADERO_FALSO = "Verdadero o Falso";
     public static final String OPCION_MULTIPLE = "Opcion Multiple";
 	String nombre;
-	String descripcion;
-	public Tipo(String nombre, String descripcion) {
+	public Tipo(String nombre) {
 		super();
 		this.nombre = nombre;
-		this.descripcion = descripcion;
+
 	}
 	public String getNombre() {
 		return nombre;
@@ -16,15 +15,9 @@ public class Tipo {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getDescripcion() {
-		return descripcion;
-	}
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
 	@Override
 	public String toString() {
-		return "Tipo [nombre=" + nombre + ", descripcion=" + descripcion + "]";
+		return "Tipo [nombre=" + nombre + "]";
 	}
-	
+
 }

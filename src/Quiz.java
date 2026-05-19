@@ -36,15 +36,14 @@ public class Quiz {
 		return "Quiz [preguntas=" + preguntas + ", nombre=" + nombre + ", dificultad=" + dificultad + "]";
 	}
 	
-	public static ArrayList<Pregunta> leerPreguntasBin(String archivo) {
+	public static ArrayList<Pregunta> leerPreguntasBin(String dificultad,String archivo) {
         ArrayList<Pregunta> preguntaLeida = new ArrayList<>();
-        try (FileInputStream fis = new FileInputStream(archivo);
+        try (FileInputStream fis = new FileInputStream(Archivos.archivoPreguntasD);
              DataInputStream dis = new DataInputStream(fis)) {
             
             while (dis.available() > 0) {
-                String nombreTipo = dis.readUTF();
-                String descTipo = dis.readUTF();  
-                Tipo tipoObjeto = new Tipo(nombreTipo, descTipo);
+                String nombreTipo = dis.readUTF();  
+                Tipo tipoObjeto = new Tipo(nombreTipo);
                 
                 String nom = dis.readUTF();
                 String res = dis.readUTF();
@@ -70,8 +69,8 @@ public class Quiz {
         return preguntaLeida;
     }
     
-    public List<Pregunta> elegirPreguntas(int cantidad, String archivo) throws IllegalArgumentException {
-        ArrayList<Pregunta> preguntasLeidas = leerPreguntasBin(archivo);
+    public List<Pregunta> elegirPreguntas(String dificultad, int cantidad, String archivo) throws IllegalArgumentException {
+        ArrayList<Pregunta> preguntasLeidas = leerPreguntasBin(dificultad, Archivos.archivoPreguntasD);
         
         if (preguntasLeidas.size() < cantidad) {
             throw new IllegalArgumentException("No hay suficientes preguntas solicitadas");
@@ -81,20 +80,32 @@ public class Quiz {
         return preguntasLeidas.subList(0, cantidad);
     }
 
-    // 3. NUEVA FUNCIÓN: Calcular puntaje máximo posible de este quiz
+
     public int calcularPuntuacionMaxima() {
         int total = 0;
         for (Pregunta p : preguntas) {
-            total += p.getPuntuacion();
+            if (p != null) { 
+                total += p.getPuntuacion(); 
+            }
         }
         return total;
     }
 
-    // 4. Filtrar preguntas por tipo
-    public List<Pregunta> obtenerPreguntasPorTipo(String tipoNombre) {
+
+    public List<Pregunta> obtenerVerdaderoFalso() {
         List<Pregunta> filtradas = new ArrayList<>();
         for (Pregunta p : preguntas) {
-            if (p.getTipo().getNombre().equalsIgnoreCase(tipoNombre)) {
+            if (p instanceof PreguntaVF) {
+                filtradas.add(p);
+            }
+        }
+        return filtradas;
+    }
+    
+    public List<Pregunta> obtenerOpcionMultiple() {
+        List<Pregunta> filtradas = new ArrayList<>();
+        for (Pregunta p : preguntas) {
+            if (p instanceof PreguntaOpMultiple) {
                 filtradas.add(p);
             }
         }

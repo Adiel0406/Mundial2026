@@ -76,15 +76,4 @@ public class Pais {
        					"\nJugadores: " + jugadores;
 	}
 	
-	public void agregarJugador(Jugador jugador) {
-    	if (jugadores.size() < 3) {
-        	jugadores.add(jugador);
-    	} else {
-        	System.out.println("Ya hay 3 jugadores icono");
-    	}
-	}
-
-	public void eliminarJugador(int numero) {
-    	jugadores.removeIf(j -> j.getNumero() == numero);
-	}
 }
