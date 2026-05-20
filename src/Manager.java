@@ -21,12 +21,20 @@ public class Manager{
             	String datosFutbol = datos[5];
 
             	ArrayList<Jugador> jugadores = new ArrayList<>();
-				for (int i = 5; i < datos.length; i++) {
-    				String[] j = datos[i].split(",");
-    				if (j.length == 3) {
-    					jugadores.add(new Jugador(j[0], j[1], Integer.parseInt(j[2])));
-					}
-				}
+
+            	for (int i = 6; i < datos.length; i++) {
+            	    String[] j = datos[i].split(",");
+
+            	    if (j.length == 3) {
+            	        jugadores.add(
+            	            new Jugador(
+            	                j[0],
+            	                j[1],
+            	                Integer.parseInt(j[2])
+            	            )
+            	        );
+            	    }
+            	}
 
             	Pais p = new Pais(nombre, continente, mundiales, participaciones, cultura, datosFutbol, jugadores);
             	lista.add(p);
