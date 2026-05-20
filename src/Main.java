@@ -9,10 +9,10 @@ import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -24,19 +24,13 @@ public class Main extends Application {
 
     private Font fuente;
 
-    // ================= LISTA PAISES =================
-
     private ArrayList<Pais> paises;
 
-    // ================= AREA INFORMACION =================
-
-    private TextArea txtInfo;
-
-    // ================= SELECCIONES =================
+    // =================================================
+    // SELECCIONES
+    // =================================================
 
     private final String[][] selecciones = {
-
-            // codigo , nombre real
 
             {"mex", "Mexico"},
             {"rsa", "Sudafrica"},
@@ -107,56 +101,51 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
 
-        // ================= LEER TXT =================
+        // =================================================
+        // LEER TXT
+        // =================================================
 
         paises = Manager.leerPaisTxt("paises.txt");
 
-        // ================= FUENTE =================
+        // =================================================
+        // FUENTE
+        // =================================================
 
         fuente = Font.loadFont(
-                getClass().getResourceAsStream(
-                        "/fonts/FWC2026.ttf"
-                ),
-                22
-        );
+                getClass().getResourceAsStream("/fonts/FWC2026.ttf"), 22);
 
         if (fuente == null) {
 
-            System.out.println(
-                    "No se pudo cargar la fuente"
-            );
+            System.out.println("No se pudo cargar la fuente");
 
             fuente = Font.font("Arial", 22);
         }
 
-        // ================= ESCENAS =================
+        // =================================================
+        // ESCENAS
+        // =================================================
 
         Scene menuScene = crearMenu(stage);
 
-        Scene tutorScene =
-                crearTutor(stage, menuScene);
+        Scene tutorScene = crearTutor(stage, menuScene);
 
-        VBox rootMenu =
-                (VBox) menuScene.getRoot();
+        VBox rootMenu = (VBox) menuScene.getRoot();
 
         Button btnIniciar =
-                (Button) rootMenu
+                		(Button) rootMenu
                         .getChildren()
                         .get(1);
 
         btnIniciar.setOnAction(e -> {
-
             stage.setScene(tutorScene);
         });
 
-        // ================= STAGE =================
+        // =================================================
+        // STAGE
+        // =================================================
 
-        stage.setTitle(
-                "Tutor Mundial 2026"
-        );
-
+        stage.setTitle("Tutor Mundial 2026");
         stage.setScene(menuScene);
-
         stage.show();
     }
 
@@ -170,9 +159,7 @@ public class Main extends Application {
 
         panMenu.setAlignment(Pos.CENTER);
 
-        panMenu.setPadding(
-                new Insets(20)
-        );
+        panMenu.setPadding(new Insets(20));
 
         panMenu.setStyle("""
                 -fx-background-color:
@@ -194,19 +181,13 @@ public class Main extends Application {
                 """);
 
         Button btnIniciar =
-                new Button(
-                        "Iniciar Tutor"
-                );
+                new Button("Iniciar Tutor");
 
         Button btnTest =
-                new Button(
-                        "Iniciar Test"
-                );
+                new Button("Iniciar Test");
 
         Button btnSalir =
-                new Button(
-                        "Salir"
-                );
+                new Button("Salir");
 
         aplicarFuente(btnIniciar);
 
@@ -236,12 +217,10 @@ public class Main extends Application {
         );
 
         btnSalir.setOnAction(e -> {
-
             System.exit(0);
         });
 
         panMenu.getChildren().addAll(
-
                 lblTitulo,
                 btnIniciar,
                 btnTest,
@@ -266,13 +245,9 @@ public class Main extends Application {
 
         VBox panTutor = new VBox(20);
 
-        panTutor.setAlignment(
-                Pos.TOP_CENTER
-        );
+        panTutor.setAlignment(Pos.TOP_CENTER);
 
-        panTutor.setPadding(
-                new Insets(20)
-        );
+        panTutor.setPadding(new Insets(20));
 
         panTutor.setStyle("""
                 -fx-background-color:
@@ -283,7 +258,9 @@ public class Main extends Application {
                 );
                 """);
 
-        // ================= LABEL =================
+        // =================================================
+        // LABEL
+        // =================================================
 
         Label lblSeleccion =
                 new Label(
@@ -296,43 +273,22 @@ public class Main extends Application {
                 -fx-text-fill: white;
                 """);
 
-        // ================= FLOWPANE =================
+        // =================================================
+        // FLOWPANE
+        // =================================================
 
         FlowPane panPaises =
                 new FlowPane();
 
-        panPaises.setAlignment(
-                Pos.CENTER
-        );
+        panPaises.setAlignment(Pos.CENTER);
 
         panPaises.setHgap(15);
 
         panPaises.setVgap(15);
 
-        // ================= TEXT AREA =================
-
-        txtInfo = new TextArea();
-
-        txtInfo.setEditable(false);
-
-        txtInfo.setWrapText(true);
-
-        txtInfo.setPrefHeight(250);
-
-        txtInfo.setFont(fuente);
-
-        txtInfo.setStyle("""
-                -fx-control-inner-background:
-                #101010;
-
-                -fx-text-fill: white;
-
-                -fx-highlight-fill: #444;
-
-                -fx-font-size: 14px;
-                """);
-
-        // ================= CREAR BOTONES =================
+        // =================================================
+        // CREAR BOTONES
+        // =================================================
 
         for (String[] datos : selecciones) {
 
@@ -342,11 +298,12 @@ public class Main extends Application {
                             datos[1]
                     );
 
-            panPaises.getChildren()
-                    .add(boton);
+            panPaises.getChildren().add(boton);
         }
 
-        // ================= SCROLL =================
+        // =================================================
+        // SCROLL
+        // =================================================
 
         ScrollPane scroll =
                 new ScrollPane(
@@ -355,7 +312,7 @@ public class Main extends Application {
 
         scroll.setFitToWidth(true);
 
-        scroll.setPrefHeight(450);
+        scroll.setPrefHeight(600);
 
         scroll.setStyle("""
                 -fx-background:
@@ -365,7 +322,9 @@ public class Main extends Application {
                 transparent;
                 """);
 
-        // ================= VOLVER =================
+        // =================================================
+        // BOTON VOLVER
+        // =================================================
 
         Button btnVolver =
                 new Button("Volver");
@@ -380,17 +339,16 @@ public class Main extends Application {
         btnVolver.setPrefWidth(220);
 
         btnVolver.setOnAction(e -> {
-
             stage.setScene(menuScene);
         });
 
-        // ================= AGREGAR =================
+        // =================================================
+        // AGREGAR
+        // =================================================
 
         panTutor.getChildren().addAll(
-
                 lblSeleccion,
                 scroll,
-                txtInfo,
                 btnVolver
         );
 
@@ -411,23 +369,15 @@ public class Main extends Application {
     ) {
 
         var stream =
-                getClass()
-                        .getResourceAsStream(
-                                "/images/"
-                                        + codigo
-                                        + ".png"
-                        );
+                getClass().getResourceAsStream("/images/" + codigo + ".png");
 
         if (stream == null) {
 
             System.out.println(
-                    "No existe imagen: "
-                            + codigo
+                    "No existe imagen: " + codigo
             );
 
-            return new Button(
-                    codigo.toUpperCase()
-            );
+            return new Button( codigo.toUpperCase());
         }
 
         Image imagen =
@@ -461,7 +411,9 @@ public class Main extends Application {
 
         estilizarBotonPais(boton);
 
-        // ================= HOVER =================
+        // =================================================
+        // HOVER
+        // =================================================
 
         boton.setOnMouseEntered(e -> {
 
@@ -477,7 +429,9 @@ public class Main extends Application {
             boton.setScaleY(1);
         });
 
-        // ================= EVENTO =================
+        // =================================================
+        // EVENTO
+        // =================================================
 
         boton.setOnAction(e -> {
 
@@ -501,73 +455,284 @@ public class Main extends Application {
 
             if (
                     p.getNombre()
-                            .equalsIgnoreCase(
-                                    nombrePais
-                            )
+                            .equalsIgnoreCase(nombrePais)
             ) {
 
-                String info =
+                // =========================================
+                // NUEVA VENTANA
+                // =========================================
 
-                        "PAIS: "
-                                + p.getNombre()
+                Stage ventana = new Stage();
 
-                                + "\n\n"
+                VBox root = new VBox(20);
 
-                                + "CONTINENTE: "
+                root.setPadding(new Insets(20));
+
+                root.setAlignment(Pos.TOP_CENTER);
+
+                root.setStyle("""
+                        -fx-background-color:
+                        linear-gradient(
+                            to bottom,
+                            #111111,
+                            #202020
+                        );
+                        """);
+
+                // =========================================
+                // TITULO
+                // =========================================
+
+                Label lblNombre = new Label(
+                        p.getNombre().toUpperCase()
+                );
+
+                lblNombre.setFont(
+                        Font.font(
+                                fuente.getFamily(),
+                                40
+                        )
+                );
+
+                lblNombre.setStyle("""
+                        -fx-text-fill: white;
+                        """);
+
+                // =========================================
+                // DATOS
+                // =========================================
+
+                Label lblDatos = new Label(
+
+                        "Continente: "
                                 + p.getContinente()
 
-                                + "\n"
+                                + "   |   "
 
-                                + "MUNDIALES: "
+                                + "Mundiales: "
                                 + p.getMundiales()
 
-                                + "\n"
+                                + "   |   "
 
-                                + "PARTICIPACIONES: "
+                                + "Participaciones: "
                                 + p.getParticipantes()
+                );
 
-                                + "\n\n"
+                lblDatos.setFont(
+                        Font.font(
+                                fuente.getFamily(),
+                                18
+                        )
+                );
 
-                                + "CULTURA:\n"
-                                + p.getCultura()
+                lblDatos.setStyle("""
+                        -fx-text-fill: #cccccc;
+                        """);
 
-                                + "\n\n"
+                // =========================================
+                // CENTRO
+                // =========================================
 
-                                + "DATOS FUTBOLISTICOS:\n"
-                                + p.getDatosFutbol()
+                HBox contenedorCentral =
+                        new HBox(20);
 
-                                + "\n\n"
+                contenedorCentral.setAlignment(
+                        Pos.CENTER
+                );
 
-                                + "JUGADORES:\n";
+                // =========================================
+                // CULTURA
+                // =========================================
 
-                for (Jugador j :
-                        p.getJugadores()) {
+                VBox panelCultura = new VBox(10);
 
-                    info +=
+                panelCultura.setPrefWidth(300);
 
-                            "- "
-                                    + j.getNombre()
+                Label lblCulturaTitulo =
+                        new Label("CULTURA");
 
-                                    + " | "
+                lblCulturaTitulo.setFont(
+                        Font.font(
+                                fuente.getFamily(),
+                                24
+                        )
+                );
 
-                                    + j.getPosicion()
+                lblCulturaTitulo.setStyle("""
+                        -fx-text-fill: #4CAF50;
+                        """);
 
-                                    + " | #"
+                Label lblCultura =
+                        new Label(p.getCultura());
 
-                                    + j.getNumero()
+                lblCultura.setWrapText(true);
 
-                                    + "\n";
+                lblCultura.setStyle("""
+                        -fx-text-fill: white;
+                        -fx-font-size: 16px;
+                        """);
+
+                panelCultura.getChildren().addAll(
+                        lblCulturaTitulo,
+                        lblCultura
+                );
+
+                // =========================================
+                // FUTBOL
+                // =========================================
+
+                VBox panelFutbol =
+                        new VBox(10);
+
+                panelFutbol.setPrefWidth(300);
+
+                Label lblFutbolTitulo =
+                        new Label(
+                                "FUTBOL"
+                        );
+
+                lblFutbolTitulo.setFont(
+                        Font.font(
+                                fuente.getFamily(),
+                                24
+                        )
+                );
+
+                lblFutbolTitulo.setStyle("""
+                        -fx-text-fill: #2196F3;
+                        """);
+
+                Label lblFutbol =
+                        new Label(
+                                p.getDatosFutbol()
+                        );
+
+                lblFutbol.setWrapText(true);
+
+                lblFutbol.setStyle("""
+                        -fx-text-fill: white;
+                        -fx-font-size: 16px;
+                        """);
+
+                panelFutbol.getChildren().addAll(
+                        lblFutbolTitulo,
+                        lblFutbol
+                );
+
+                // =========================================
+                // AGREGAR PANELES
+                // =========================================
+
+                contenedorCentral.getChildren()
+                        .addAll(
+                                panelCultura,
+                                panelFutbol
+                        );
+
+                // =========================================
+                // JUGADORES
+                // =========================================
+
+                VBox panelJugadores =
+                        new VBox(8);
+
+                panelJugadores.setAlignment(
+                        Pos.CENTER
+                );
+
+                Label lblJugadores =
+                        new Label(
+                                "JUGADORES DESTACADOS"
+                        );
+
+                lblJugadores.setFont(
+                        Font.font(
+                                fuente.getFamily(),
+                                24
+                        )
+                );
+
+                lblJugadores.setStyle("""
+                        -fx-text-fill: #FF9800;
+                        """);
+
+                panelJugadores.getChildren()
+                        .add(lblJugadores);
+
+                for (Jugador j : p.getJugadores()) {
+
+                    Label jugador =
+                            new Label(
+
+                                    j.getNombre()
+
+                                            + " | "
+
+                                            + j.getPosicion()
+
+                                            + " | #"
+
+                                            + j.getNumero()
+                            );
+
+                    jugador.setStyle("""
+                            -fx-text-fill: white;
+                            -fx-font-size: 16px;
+                            """);
+
+                    panelJugadores.getChildren()
+                            .add(jugador);
                 }
 
-                txtInfo.setText(info);
+                // =========================================
+                // BOTON CERRAR
+                // =========================================
+
+                Button btnCerrar =
+                        new Button("Cerrar");
+
+                aplicarFuente(btnCerrar);
+
+                estilizarBoton(
+                        btnCerrar,
+                        "#F44336"
+                );
+
+                btnCerrar.setOnAction(e -> {
+
+                    ventana.close();
+                });
+
+                // =========================================
+                // AGREGAR TODO
+                // =========================================
+
+                root.getChildren().addAll(
+
+                        lblNombre,
+                        lblDatos,
+                        contenedorCentral,
+                        panelJugadores,
+                        btnCerrar
+                );
+
+                Scene scene = new Scene(
+                        root,
+                        950,
+                        700
+                );
+
+                ventana.setTitle(
+                        p.getNombre()
+                );
+
+                ventana.setScene(scene);
+
+                ventana.show();
 
                 return;
             }
         }
-
-        txtInfo.setText(
-                "No se encontro informacion"
-        );
     }
 
     // =================================================
@@ -620,7 +785,7 @@ public class Main extends Application {
     }
 
     // =================================================
-    // BOTONES PAISES
+    // ESTILO BOTONES PAISES
     // =================================================
 
     private void estilizarBotonPais(
