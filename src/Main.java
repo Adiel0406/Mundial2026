@@ -4,11 +4,16 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
@@ -128,6 +133,8 @@ public class Main extends Application {
         Scene menuScene = crearMenu(stage);
 
         Scene tutorScene = crearTutor(stage, menuScene);
+        
+        Scene testScene = crearTest(stage, menuScene);
 
         VBox rootMenu = (VBox) menuScene.getRoot();
 
@@ -138,6 +145,15 @@ public class Main extends Application {
 
         btnIniciar.setOnAction(e -> {
             stage.setScene(tutorScene);
+        });
+        
+        Button btnTest =
+                (Button) rootMenu
+                        .getChildren()
+                        .get(2);
+
+        btnTest.setOnAction(e -> {
+            stage.setScene(testScene);
         });
 
         // =================================================
@@ -354,6 +370,358 @@ public class Main extends Application {
 
         return new Scene(
                 panTutor,
+                WIDTH,
+                HEIGHT
+        );
+    }
+    
+    private Scene crearTest(
+            Stage stage,
+            Scene menuScene
+    	) {
+
+        // =================================================
+        // PANEL PRINCIPAL
+        // =================================================
+
+        VBox root = new VBox(25);
+
+        root.setAlignment(Pos.CENTER);
+
+        root.setPadding(new Insets(30));
+
+        root.setStyle("""
+                -fx-background-color:
+                linear-gradient(
+                    to bottom,
+                    #101010,
+                    #202020
+                );
+                """);
+
+        // =================================================
+        // TITULO
+        // =================================================
+
+        Label lblTitulo =
+                new Label("CONFIGURAR TEST");
+
+        aplicarFuente(lblTitulo);
+
+        lblTitulo.setStyle("""
+                -fx-text-fill: white;
+                -fx-font-size: 28px;
+                """);
+
+        // =================================================
+        // NOMBRE
+        // =================================================
+
+        Label lblNombre =
+                new Label("Ingrese su nombre");
+
+        aplicarFuente(lblNombre);
+
+        lblNombre.setStyle("""
+                -fx-text-fill: white;
+                """);
+
+        TextField txtNombre =
+                new TextField();
+
+        txtNombre.setMaxWidth(300);
+
+        txtNombre.setPromptText(
+                "Nombre del jugador"
+        );
+
+        txtNombre.setStyle("""
+                -fx-font-size: 16px;
+                -fx-background-radius: 10;
+                -fx-padding: 10;
+                """);
+
+        // =================================================
+        // DIFICULTAD
+        // =================================================
+
+        Label lblDificultad =
+                new Label("Seleccione dificultad");
+
+        aplicarFuente(lblDificultad);
+
+        lblDificultad.setStyle("""
+                -fx-text-fill: white;
+                """);
+
+        ToggleGroup grupoDificultad =
+                new ToggleGroup();
+
+        RadioButton rbFacil =
+                new RadioButton("Facil");
+
+        RadioButton rbMedio =
+                new RadioButton("Medio");
+
+        RadioButton rbDificil =
+                new RadioButton("Dificil");
+
+        aplicarFuente(rbFacil);
+        aplicarFuente(rbMedio);
+        aplicarFuente(rbDificil);
+
+        rbFacil.setToggleGroup(
+                grupoDificultad
+        );
+
+        rbMedio.setToggleGroup(
+                grupoDificultad
+        );
+
+        rbDificil.setToggleGroup(
+                grupoDificultad
+        );
+
+        rbFacil.setStyle("""
+                -fx-text-fill: white;
+                """);
+
+        rbMedio.setStyle("""
+                -fx-text-fill: white;
+                """);
+
+        rbDificil.setStyle("""
+                -fx-text-fill: white;
+                """);
+
+        HBox panelDificultad =
+                new HBox(20);
+
+        panelDificultad.setAlignment(
+                Pos.CENTER
+        );
+
+        panelDificultad.getChildren()
+                .addAll(
+                        rbFacil,
+                        rbMedio,
+                        rbDificil
+                );
+
+        // =================================================
+        // SPINNER
+        // =================================================
+
+        Label lblPreguntas =
+                new Label(
+                        "Cantidad de preguntas"
+                );
+
+        aplicarFuente(lblPreguntas);
+
+        lblPreguntas.setStyle("""
+                -fx-text-fill: white;
+                """);
+
+        Spinner<Integer> spinner =
+                new Spinner<>(5, 30, 10);
+
+        spinner.setEditable(true);
+
+        spinner.setMaxWidth(120);
+
+        spinner.setStyle("""
+                -fx-font-size: 16px;
+                """);
+
+        // =================================================
+        // MENSAJE ERROR
+        // =================================================
+
+        Label lblError =
+                new Label();
+
+        lblError.setStyle("""
+                -fx-text-fill: red;
+                -fx-font-size: 16px;
+                """);
+
+        // =================================================
+        // BOTONES
+        // =================================================
+
+        Button btnIniciar =
+                new Button("Iniciar Test");
+
+        Button btnVolver =
+                new Button("Volver");
+
+        aplicarFuente(btnIniciar);
+
+        aplicarFuente(btnVolver);
+
+        estilizarBoton(
+                btnIniciar,
+                "#4CAF50"
+        );
+
+        estilizarBoton(
+                btnVolver,
+                "#9C27B0"
+        );
+
+        btnIniciar.setPrefWidth(240);
+
+        btnVolver.setPrefWidth(240);
+
+        // =================================================
+        // EVENTO INICIAR
+        // =================================================
+
+        btnIniciar.setOnAction(e -> {
+
+            try {
+
+                String nombre =
+                        txtNombre
+                                .getText()
+                                .trim();
+
+                // ================= VALIDAR VACIO
+
+                if (nombre.isEmpty()) {
+
+                    throw new Exception(
+                            "Debe ingresar un nombre"
+                    );
+                }
+
+                // ================= VALIDAR SOLO NUMEROS
+
+                if (nombre.matches("\\d+")) {
+
+                    throw new Exception(
+                            "El nombre no puede contener solo numeros"
+                    );
+                }
+
+                // ================= VALIDAR DIFICULTAD
+
+                if (
+                        grupoDificultad
+                                .getSelectedToggle()
+                                == null
+                ) {
+
+                    throw new Exception(
+                            "Seleccione una dificultad"
+                    );
+                }
+
+                // ================= OBTENER DATOS
+
+                RadioButton seleccionado =
+                        (RadioButton)
+                                grupoDificultad
+                                        .getSelectedToggle();
+
+                String dificultad =
+                        seleccionado.getText();
+
+                int preguntas =
+                        spinner.getValue();
+
+                // ================= LIMPIAR ERROR
+
+                lblError.setText("");
+
+                // ================= DEMO
+
+                Alert alert =
+                        new Alert(
+                                Alert.AlertType.INFORMATION
+                        );
+
+                alert.setTitle("Test");
+
+                alert.setHeaderText(
+                        "Configuracion completada"
+                );
+
+                alert.setContentText(
+
+                        "Jugador: "
+                                + nombre
+
+                                + "\nDificultad: "
+                                + dificultad
+
+                                + "\nPreguntas: "
+                                + preguntas
+                );
+
+                alert.showAndWait();
+
+            } catch (Exception ex) {
+
+                lblError.setText(
+                        ex.getMessage()
+                );
+            }
+        });
+
+        // =================================================
+        // EVENTO VOLVER
+        // =================================================
+
+        btnVolver.setOnAction(e -> {
+
+            // ================= LIMPIAR NOMBRE
+
+            txtNombre.clear();
+
+            // ================= LIMPIAR RADIO BUTTONS
+
+            grupoDificultad.selectToggle(null);
+
+            // ================= REINICIAR SPINNER
+
+            spinner.getValueFactory().setValue(10);
+
+            // ================= LIMPIAR ERROR
+
+            lblError.setText("");
+
+            // ================= VOLVER
+
+            stage.setScene(menuScene);
+        });
+
+        // =================================================
+        // AGREGAR TODO
+        // =================================================
+
+        root.getChildren().addAll(
+
+                lblTitulo,
+
+                lblNombre,
+                txtNombre,
+
+                lblDificultad,
+                panelDificultad,
+
+                lblPreguntas,
+                spinner,
+
+                lblError,
+
+                btnIniciar,
+                btnVolver
+        );
+
+        return new Scene(
+                root,
                 WIDTH,
                 HEIGHT
         );

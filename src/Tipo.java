@@ -1,23 +1,6 @@
 
-public class Tipo {
-	//constantes para evitar errores
-	public static final String VERDADERO_FALSO = "Verdadero o Falso";
-    public static final String OPCION_MULTIPLE = "Opcion Multiple";
-	String nombre;
-	public Tipo(String nombre) {
-		super();
-		this.nombre = nombre;
+public enum Tipo {
 
-	}
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	@Override
-	public String toString() {
-		return "Tipo [nombre=" + nombre + "]";
-	}
-
+    VERDADERO_FALSO,
+    OPCION_MULTIPLE
 }

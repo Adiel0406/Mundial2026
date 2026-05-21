@@ -3,10 +3,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
-import java.util.Collections;
+
 public class Quiz {
+	
 	private ArrayList<Pregunta> preguntas;
-	String nombre,dificultad;
+	private String nombre,dificultad;
+	
 	public Quiz(ArrayList<Pregunta> preguntas, String nombre, String dificultad) {
 		super();
 		this.preguntas = preguntas;
@@ -36,14 +38,19 @@ public class Quiz {
 		return "Quiz [preguntas=" + preguntas + ", nombre=" + nombre + ", dificultad=" + dificultad + "]";
 	}
 	
-	public static ArrayList<Pregunta> leerPreguntasBin(String dificultad,String archivo) {
+	public static ArrayList<Pregunta> leerPreguntasBin(
+			String archivo
+		) {
+		
         ArrayList<Pregunta> preguntaLeida = new ArrayList<>();
-        try (FileInputStream fis = new FileInputStream(Archivos.archivoPreguntasD);
+        
+        try (FileInputStream fis = new FileInputStream(archivo);
              DataInputStream dis = new DataInputStream(fis)) {
             
             while (dis.available() > 0) {
                 String nombreTipo = dis.readUTF();  
-                Tipo tipoObjeto = new Tipo(nombreTipo);
+                Tipo tipoObjeto =
+                        Tipo.valueOf(nombreTipo);
                 
                 String nom = dis.readUTF();
                 String res = dis.readUTF();
@@ -55,10 +62,28 @@ public class Quiz {
                     ops.add(dis.readUTF());
                 }
 
-                if (nombreTipo.equalsIgnoreCase(Tipo.VERDADERO_FALSO)) {
-                    preguntaLeida.add(new PreguntaVF(tipoObjeto, nom, res, punt));
+                if (tipoObjeto == Tipo.VERDADERO_FALSO) {
+
+                    preguntaLeida.add(
+                            new PreguntaVF(
+                                    tipoObjeto,
+                                    nom,
+                                    res,
+                                    punt
+                            )
+                    );
+
                 } else {
-                    preguntaLeida.add(new PreguntaOpMultiple(tipoObjeto, nom, res, punt, ops));
+
+                    preguntaLeida.add(
+                            new PreguntaOpMultiple(
+                                    tipoObjeto,
+                                    nom,
+                                    res,
+                                    punt,
+                                    ops
+                            )
+                    );
                 }
             }
         } catch (FileNotFoundException e) {
@@ -69,19 +94,55 @@ public class Quiz {
         return preguntaLeida;
     }
     
-    public List<Pregunta> elegirPreguntas(String dificultad, int cantidad, String archivo) throws IllegalArgumentException {
-        ArrayList<Pregunta> preguntasLeidas = leerPreguntasBin(dificultad, Archivos.archivoPreguntasD);
-        
-        if (preguntasLeidas.size() < cantidad) {
-            throw new IllegalArgumentException("No hay suficientes preguntas solicitadas");
-        }
-        
-        Collections.shuffle(preguntasLeidas);
-        return preguntasLeidas.subList(0, cantidad);
-    }
+	public List<Pregunta> elegirPreguntas(
+	        String dificultad,
+	        int cantidad
+	) throws IllegalArgumentException {
 
+	    String archivo;
 
-    public int calcularPuntuacionMaxima() {
+	    // ================= SELECCIONAR ARCHIVO
+
+	    if (dificultad.equalsIgnoreCase("Facil")) {
+
+	        archivo = Archivos.archivoPreguntasF;
+
+	    } else if (
+	            dificultad.equalsIgnoreCase("Medio")
+	    ) {
+
+	        archivo = Archivos.archivoPreguntasM;
+
+	    } else {
+
+	        archivo = Archivos.archivoPreguntasD;
+	    }
+
+	    // ================= LEER PREGUNTAS
+
+	    ArrayList<Pregunta> preguntasLeidas =
+	            leerPreguntasBin(archivo);
+
+	    // ================= VALIDAR CANTIDAD
+
+	    if (preguntasLeidas.size() < cantidad) {
+
+	        throw new IllegalArgumentException(
+	                "No hay suficientes preguntas"
+	        );
+	    }
+
+	    // ================= MEZCLAR
+
+	    Collections.shuffle(preguntasLeidas);
+
+	    return preguntasLeidas.subList(
+	            0,
+	            cantidad
+	    );
+	}
+
+	public int calcularPuntuacionMaxima() {
         int total = 0;
         for (Pregunta p : preguntas) {
             if (p != null) { 
@@ -111,5 +172,9 @@ public class Quiz {
         }
         return filtradas;
     }
+    
+    private int puntuacionActual;
+    
+    private int preguntaActual;
 	
 }

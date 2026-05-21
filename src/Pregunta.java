@@ -33,11 +33,27 @@ public abstract class Pregunta {
 		this.puntuacion = puntuacion;
 	}
 
+	public String getNombre() {
+	    return nombre;
+	}
+	
+	public Tipo getTipo() {
+	    return tipo;
+	}
+	
+	@Override
+	public String toString() {
+
+	    return nombre;
+	}
 
 	public abstract void mostrarPregunta();
     
-    public boolean validarRespuesta(String entradaUsuario) {
-        return this.nombre.equalsIgnoreCase(entradaUsuario.trim());
-    }
+	public boolean validarRespuesta(String entradaUsuario) {
+
+	    return this.respuesta.equalsIgnoreCase(
+	            entradaUsuario.trim()
+	    );
+	}
     
 }
