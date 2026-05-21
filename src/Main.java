@@ -26,9 +26,14 @@ public class Main extends Application {
 
     private final int WIDTH = 1000;
     private final int HEIGHT = 800;
+    
+    private int indicePregunta = 0;
 
+    private int puntuacionTotal = 0;
+    
     private Font fuente;
 
+    
     private ArrayList<Pais> paises;
 
     // =================================================
@@ -273,107 +278,372 @@ public class Main extends Application {
                     #202020
                 );
                 """);
+            
+    // =================================================
+    // LABEL
+    // =================================================
 
-        // =================================================
-        // LABEL
-        // =================================================
+    Label lblSeleccion =
+            new Label(
+                    "Seleccione una selección"
+            );
 
-        Label lblSeleccion =
-                new Label(
-                        "Seleccione una selección"
+    aplicarFuente(lblSeleccion);
+
+    lblSeleccion.setStyle("""
+            -fx-text-fill: white;
+            """);
+
+    // =================================================
+    // FLOWPANE
+    // =================================================
+
+    FlowPane panPaises =
+            new FlowPane();
+
+    panPaises.setAlignment(Pos.CENTER);
+
+    panPaises.setHgap(15);
+
+    panPaises.setVgap(15);
+
+    // =================================================
+    // CREAR BOTONES
+    // =================================================
+
+    for (String[] datos : selecciones) {
+
+        Button boton =
+                crearBotonSeleccion(
+                        datos[0],
+                        datos[1]
                 );
 
-        aplicarFuente(lblSeleccion);
+        panPaises.getChildren().add(boton);
+    }
 
-        lblSeleccion.setStyle("""
-                -fx-text-fill: white;
-                """);
+    // =================================================
+    // SCROLL
+    // =================================================
 
-        // =================================================
-        // FLOWPANE
-        // =================================================
+    ScrollPane scroll =
+            new ScrollPane(
+                    panPaises
+            );
 
-        FlowPane panPaises =
-                new FlowPane();
+    scroll.setFitToWidth(true);
 
-        panPaises.setAlignment(Pos.CENTER);
+    scroll.setPrefHeight(600);
 
-        panPaises.setHgap(15);
+    scroll.setStyle("""
+            -fx-background:
+            transparent;
 
-        panPaises.setVgap(15);
+            -fx-background-color:
+            transparent;
+            """);
 
-        // =================================================
-        // CREAR BOTONES
-        // =================================================
+    // =================================================
+    // BOTON VOLVER
+    // =================================================
 
-        for (String[] datos : selecciones) {
+    Button btnVolver =
+            new Button("Volver");
 
-            Button boton =
-                    crearBotonSeleccion(
-                            datos[0],
-                            datos[1]
+    aplicarFuente(btnVolver);
+
+    estilizarBoton(
+            btnVolver,
+            "#9C27B0"
+    );
+
+    btnVolver.setPrefWidth(220);
+
+    btnVolver.setOnAction(e -> {
+        stage.setScene(menuScene);
+    });
+
+    // =================================================
+    // AGREGAR
+    // =================================================
+
+    panTutor.getChildren().addAll(
+            lblSeleccion,
+            scroll,
+            btnVolver
+    );
+
+    return new Scene(
+            panTutor,
+            WIDTH,
+            HEIGHT
+    );
+}
+   // =================================================
+   // QUIZ
+   // =================================================     
+	    private Scene crearEscenaQuiz(
+	            Stage stage,
+	            Scene menuScene,
+	            Quiz quiz
+	    ) {
+
+            indicePregunta = 0;
+
+            puntuacionTotal = 0;
+
+            VBox root = new VBox(20);
+
+            root.setAlignment(Pos.CENTER);
+
+            root.setPadding(new Insets(20));
+
+            root.setStyle("""
+                    -fx-background-color: #121212;
+                    """);
+
+            // ================= LABEL PREGUNTA
+
+            Label lblPregunta = new Label();
+
+            aplicarFuente(lblPregunta);
+
+            lblPregunta.setWrapText(true);
+
+            lblPregunta.setStyle("""
+                    -fx-text-fill: white;
+                    """);
+
+            // ================= LABEL PUNTAJE
+
+            Label lblPuntaje = new Label();
+
+            aplicarFuente(lblPuntaje);
+
+            lblPuntaje.setStyle("""
+                    -fx-text-fill: gold;
+                    """);
+
+            // ================= CONTENEDOR OPCIONES
+
+            VBox opcionesBox = new VBox(10);
+
+            opcionesBox.setAlignment(Pos.CENTER);
+
+            // ================= BOTONES
+
+            Button btnSiguiente =
+                    new Button("Siguiente");
+
+            Button btnCancelar =
+                    new Button("Cancelar Quiz");
+
+            aplicarFuente(btnSiguiente);
+
+            aplicarFuente(btnCancelar);
+
+            estilizarBoton(btnSiguiente, "#4CAF50");
+
+            estilizarBoton(btnCancelar, "#F44336");
+
+            // =================================================
+            // FUNCION PARA MOSTRAR PREGUNTA
+            // =================================================
+
+            final Runnable[] cargarPregunta = new Runnable[1];
+            cargarPregunta[0] = () -> {
+
+                // SI TERMINÓ EL QUIZ
+
+                if (indicePregunta >=
+                        quiz.getPreguntas().size()) {
+
+                    Alert alerta = new Alert(
+                            Alert.AlertType.INFORMATION
                     );
 
-            panPaises.getChildren().add(boton);
-        }
+                    alerta.setHeaderText(
+                            "Quiz terminado"
+                    );
 
-        // =================================================
-        // SCROLL
-        // =================================================
+                    alerta.setContentText(
+                            "Puntuación final: "
+                                    + puntuacionTotal
+                    );
 
-        ScrollPane scroll =
-                new ScrollPane(
-                        panPaises
+                    alerta.showAndWait();
+
+                    stage.setScene(menuScene);
+
+                    return;
+                }
+
+                // OBTENER PREGUNTA
+
+                Pregunta pregunta =
+                        quiz.getPreguntas()
+                                .get(indicePregunta);
+
+                // MOSTRAR TEXTO
+
+                lblPregunta.setText(
+                        pregunta.getNombre()
                 );
 
-        scroll.setFitToWidth(true);
+                lblPuntaje.setText(
+                        "Puntaje: "
+                                + pregunta.getPuntuacion()
+                );
 
-        scroll.setPrefHeight(600);
+                opcionesBox.getChildren().clear();
 
-        scroll.setStyle("""
-                -fx-background:
-                transparent;
+                ToggleGroup grupo =
+                        new ToggleGroup();
 
-                -fx-background-color:
-                transparent;
-                """);
+                // =================================================
+                // PREGUNTA VF
+                // =================================================
 
-        // =================================================
-        // BOTON VOLVER
-        // =================================================
+                if (pregunta instanceof PreguntaVF) {
 
-        Button btnVolver =
-                new Button("Volver");
+                    RadioButton rbV =
+                            new RadioButton(
+                                    "Verdadero"
+                            );
 
-        aplicarFuente(btnVolver);
+                    RadioButton rbF =
+                            new RadioButton(
+                                    "Falso"
+                            );
 
-        estilizarBoton(
-                btnVolver,
-                "#9C27B0"
-        );
+                    aplicarFuente(rbV);
 
-        btnVolver.setPrefWidth(220);
+                    aplicarFuente(rbF);
+                    
+                    rbV.setStyle("-fx-text-fill: white;");
+                    rbF.setStyle("-fx-text-fill: white;");
 
-        btnVolver.setOnAction(e -> {
-            stage.setScene(menuScene);
-        });
+                    rbV.setToggleGroup(grupo);
 
-        // =================================================
-        // AGREGAR
-        // =================================================
+                    rbF.setToggleGroup(grupo);
 
-        panTutor.getChildren().addAll(
-                lblSeleccion,
-                scroll,
-                btnVolver
-        );
+                    opcionesBox.getChildren().addAll(
+                            rbV,
+                            rbF
+                    );
+                }
 
-        return new Scene(
-                panTutor,
-                WIDTH,
-                HEIGHT
-        );
-    }
+                // =================================================
+                // OPCION MULTIPLE
+                // =================================================
+
+                else if (
+                        pregunta instanceof
+                                PreguntaOpMultiple
+                ) {
+
+                    PreguntaOpMultiple pom =
+                            (PreguntaOpMultiple)
+                                    pregunta;
+
+                    for (String op :
+                            pom.getOpciones()) {
+
+                        RadioButton rb =
+                                new RadioButton(op);
+
+                        aplicarFuente(rb);
+
+                        rb.setToggleGroup(grupo);
+
+                        opcionesBox.getChildren()
+                                .add(rb);
+                    }
+                }
+
+                // =================================================
+                // BOTON SIGUIENTE
+                // =================================================
+
+                btnSiguiente.setOnAction(e -> {
+
+                    if (
+                            grupo.getSelectedToggle()
+                                    == null
+                    ) {
+
+                        Alert alert =
+                                new Alert(
+                                        Alert.AlertType.WARNING
+                                );
+
+                        alert.setHeaderText(
+                                "Seleccione una respuesta"
+                        );
+
+                        alert.show();
+
+                        return;
+                    }
+
+                    RadioButton seleccionado =
+                            (RadioButton)
+                                    grupo.getSelectedToggle();
+
+                    // VALIDAR RESPUESTA
+
+                    if (
+                            pregunta.validarRespuesta(
+                                    seleccionado.getText()
+                            )
+                    ) {
+
+                        puntuacionTotal +=
+                                pregunta.getPuntuacion();
+                    }
+
+                    // SIGUIENTE PREGUNTA
+
+                    indicePregunta++;
+
+                    cargarPregunta[0].run();
+                });
+            };
+
+            // =================================================
+            // CANCELAR QUIZ
+            // =================================================
+
+            btnCancelar.setOnAction(e -> {
+
+                indicePregunta = 0;
+
+                puntuacionTotal = 0;
+
+                stage.setScene(menuScene);
+            });
+
+            // CARGAR PRIMERA PREGUNTA
+
+            cargarPregunta[0].run();
+
+            // AGREGAR COMPONENTES
+
+            root.getChildren().addAll(
+                    lblPregunta,
+                    lblPuntaje,
+                    opcionesBox,
+                    btnSiguiente,
+                    btnCancelar
+            );
+
+            return new Scene(
+                    root,
+                    WIDTH,
+                    HEIGHT
+            );
+        }
+        
     
     private Scene crearTest(
             Stage stage,
@@ -481,7 +751,11 @@ public class Main extends Application {
         rbDificil.setToggleGroup(
                 grupoDificultad
         );
-
+        
+        rbFacil.setUserData("Facil");
+        rbMedio.setUserData("Medio");
+        rbDificil.setUserData("Dificil");
+        
         rbFacil.setStyle("""
                 -fx-text-fill: white;
                 """);
@@ -582,91 +856,103 @@ public class Main extends Application {
 
             try {
 
-                String nombre =
-                        txtNombre
-                                .getText()
-                                .trim();
+                // ================= NOMBRE
 
-                // ================= VALIDAR VACIO
+                String nombre =
+                        txtNombre.getText().trim();
 
                 if (nombre.isEmpty()) {
 
                     throw new Exception(
-                            "Debe ingresar un nombre"
+                            "Ingrese un nombre"
                     );
                 }
-
-                // ================= VALIDAR SOLO NUMEROS
-
-                if (nombre.matches("\\d+")) {
-
-                    throw new Exception(
-                            "El nombre no puede contener solo numeros"
-                    );
-                }
-
-                // ================= VALIDAR DIFICULTAD
 
                 if (
-                        grupoDificultad
-                                .getSelectedToggle()
+                        nombre.matches("\\d+")
+                ) {
+
+                    throw new Exception(
+                            "El nombre no puede ser solo números"
+                    );
+                }
+
+                // ================= DIFICULTAD
+
+                if (
+                        grupoDificultad.getSelectedToggle()
                                 == null
                 ) {
 
                     throw new Exception(
-                            "Seleccione una dificultad"
+                            "Seleccione dificultad"
                     );
                 }
 
-                // ================= OBTENER DATOS
-
-                RadioButton seleccionado =
-                        (RadioButton)
-                                grupoDificultad
-                                        .getSelectedToggle();
-
                 String dificultad =
-                        seleccionado.getText();
+                        grupoDificultad
+                                .getSelectedToggle()
+                                .getUserData()
+                                .toString();
 
-                int preguntas =
+                // ================= CANTIDAD
+
+                int cantidad =
                         spinner.getValue();
 
-                // ================= LIMPIAR ERROR
+                // ================= CREAR QUIZ
 
-                lblError.setText("");
+                Quiz quiz = new Quiz(
+                        new ArrayList<>(),
+                        nombre,
+                        dificultad
+                );
 
-                // ================= DEMO
+                // ================= OBTENER PREGUNTAS
 
-                Alert alert =
-                        new Alert(
-                                Alert.AlertType.INFORMATION
+                ArrayList<Pregunta> preguntas =
+                        new ArrayList<>(
+                                quiz.elegirPreguntas(
+                                        dificultad,
+                                        cantidad
+                                )
                         );
 
-                alert.setTitle("Test");
-
-                alert.setHeaderText(
-                        "Configuracion completada"
+                quiz.setPreguntas(
+                        preguntas
                 );
 
-                alert.setContentText(
+                // ================= CREAR ESCENA
 
-                        "Jugador: "
-                                + nombre
+                Scene escenaQuiz =
+                        crearEscenaQuiz(
+                                stage,
+                                menuScene,
+                                quiz
+                        );
 
-                                + "\nDificultad: "
-                                + dificultad
+                // ================= CAMBIAR ESCENA
 
-                                + "\nPreguntas: "
-                                + preguntas
+                stage.setScene(
+                        escenaQuiz
                 );
-
-                alert.showAndWait();
 
             } catch (Exception ex) {
 
-                lblError.setText(
+                Alert alert =
+                        new Alert(
+                                Alert.AlertType.ERROR
+                        );
+
+                alert.setHeaderText(
+                        "Error"
+                );
+
+                alert.setContentText(
                         ex.getMessage()
                 );
+
+                alert.show();
             }
         });
 
@@ -726,7 +1012,6 @@ public class Main extends Application {
                 HEIGHT
         );
     }
-
     // =================================================
     // CREAR BOTON
     // =================================================

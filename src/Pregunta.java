@@ -25,7 +25,7 @@ public abstract class Pregunta {
 
 
 	public int getPuntuacion() {
-		return puntuacion;
+	    return puntuacion;
 	}
 
 
