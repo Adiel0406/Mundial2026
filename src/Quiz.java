@@ -38,58 +38,53 @@ public class Quiz {
 		return "Quiz [preguntas=" + preguntas + ", nombre=" + nombre + ", dificultad=" + dificultad + "]";
 	}
 	
-	public static ArrayList<Pregunta> leerPreguntasBin(
-			String archivo
-		) {
+public static ArrayList<Pregunta> leerPreguntasBin(String archivo) {
 		
         ArrayList<Pregunta> preguntaLeida = new ArrayList<>();
         
         try (FileInputStream fis = new FileInputStream(archivo);
              DataInputStream dis = new DataInputStream(fis)) {
             
+            int contador = 1;
             while (dis.available() > 0) {
                 String nombreTipo = dis.readUTF();  
-                Tipo tipoObjeto =
-                        Tipo.valueOf(nombreTipo);
+                Tipo tipoObjeto = Tipo.valueOf(nombreTipo);
                 
                 String nom = dis.readUTF();
                 String res = dis.readUTF();
                 int punt = dis.readInt();
-                int numOpciones = dis.readInt();
                 
-                ArrayList<String> ops = new ArrayList<>();
-                for (int i = 0; i < numOpciones; i++) {
-                    ops.add(dis.readUTF());
-                }
 
+                // PRIMERO evaluamos el tipo de pregunta
                 if (tipoObjeto == Tipo.VERDADERO_FALSO) {
+                    
+                    preguntaLeida.add(new PreguntaVF(tipoObjeto, nom, res, punt));
+                    
 
-                    preguntaLeida.add(
-                            new PreguntaVF(
-                                    tipoObjeto,
-                                    nom,
-                                    res,
-                                    punt
-                            )
-                    );
+                } else if (tipoObjeto == Tipo.OPCION_MULTIPLE) {
+                    
+                    // SOLO si es múltiple, leemos la cantidad de opciones y las agregamos
+                    int numOpciones = dis.readInt();
+                    ArrayList<String> ops = new ArrayList<>();
+                    
+                    for (int i = 0; i < numOpciones; i++) {
+                        ops.add(dis.readUTF());
+                    }
+                    
+                    if (ops.isEmpty()) {
+                        System.out.println("   -> ⚠ ALERTA: Esta pregunta múltiple cargó 0 opciones desde el archivo.");
+                    }
 
-                } else {
-
-                    preguntaLeida.add(
-                            new PreguntaOpMultiple(
-                                    tipoObjeto,
-                                    nom,
-                                    res,
-                                    punt,
-                                    ops
-                            )
-                    );
+                    preguntaLeida.add(new PreguntaOpMultiple(tipoObjeto, nom, res, punt, ops));
                 }
+                contador++;
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Error: No se encontró el archivo de preguntas");
-        } catch (IOException e) {
-            System.out.println("Error de lectura o escritura en el archivo.");
+            System.out.println("Error: No se encontró el archivo: " + archivo);
+        } catch (Exception e) {
+            // Reemplazado por Exception general para atrapar cualquier caída y mostrarte la línea exacta
+            System.out.println("⚠ ERROR CRÍTICO AL LEER EL ARCHIVO: El formato de los datos está corrupto.");
+            e.printStackTrace(); 
         }
         return preguntaLeida;
     }

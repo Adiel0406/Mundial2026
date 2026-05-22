@@ -379,270 +379,186 @@ public class Main extends Application {
             HEIGHT
     );
 }
-   // =================================================
-   // QUIZ
-   // =================================================     
-	    private Scene crearEscenaQuiz(
-	            Stage stage,
-	            Scene menuScene,
-	            Quiz quiz
-	    ) {
+    // =================================================
+    // QUIZ
+    // =================================================     
+    private Scene crearEscenaQuiz(Stage stage, Scene menuScene, Quiz quiz) {
 
-            indicePregunta = 0;
+        indicePregunta = 0;
+        puntuacionTotal = 0;
 
-            puntuacionTotal = 0;
+        VBox root = new VBox(20);
+        root.setAlignment(Pos.CENTER);
+        root.setPadding(new Insets(20));
+        root.setStyle("-fx-background-color: #121212;");
 
-            VBox root = new VBox(20);
+        // ================= LABEL PREGUNTA
+        Label lblPregunta = new Label();
+        aplicarFuente(lblPregunta);
+        lblPregunta.setWrapText(true);
+        lblPregunta.setStyle("-fx-text-fill: white;");
 
-            root.setAlignment(Pos.CENTER);
+        // ================= LABEL PUNTAJE
+        Label lblPuntaje = new Label();
+        aplicarFuente(lblPuntaje);
+        lblPuntaje.setStyle("-fx-text-fill: gold;");
 
-            root.setPadding(new Insets(20));
+        // ================= CONTENEDOR OPCIONES
+        VBox opcionesBox = new VBox(10);
+        opcionesBox.setAlignment(Pos.CENTER);
 
-            root.setStyle("""
-                    -fx-background-color: #121212;
-                    """);
+        // ================= BOTONES
+        Button btnSiguiente = new Button("Siguiente");
+        Button btnCancelar = new Button("Cancelar Quiz");
+        aplicarFuente(btnSiguiente);
+        aplicarFuente(btnCancelar);
+        estilizarBoton(btnSiguiente, "#4CAF50");
+        estilizarBoton(btnCancelar, "#F44336");
 
-            // ================= LABEL PREGUNTA
+        // Arreglo para guardar el grupo de botones sin perder la referencia
+        final ToggleGroup[] grupoActual = new ToggleGroup[1];
 
-            Label lblPregunta = new Label();
+        // =================================================
+        // FUNCION PARA MOSTRAR PREGUNTA
+        // =================================================
+        Runnable cargarPregunta = () -> {
 
-            aplicarFuente(lblPregunta);
+            // SI TERMINÓ EL QUIZ
+        	if (indicePregunta >= quiz.getPreguntas().size()) {
+                Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                alerta.setTitle("Quiz Finalizado");
+                alerta.setHeaderText("¡Felicidades! Has completado el juego.");
 
-            lblPregunta.setWrapText(true);
+                // Usamos StringBuilder para construir el reporte dinámicamente
+                StringBuilder resumen = new StringBuilder();
+                resumen.append("📊 RESUMEN DEL QUIZ:\n");
+                resumen.append("======================================\n\n");
 
-            lblPregunta.setStyle("""
-                    -fx-text-fill: white;
-                    """);
-
-            // ================= LABEL PUNTAJE
-
-            Label lblPuntaje = new Label();
-
-            aplicarFuente(lblPuntaje);
-
-            lblPuntaje.setStyle("""
-                    -fx-text-fill: gold;
-                    """);
-
-            // ================= CONTENEDOR OPCIONES
-
-            VBox opcionesBox = new VBox(10);
-
-            opcionesBox.setAlignment(Pos.CENTER);
-
-            // ================= BOTONES
-
-            Button btnSiguiente =
-                    new Button("Siguiente");
-
-            Button btnCancelar =
-                    new Button("Cancelar Quiz");
-
-            aplicarFuente(btnSiguiente);
-
-            aplicarFuente(btnCancelar);
-
-            estilizarBoton(btnSiguiente, "#4CAF50");
-
-            estilizarBoton(btnCancelar, "#F44336");
-
-            // =================================================
-            // FUNCION PARA MOSTRAR PREGUNTA
-            // =================================================
-
-            final Runnable[] cargarPregunta = new Runnable[1];
-            cargarPregunta[0] = () -> {
-
-                // SI TERMINÓ EL QUIZ
-
-                if (indicePregunta >=
-                        quiz.getPreguntas().size()) {
-
-                    Alert alerta = new Alert(
-                            Alert.AlertType.INFORMATION
-                    );
-
-                    alerta.setHeaderText(
-                            "Quiz terminado"
-                    );
-
-                    alerta.setContentText(
-                            "Puntuación final: "
-                                    + puntuacionTotal
-                    );
-
-                    alerta.showAndWait();
-
-                    stage.setScene(menuScene);
-
-                    return;
+                // Recorremos todas las preguntas del quiz actual
+                for (int i = 0; i < quiz.getPreguntas().size(); i++) {
+                    Pregunta p = quiz.getPreguntas().get(i);
+                    resumen.append((i + 1)).append(". ").append(p.getNombre()).append("\n");
+                    resumen.append("   ✔ Respuesta correcta: ").append(p.getRespuesta()).append("\n");
+                    resumen.append("   ⭐ Valor: ").append(p.getPuntuacion()).append(" pts\n\n");
                 }
 
-                // OBTENER PREGUNTA
+                resumen.append("======================================\n");
+                resumen.append("🏆 PUNTAJE TOTAL OBTENIDO: ").append(puntuacionTotal).append(" puntos.");
 
-                Pregunta pregunta =
-                        quiz.getPreguntas()
-                                .get(indicePregunta);
+                alerta.setContentText(resumen.toString());
+                
+                // Evita que el texto largo se corte en la pantalla
+                alerta.getDialogPane().setMinHeight(javafx.scene.layout.Region.USE_PREF_SIZE);
 
-                // MOSTRAR TEXTO
-
-                lblPregunta.setText(
-                        pregunta.getNombre()
-                );
-
-                lblPuntaje.setText(
-                        "Puntaje: "
-                                + pregunta.getPuntuacion()
-                );
-
-                opcionesBox.getChildren().clear();
-
-                ToggleGroup grupo =
-                        new ToggleGroup();
-
-                // =================================================
-                // PREGUNTA VF
-                // =================================================
-
-                if (pregunta instanceof PreguntaVF) {
-
-                    RadioButton rbV =
-                            new RadioButton(
-                                    "Verdadero"
-                            );
-
-                    RadioButton rbF =
-                            new RadioButton(
-                                    "Falso"
-                            );
-
-                    aplicarFuente(rbV);
-
-                    aplicarFuente(rbF);
-                    
-                    rbV.setStyle("-fx-text-fill: white;");
-                    rbF.setStyle("-fx-text-fill: white;");
-
-                    rbV.setToggleGroup(grupo);
-
-                    rbF.setToggleGroup(grupo);
-
-                    opcionesBox.getChildren().addAll(
-                            rbV,
-                            rbF
-                    );
-                }
-
-                // =================================================
-                // OPCION MULTIPLE
-                // =================================================
-
-                else if (
-                        pregunta instanceof
-                                PreguntaOpMultiple
-                ) {
-
-                    PreguntaOpMultiple pom =
-                            (PreguntaOpMultiple)
-                                    pregunta;
-
-                    for (String op :
-                            pom.getOpciones()) {
-
-                        RadioButton rb =
-                                new RadioButton(op);
-
-                        aplicarFuente(rb);
-
-                        rb.setToggleGroup(grupo);
-
-                        opcionesBox.getChildren()
-                                .add(rb);
-                    }
-                }
-
-                // =================================================
-                // BOTON SIGUIENTE
-                // =================================================
-
-                btnSiguiente.setOnAction(e -> {
-
-                    if (
-                            grupo.getSelectedToggle()
-                                    == null
-                    ) {
-
-                        Alert alert =
-                                new Alert(
-                                        Alert.AlertType.WARNING
-                                );
-
-                        alert.setHeaderText(
-                                "Seleccione una respuesta"
-                        );
-
-                        alert.show();
-
-                        return;
-                    }
-
-                    RadioButton seleccionado =
-                            (RadioButton)
-                                    grupo.getSelectedToggle();
-
-                    // VALIDAR RESPUESTA
-
-                    if (
-                            pregunta.validarRespuesta(
-                                    seleccionado.getText()
-                            )
-                    ) {
-
-                        puntuacionTotal +=
-                                pregunta.getPuntuacion();
-                    }
-
-                    // SIGUIENTE PREGUNTA
-
-                    indicePregunta++;
-
-                    cargarPregunta[0].run();
-                });
-            };
-
-            // =================================================
-            // CANCELAR QUIZ
-            // =================================================
-
-            btnCancelar.setOnAction(e -> {
-
-                indicePregunta = 0;
-
-                puntuacionTotal = 0;
-
+                alerta.showAndWait();
+                
+                // Regresamos al menú
                 stage.setScene(menuScene);
-            });
+                return;
+            }
 
-            // CARGAR PRIMERA PREGUNTA
+            // OBTENER PREGUNTA
+            Pregunta pregunta = quiz.getPreguntas().get(indicePregunta);
 
-            cargarPregunta[0].run();
+            // MOSTRAR TEXTO
+            lblPregunta.setText(pregunta.getNombre());
+            lblPuntaje.setText("Puntaje: " + pregunta.getPuntuacion());
 
-            // AGREGAR COMPONENTES
+            opcionesBox.getChildren().clear();
+            grupoActual[0] = new ToggleGroup();
+            ToggleGroup grupo = grupoActual[0];
 
-            root.getChildren().addAll(
-                    lblPregunta,
-                    lblPuntaje,
-                    opcionesBox,
-                    btnSiguiente,
-                    btnCancelar
-            );
+            // =================================================
+            // PREGUNTA VF
+            // =================================================
+            if (pregunta instanceof PreguntaVF) {
+                RadioButton rbV = new RadioButton("Verdadero");
+                RadioButton rbF = new RadioButton("Falso");
+                aplicarFuente(rbV);
+                aplicarFuente(rbF);
+                rbV.setStyle("-fx-text-fill: white;");
+                rbF.setStyle("-fx-text-fill: white;");
+                rbV.setToggleGroup(grupo);
+                rbF.setToggleGroup(grupo);
+                opcionesBox.getChildren().addAll(rbV, rbF);
+            }
+            // =================================================
+            // OPCION MULTIPLE
+            // =================================================
+            else if (pregunta instanceof PreguntaOpMultiple) {
+                PreguntaOpMultiple pom = (PreguntaOpMultiple) pregunta;
+                if (pom.getOpciones() != null) {
+                    for (String op : pom.getOpciones()) {
+                        RadioButton rb = new RadioButton(op);
+                        aplicarFuente(rb);
+                        // ¡ESTO ERA LO QUE FALTABA EN TU CÓDIGO!
+                        rb.setStyle("-fx-text-fill: white;"); 
+                        rb.setToggleGroup(grupo);
+                        opcionesBox.getChildren().add(rb);
+                    }
+                }
+            } 
+            // =================================================
+            // MODO DE EMERGENCIA (Si las preguntas se crearon mal)
+            // =================================================
+            else {
+                Label lblError = new Label("⚠ ERROR: La pregunta no es VF ni Múltiple. Revisa tu clase Quiz o Manager.");
+                lblError.setStyle("-fx-text-fill: red; -fx-font-weight: bold;");
+                RadioButton rbForzar = new RadioButton("Forzar avance");
+                rbForzar.setStyle("-fx-text-fill: white;");
+                rbForzar.setToggleGroup(grupo);
+                opcionesBox.getChildren().addAll(lblError, rbForzar);
+            }
+        };
 
-            return new Scene(
-                    root,
-                    WIDTH,
-                    HEIGHT
-            );
-        }
+        // =================================================
+        // BOTON SIGUIENTE 
+        // =================================================
+        btnSiguiente.setOnAction(e -> {
+            ToggleGroup grupo = grupoActual[0];
+            
+            if (grupo == null || grupo.getSelectedToggle() == null) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setHeaderText("Seleccione una respuesta");
+                alert.show();
+                return;
+            }
+
+            try {
+                Pregunta preguntaActual = quiz.getPreguntas().get(indicePregunta);
+                RadioButton seleccionado = (RadioButton) grupo.getSelectedToggle();
+                
+                // VALIDAR RESPUESTA
+                if (preguntaActual.validarRespuesta(seleccionado.getText())) {
+                    puntuacionTotal += preguntaActual.getPuntuacion();
+                }
+            } catch (Exception ex) {
+                // Si tu lógica de validar respuesta da error, lo ignoramos para que no se congele el juego
+                System.out.println("Error oculto al validar respuesta: " + ex.getMessage());
+            }
+
+            // SIGUIENTE PREGUNTA
+            indicePregunta++;
+            cargarPregunta.run();
+        });
+
+        // =================================================
+        // CANCELAR QUIZ
+        // =================================================
+        btnCancelar.setOnAction(e -> {
+            indicePregunta = 0;
+            puntuacionTotal = 0;
+            stage.setScene(menuScene);
+        });
+
+        // CARGAR PRIMERA PREGUNTA
+        cargarPregunta.run();
+
+        // AGREGAR COMPONENTES AL PANEL
+        root.getChildren().addAll(lblPregunta, lblPuntaje, opcionesBox, btnSiguiente, btnCancelar);
+
+        return new Scene(root, WIDTH, HEIGHT);
+    }
         
     
     private Scene crearTest(
