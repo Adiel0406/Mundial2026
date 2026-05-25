@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -21,6 +20,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 
 public class Main extends Application {
 
@@ -182,14 +186,7 @@ public class Main extends Application {
 
         panMenu.setPadding(new Insets(20));
 
-        panMenu.setStyle("""
-                -fx-background-color:
-                linear-gradient(
-                    to bottom,
-                    #0a0a0a,
-                    #202020
-                );
-                """);
+        aplicarFondo(panMenu);
 
         Label lblTitulo = new Label(
                 "MENU TUTOR MUNDIAL"
@@ -270,14 +267,7 @@ public class Main extends Application {
 
         panTutor.setPadding(new Insets(20));
 
-        panTutor.setStyle("""
-                -fx-background-color:
-                linear-gradient(
-                    to bottom,
-                    #121212,
-                    #202020
-                );
-                """);
+        aplicarFondo(panTutor);
             
     // =================================================
     // LABEL
@@ -431,19 +421,19 @@ public class Main extends Application {
 
                 // Usamos StringBuilder para construir el reporte dinámicamente
                 StringBuilder resumen = new StringBuilder();
-                resumen.append("📊 RESUMEN DEL QUIZ:\n");
+                resumen.append("RESUMEN DEL QUIZ:\n");
                 resumen.append("======================================\n\n");
 
                 // Recorremos todas las preguntas del quiz actual
                 for (int i = 0; i < quiz.getPreguntas().size(); i++) {
                     Pregunta p = quiz.getPreguntas().get(i);
                     resumen.append((i + 1)).append(". ").append(p.getNombre()).append("\n");
-                    resumen.append("   ✔ Respuesta correcta: ").append(p.getRespuesta()).append("\n");
-                    resumen.append("   ⭐ Valor: ").append(p.getPuntuacion()).append(" pts\n\n");
+                    resumen.append("   Respuesta correcta: ").append(p.getRespuesta()).append("\n");
+                    resumen.append("   Valor: ").append(p.getPuntuacion()).append(" pts\n\n");
                 }
 
                 resumen.append("======================================\n");
-                resumen.append("🏆 PUNTAJE TOTAL OBTENIDO: ").append(puntuacionTotal).append(" puntos.");
+                resumen.append("PUNTAJE TOTAL OBTENIDO: ").append(puntuacionTotal).append(" puntos.");
 
                 alerta.setContentText(resumen.toString());
                 
@@ -502,7 +492,7 @@ public class Main extends Application {
             // MODO DE EMERGENCIA (Si las preguntas se crearon mal)
             // =================================================
             else {
-                Label lblError = new Label("⚠ ERROR: La pregunta no es VF ni Múltiple. Revisa tu clase Quiz o Manager.");
+                Label lblError = new Label("ERROR: La pregunta no es VF ni Múltiple. Revisa tu clase Quiz o Manager.");
                 lblError.setStyle("-fx-text-fill: red; -fx-font-weight: bold;");
                 RadioButton rbForzar = new RadioButton("Forzar avance");
                 rbForzar.setStyle("-fx-text-fill: white;");
@@ -576,14 +566,7 @@ public class Main extends Application {
 
         root.setPadding(new Insets(30));
 
-        root.setStyle("""
-                -fx-background-color:
-                linear-gradient(
-                    to bottom,
-                    #101010,
-                    #202020
-                );
-                """);
+        aplicarFondo(root);
 
         // =================================================
         // TITULO
@@ -1039,14 +1022,7 @@ public class Main extends Application {
 
                 root.setAlignment(Pos.TOP_CENTER);
 
-                root.setStyle("""
-                        -fx-background-color:
-                        linear-gradient(
-                            to bottom,
-                            #111111,
-                            #202020
-                        );
-                        """);
+                aplicarFondo(root);
 
                 // =========================================
                 // TITULO
@@ -1374,5 +1350,39 @@ public class Main extends Application {
 
                 -fx-padding: 8;
                 """);
+    }
+ // =================================================
+ // APLICAR FONDO
+ // =================================================
+
+    private void aplicarFondo(VBox panel) {
+
+    	Image fondo = new Image(
+             getClass().getResourceAsStream(
+                     "/images/fondo.png"
+             )
+    	);
+
+    	BackgroundSize bgSize = new BackgroundSize(
+             100,
+             100,
+             true,
+             true,
+             true,
+             false
+    	);
+
+    	BackgroundImage bgImage =
+             new BackgroundImage(
+                     fondo,
+                     BackgroundRepeat.NO_REPEAT,
+                     BackgroundRepeat.NO_REPEAT,
+                     BackgroundPosition.CENTER,
+                     bgSize
+             );
+
+    	panel.setBackground(
+             new Background(bgImage)
+    	);
     }
 }

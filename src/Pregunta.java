@@ -49,7 +49,9 @@ public abstract class Pregunta {
 
 	public abstract void mostrarPregunta();
     
-	public boolean validarRespuesta(String entradaUsuario) {
+	public boolean validarRespuesta(
+	        String entradaUsuario
+	) {
 
 	    return this.respuesta.equalsIgnoreCase(
 	            entradaUsuario.trim()

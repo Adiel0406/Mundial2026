@@ -1,175 +1,384 @@
 import java.io.DataInputStream;
+import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Quiz {
-	
-	private ArrayList<Pregunta> preguntas;
-	private String nombre,dificultad;
-	
-	public Quiz(ArrayList<Pregunta> preguntas, String nombre, String dificultad) {
-		super();
-		this.preguntas = preguntas;
-		this.nombre = nombre;
-		this.dificultad = dificultad;
-	}
-	public ArrayList<Pregunta> getPreguntas() {
-		return preguntas;
-	}
-	public void setPreguntas(ArrayList<Pregunta> preguntas) {
-		this.preguntas = preguntas;
-	}
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	public String getDificultad() {
-		return dificultad;
-	}
-	public void setDificultad(String dificultad) {
-		this.dificultad = dificultad;
-	}
-	@Override
-	public String toString() {
-		return "Quiz [preguntas=" + preguntas + ", nombre=" + nombre + ", dificultad=" + dificultad + "]";
-	}
-	
-public static ArrayList<Pregunta> leerPreguntasBin(String archivo) {
-		
-        ArrayList<Pregunta> preguntaLeida = new ArrayList<>();
-        
-        try (FileInputStream fis = new FileInputStream(archivo);
-             DataInputStream dis = new DataInputStream(fis)) {
-            
-            int contador = 1;
-            while (dis.available() > 0) {
-                String nombreTipo = dis.readUTF();  
-                Tipo tipoObjeto = Tipo.valueOf(nombreTipo);
-                
-                String nom = dis.readUTF();
-                String res = dis.readUTF();
-                int punt = dis.readInt();
-                
 
-                // PRIMERO evaluamos el tipo de pregunta
-                if (tipoObjeto == Tipo.VERDADERO_FALSO) {
-                    
-                    preguntaLeida.add(new PreguntaVF(tipoObjeto, nom, res, punt));
-                    
+    private ArrayList<Pregunta> preguntas;
 
-                } else if (tipoObjeto == Tipo.OPCION_MULTIPLE) {
-                    
-                    // SOLO si es múltiple, leemos la cantidad de opciones y las agregamos
-                    int numOpciones = dis.readInt();
-                    ArrayList<String> ops = new ArrayList<>();
-                    
-                    for (int i = 0; i < numOpciones; i++) {
-                        ops.add(dis.readUTF());
-                    }
-                    
-                    if (ops.isEmpty()) {
-                        System.out.println("   -> ⚠ ALERTA: Esta pregunta múltiple cargó 0 opciones desde el archivo.");
-                    }
+    private String nombre;
 
-                    preguntaLeida.add(new PreguntaOpMultiple(tipoObjeto, nom, res, punt, ops));
-                }
-                contador++;
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("Error: No se encontró el archivo: " + archivo);
-        } catch (Exception e) {
-            // Reemplazado por Exception general para atrapar cualquier caída y mostrarte la línea exacta
-            System.out.println("⚠ ERROR CRÍTICO AL LEER EL ARCHIVO: El formato de los datos está corrupto.");
-            e.printStackTrace(); 
-        }
-        return preguntaLeida;
+    private String dificultad;
+
+    // =================================================
+    // CONSTRUCTOR
+    // =================================================
+
+    public Quiz(
+            ArrayList<Pregunta> preguntas,
+            String nombre,
+            String dificultad
+    ) {
+
+        this.preguntas = preguntas;
+        this.nombre = nombre;
+        this.dificultad = dificultad;
     }
-    
-	public List<Pregunta> elegirPreguntas(
-	        String dificultad,
-	        int cantidad
-	) throws IllegalArgumentException {
 
-	    String archivo;
+    // =================================================
+    // GETTERS Y SETTERS
+    // =================================================
 
-	    // ================= SELECCIONAR ARCHIVO
+    public ArrayList<Pregunta> getPreguntas() {
 
-	    if (dificultad.equalsIgnoreCase("Facil")) {
+        return preguntas;
+    }
 
-	        archivo = Archivos.archivoPreguntasF;
+    public void setPreguntas(
+            ArrayList<Pregunta> preguntas
+    ) {
 
-	    } else if (
-	            dificultad.equalsIgnoreCase("Medio")
-	    ) {
+        this.preguntas = preguntas;
+    }
 
-	        archivo = Archivos.archivoPreguntasM;
+    public String getNombre() {
 
-	    } else {
+        return nombre;
+    }
 
-	        archivo = Archivos.archivoPreguntasD;
-	    }
+    public void setNombre(String nombre) {
 
-	    // ================= LEER PREGUNTAS
+        this.nombre = nombre;
+    }
 
-	    ArrayList<Pregunta> preguntasLeidas =
-	            leerPreguntasBin(archivo);
+    public String getDificultad() {
 
-	    // ================= VALIDAR CANTIDAD
+        return dificultad;
+    }
 
-	    if (preguntasLeidas.size() < cantidad) {
+    public void setDificultad(
+            String dificultad
+    ) {
 
-	        throw new IllegalArgumentException(
-	                "No hay suficientes preguntas"
-	        );
-	    }
+        this.dificultad = dificultad;
+    }
 
-	    // ================= MEZCLAR
+    // =================================================
+    // TO STRING
+    // =================================================
 
-	    Collections.shuffle(preguntasLeidas);
+    @Override
+    public String toString() {
 
-	    return preguntasLeidas.subList(
-	            0,
-	            cantidad
-	    );
-	}
+        return "Quiz [preguntas=" + preguntas
+                + ", nombre=" + nombre
+                + ", dificultad=" + dificultad + "]";
+    }
 
-	public int calcularPuntuacionMaxima() {
-        int total = 0;
-        for (Pregunta p : preguntas) {
-            if (p != null) { 
-                total += p.getPuntuacion(); 
+    // =================================================
+    // LEER PREGUNTAS BINARIAS
+    // =================================================
+
+    public static ArrayList<Pregunta> leerPreguntasBin(
+            String archivo
+    ) {
+
+        ArrayList<Pregunta> preguntasLeidas =
+                new ArrayList<>();
+
+        try (
+
+                FileInputStream fis =
+                        new FileInputStream(archivo);
+
+                DataInputStream dis =
+                        new DataInputStream(fis)
+
+        ) {
+
+            while (true) {
+
+                // =========================================
+                // LEER TIPO
+                // =========================================
+
+                String nombreTipo =
+                        dis.readUTF();
+
+                Tipo tipoObjeto =
+                        Tipo.valueOf(nombreTipo);
+
+                // =========================================
+                // LEER DATOS GENERALES
+                // =========================================
+
+                String nombrePregunta =
+                        dis.readUTF();
+
+                String respuesta =
+                        dis.readUTF();
+
+                int puntuacion =
+                        dis.readInt();
+
+                // =========================================
+                // PREGUNTA VF
+                // =========================================
+
+                if (
+                        tipoObjeto
+                                == Tipo.VERDADERO_FALSO
+                ) {
+
+                    PreguntaVF preguntaVF =
+                            new PreguntaVF(
+
+                                    tipoObjeto,
+
+                                    nombrePregunta,
+
+                                    respuesta,
+
+                                    puntuacion
+                            );
+
+                    preguntasLeidas.add(
+                            preguntaVF
+                    );
+                }
+
+                // =========================================
+                // PREGUNTA OPCION MULTIPLE
+                // =========================================
+
+                else if (
+                        tipoObjeto
+                                == Tipo.OPCION_MULTIPLE
+                ) {
+
+                    int cantidadOpciones =
+                            dis.readInt();
+
+                    ArrayList<String> opciones =
+                            new ArrayList<>();
+
+                    for (
+                            int i = 0;
+                            i < cantidadOpciones;
+                            i++
+                    ) {
+
+                        opciones.add(
+                                dis.readUTF()
+                        );
+                    }
+
+                    PreguntaOpMultiple preguntaM =
+                            new PreguntaOpMultiple(
+
+                                    tipoObjeto,
+
+                                    nombrePregunta,
+
+                                    respuesta,
+
+                                    puntuacion,
+
+                                    opciones
+                            );
+
+                    preguntasLeidas.add(
+                            preguntaM
+                    );
+                }
             }
         }
+
+        // =============================================
+        // FIN DEL ARCHIVO
+        // =============================================
+
+        catch (EOFException e) {
+
+            System.out.println(
+                    "Lectura completada correctamente."
+            );
+        }
+
+        // =============================================
+        // ARCHIVO NO ENCONTRADO
+        // =============================================
+
+        catch (FileNotFoundException e) {
+
+            System.out.println(
+                    "No se encontró el archivo: "
+                            + archivo
+            );
+        }
+
+        // =============================================
+        // ERROR GENERAL
+        // =============================================
+
+        catch (Exception e) {
+
+            System.out.println(
+                    "Error leyendo archivo binario."
+            );
+
+            e.printStackTrace();
+        }
+
+        return preguntasLeidas;
+    }
+
+    // =================================================
+    // ELEGIR PREGUNTAS
+    // =================================================
+
+    public List<Pregunta> elegirPreguntas(
+
+            String dificultad,
+
+            int cantidad
+
+    ) throws IllegalArgumentException {
+
+        String archivo;
+
+        // =============================================
+        // SELECCIONAR ARCHIVO
+        // =============================================
+
+        if (
+                dificultad.equalsIgnoreCase(
+                        "Facil"
+                )
+        ) {
+
+            archivo =
+                    Archivos.archivoPreguntasF;
+        }
+
+        else if (
+                dificultad.equalsIgnoreCase(
+                        "Medio"
+                )
+        ) {
+
+            archivo =
+                    Archivos.archivoPreguntasM;
+        }
+
+        else {
+
+            archivo =
+                    Archivos.archivoPreguntasD;
+        }
+
+        // =============================================
+        // LEER PREGUNTAS
+        // =============================================
+
+        ArrayList<Pregunta> preguntasLeidas =
+                leerPreguntasBin(archivo);
+
+        // =============================================
+        // VALIDAR CANTIDAD
+        // =============================================
+
+        if (
+                preguntasLeidas.size()
+                        < cantidad
+        ) {
+
+            throw new IllegalArgumentException(
+
+                    "No hay suficientes preguntas disponibles."
+            );
+        }
+
+        // =============================================
+        // MEZCLAR
+        // =============================================
+
+        Collections.shuffle(
+                preguntasLeidas
+        );
+
+        // =============================================
+        // RETORNAR SUBLISTA
+        // =============================================
+
+        return preguntasLeidas.subList(
+                0,
+                cantidad
+        );
+    }
+
+    // =================================================
+    // CALCULAR PUNTUACION MAXIMA
+    // =================================================
+
+    public int calcularPuntuacionMaxima() {
+
+        int total = 0;
+
+        for (Pregunta p : preguntas) {
+
+            if (p != null) {
+
+                total += p.getPuntuacion();
+            }
+        }
+
         return total;
     }
 
+    // =================================================
+    // OBTENER VF
+    // =================================================
 
     public List<Pregunta> obtenerVerdaderoFalso() {
-        List<Pregunta> filtradas = new ArrayList<>();
+
+        List<Pregunta> filtradas =
+                new ArrayList<>();
+
         for (Pregunta p : preguntas) {
+
             if (p instanceof PreguntaVF) {
+
                 filtradas.add(p);
             }
         }
+
         return filtradas;
     }
-    
+
+    // =================================================
+    // OBTENER MULTIPLE
+    // =================================================
+
     public List<Pregunta> obtenerOpcionMultiple() {
-        List<Pregunta> filtradas = new ArrayList<>();
+
+        List<Pregunta> filtradas =
+                new ArrayList<>();
+
         for (Pregunta p : preguntas) {
-            if (p instanceof PreguntaOpMultiple) {
+
+            if (
+                    p instanceof PreguntaOpMultiple
+            ) {
+
                 filtradas.add(p);
             }
         }
+
         return filtradas;
     }
-    
-    private int puntuacionActual;
-    
-    private int preguntaActual;
-	
 }
