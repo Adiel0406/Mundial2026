@@ -2,26 +2,24 @@ import java.util.ArrayList;
 
 public class Pais {
 	private String nombre,continente;
+	private String codigoBandera;
 	private int mundiales,participantes;
 	private String cultura, datosFutbol;
 	private ArrayList<Jugador> jugadores;
-
-	public Pais(String nombre, String continente, int mundiales, int participantes,
-            String cultura, String datosFutbol, ArrayList<Jugador> jugadores) {
-
+	
+	public Pais(String nombre, String continente, String codigoBandera, int mundiales, int participantes,
+			String cultura, String datosFutbol, ArrayList<Jugador> jugadores) {
+		
 		this.nombre = nombre;
 		this.continente = continente;
+		this.codigoBandera = codigoBandera;
 		this.mundiales = mundiales;
 		this.participantes = participantes;
 		this.cultura = cultura;
 		this.datosFutbol = datosFutbol;
 		this.jugadores = jugadores;
-
-		if (jugadores.size() != 3) {
-			throw new IllegalArgumentException("Un país debe tener exactamente 3 jugadores");
-		}
 	}
-	
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -67,13 +65,19 @@ public class Pais {
 		this.datosFutbol = datosFutbol;
 	}
 
+	public String getCodigoBandera() {
+		return codigoBandera;
+	}
+
+	public void setCodigoBandera(String codigoBandera) {
+		this.codigoBandera = codigoBandera;
+	}
+
 	@Override
 	public String toString() {
-		return nombre + " (" + continente + ") - Mundiales: " + mundiales +
-       					", Participaciones: " + participantes +
-       					"\nCultura: " + cultura +
-       					"\nDatos Futbolisticos: " + datosFutbol +
-       					"\nJugadores: " + jugadores;
+		return "Pais [nombre=" + nombre + ", continente=" + continente + ", codigoBandera=" + codigoBandera
+				+ ", mundiales=" + mundiales + ", participantes=" + participantes + ", cultura=" + cultura
+				+ ", datosFutbol=" + datosFutbol + ", jugadores=" + jugadores + "]";
 	}
 	
 }

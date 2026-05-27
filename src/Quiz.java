@@ -1,384 +1,100 @@
-import java.io.DataInputStream;
-import java.io.EOFException;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class Quiz {
 
-    private ArrayList<Pregunta> preguntas;
+	private Participante participante;
+	private ArrayList<Pregunta> preguntas;
+	private String dificultad;
+	private int cantidadPreguntas;
+	private int puntajeFinal;
 
-    private String nombre;
+    public Quiz(Participante participante, String dificultad, int cantidadPreguntas,
+			int puntajeFinal) {
+		
+		this.participante = participante;
+		this.preguntas = new ArrayList<Pregunta>();
+		this.dificultad = dificultad;
+		this.cantidadPreguntas = cantidadPreguntas;
+		this.puntajeFinal = puntajeFinal;
+	}
 
-    private String dificultad;
+    public Participante getParticipante() {
+		return participante;
+	}
 
-    // =================================================
-    // CONSTRUCTOR
-    // =================================================
 
-    public Quiz(
-            ArrayList<Pregunta> preguntas,
-            String nombre,
-            String dificultad
-    ) {
 
-        this.preguntas = preguntas;
-        this.nombre = nombre;
-        this.dificultad = dificultad;
-    }
+	public void setParticipante(Participante participante) {
+		this.participante = participante;
+	}
 
-    // =================================================
-    // GETTERS Y SETTERS
-    // =================================================
 
-    public ArrayList<Pregunta> getPreguntas() {
 
-        return preguntas;
-    }
+	public ArrayList<Pregunta> getPreguntas() {
+		return preguntas;
+	}
 
-    public void setPreguntas(
-            ArrayList<Pregunta> preguntas
-    ) {
 
-        this.preguntas = preguntas;
-    }
 
-    public String getNombre() {
+	public void setPreguntas(ArrayList<Pregunta> preguntas) {
+		this.preguntas = preguntas;
+	}
 
-        return nombre;
-    }
 
-    public void setNombre(String nombre) {
 
-        this.nombre = nombre;
-    }
+	public String getDificultad() {
+		return dificultad;
+	}
 
-    public String getDificultad() {
 
-        return dificultad;
-    }
 
-    public void setDificultad(
-            String dificultad
-    ) {
+	public void setDificultad(String dificultad) {
+		this.dificultad = dificultad;
+	}
 
-        this.dificultad = dificultad;
-    }
 
-    // =================================================
-    // TO STRING
-    // =================================================
 
-    @Override
-    public String toString() {
+	public int getCantidadPreguntas() {
+		return cantidadPreguntas;
+	}
 
-        return "Quiz [preguntas=" + preguntas
-                + ", nombre=" + nombre
-                + ", dificultad=" + dificultad + "]";
-    }
 
-    // =================================================
-    // LEER PREGUNTAS BINARIAS
-    // =================================================
 
-    public static ArrayList<Pregunta> leerPreguntasBin(
-            String archivo
-    ) {
+	public void setCantidadPreguntas(int cantidadPreguntas) {
+		this.cantidadPreguntas = cantidadPreguntas;
+	}
 
-        ArrayList<Pregunta> preguntasLeidas =
-                new ArrayList<>();
 
-        try (
 
-                FileInputStream fis =
-                        new FileInputStream(archivo);
+	public int getPuntajeFinal() {
+		return puntajeFinal;
+	}
 
-                DataInputStream dis =
-                        new DataInputStream(fis)
 
-        ) {
 
-            while (true) {
+	public void setPuntajeFinal(int puntajeFinal) {
+		this.puntajeFinal = puntajeFinal;
+	}
 
-                // =========================================
-                // LEER TIPO
-                // =========================================
+	@Override
+	public String toString() {
+		return "Quiz [participante=" + participante + ", preguntas=" + preguntas + ", dificultad=" + dificultad
+				+ ", cantidadPreguntas=" + cantidadPreguntas + ", puntajeFinal=" + puntajeFinal + "]";
+	}
 
-                String nombreTipo =
-                        dis.readUTF();
+	public void calcularPuntuacion() {
 
-                Tipo tipoObjeto =
-                        Tipo.valueOf(nombreTipo);
+	    int total = 0;
 
-                // =========================================
-                // LEER DATOS GENERALES
-                // =========================================
+	    for (Pregunta p : preguntas) {
 
-                String nombrePregunta =
-                        dis.readUTF();
+	        if (p != null) {
 
-                String respuesta =
-                        dis.readUTF();
+	            total += p.getPuntuacion();
+	        }
+	    }
 
-                int puntuacion =
-                        dis.readInt();
+	    puntajeFinal = total;
+	}
 
-                // =========================================
-                // PREGUNTA VF
-                // =========================================
-
-                if (
-                        tipoObjeto
-                                == Tipo.VERDADERO_FALSO
-                ) {
-
-                    PreguntaVF preguntaVF =
-                            new PreguntaVF(
-
-                                    tipoObjeto,
-
-                                    nombrePregunta,
-
-                                    respuesta,
-
-                                    puntuacion
-                            );
-
-                    preguntasLeidas.add(
-                            preguntaVF
-                    );
-                }
-
-                // =========================================
-                // PREGUNTA OPCION MULTIPLE
-                // =========================================
-
-                else if (
-                        tipoObjeto
-                                == Tipo.OPCION_MULTIPLE
-                ) {
-
-                    int cantidadOpciones =
-                            dis.readInt();
-
-                    ArrayList<String> opciones =
-                            new ArrayList<>();
-
-                    for (
-                            int i = 0;
-                            i < cantidadOpciones;
-                            i++
-                    ) {
-
-                        opciones.add(
-                                dis.readUTF()
-                        );
-                    }
-
-                    PreguntaOpMultiple preguntaM =
-                            new PreguntaOpMultiple(
-
-                                    tipoObjeto,
-
-                                    nombrePregunta,
-
-                                    respuesta,
-
-                                    puntuacion,
-
-                                    opciones
-                            );
-
-                    preguntasLeidas.add(
-                            preguntaM
-                    );
-                }
-            }
-        }
-
-        // =============================================
-        // FIN DEL ARCHIVO
-        // =============================================
-
-        catch (EOFException e) {
-
-            System.out.println(
-                    "Lectura completada correctamente."
-            );
-        }
-
-        // =============================================
-        // ARCHIVO NO ENCONTRADO
-        // =============================================
-
-        catch (FileNotFoundException e) {
-
-            System.out.println(
-                    "No se encontró el archivo: "
-                            + archivo
-            );
-        }
-
-        // =============================================
-        // ERROR GENERAL
-        // =============================================
-
-        catch (Exception e) {
-
-            System.out.println(
-                    "Error leyendo archivo binario."
-            );
-
-            e.printStackTrace();
-        }
-
-        return preguntasLeidas;
-    }
-
-    // =================================================
-    // ELEGIR PREGUNTAS
-    // =================================================
-
-    public List<Pregunta> elegirPreguntas(
-
-            String dificultad,
-
-            int cantidad
-
-    ) throws IllegalArgumentException {
-
-        String archivo;
-
-        // =============================================
-        // SELECCIONAR ARCHIVO
-        // =============================================
-
-        if (
-                dificultad.equalsIgnoreCase(
-                        "Facil"
-                )
-        ) {
-
-            archivo =
-                    Archivos.archivoPreguntasF;
-        }
-
-        else if (
-                dificultad.equalsIgnoreCase(
-                        "Medio"
-                )
-        ) {
-
-            archivo =
-                    Archivos.archivoPreguntasM;
-        }
-
-        else {
-
-            archivo =
-                    Archivos.archivoPreguntasD;
-        }
-
-        // =============================================
-        // LEER PREGUNTAS
-        // =============================================
-
-        ArrayList<Pregunta> preguntasLeidas =
-                leerPreguntasBin(archivo);
-
-        // =============================================
-        // VALIDAR CANTIDAD
-        // =============================================
-
-        if (
-                preguntasLeidas.size()
-                        < cantidad
-        ) {
-
-            throw new IllegalArgumentException(
-
-                    "No hay suficientes preguntas disponibles."
-            );
-        }
-
-        // =============================================
-        // MEZCLAR
-        // =============================================
-
-        Collections.shuffle(
-                preguntasLeidas
-        );
-
-        // =============================================
-        // RETORNAR SUBLISTA
-        // =============================================
-
-        return preguntasLeidas.subList(
-                0,
-                cantidad
-        );
-    }
-
-    // =================================================
-    // CALCULAR PUNTUACION MAXIMA
-    // =================================================
-
-    public int calcularPuntuacionMaxima() {
-
-        int total = 0;
-
-        for (Pregunta p : preguntas) {
-
-            if (p != null) {
-
-                total += p.getPuntuacion();
-            }
-        }
-
-        return total;
-    }
-
-    // =================================================
-    // OBTENER VF
-    // =================================================
-
-    public List<Pregunta> obtenerVerdaderoFalso() {
-
-        List<Pregunta> filtradas =
-                new ArrayList<>();
-
-        for (Pregunta p : preguntas) {
-
-            if (p instanceof PreguntaVF) {
-
-                filtradas.add(p);
-            }
-        }
-
-        return filtradas;
-    }
-
-    // =================================================
-    // OBTENER MULTIPLE
-    // =================================================
-
-    public List<Pregunta> obtenerOpcionMultiple() {
-
-        List<Pregunta> filtradas =
-                new ArrayList<>();
-
-        for (Pregunta p : preguntas) {
-
-            if (
-                    p instanceof PreguntaOpMultiple
-            ) {
-
-                filtradas.add(p);
-            }
-        }
-
-        return filtradas;
-    }
 }

@@ -1,13 +1,14 @@
 
 public class PreguntaVF extends Pregunta {
 
-	public PreguntaVF(Tipo tipo, String nombre, String respuesta, int puntuacion) {
-		super(tipo, nombre, respuesta, puntuacion);
+	private static final long serialVersionUID = 1L;
+
+	public PreguntaVF(String enunciado, String respuestaCorrecta, String dificultad, int puntuacion) {
+		super(enunciado, respuestaCorrecta, dificultad, puntuacion);
 	}
-	
-	public void mostrarPregunta() {
-		System.out.println(this.nombre);
-        System.out.println("1. Verdadero");
-        System.out.println("2. Falso");
+
+	@Override
+	public boolean validarRespuesta(String respuesta) {
+		return respuestaCorrecta.equalsIgnoreCase(respuesta);
 	}
 }

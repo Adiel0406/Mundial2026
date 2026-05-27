@@ -1,9 +1,15 @@
 import java.util.*;
 import java.io.*;
 
-public class Manager{
+public class ManagerPais{
+	
+	private ArrayList<Pais> paises;
 
-	public static ArrayList<Pais> leerPaisTxt(String archivo) {
+	public ManagerPais(String archivo) {
+	    paises = cargarPaises(archivo);
+	}
+
+	public static ArrayList<Pais> cargarPaises(String archivo) {
     	ArrayList<Pais> lista = new ArrayList<>();
 
     	try (FileReader fr = new FileReader(archivo);
@@ -15,14 +21,15 @@ public class Manager{
 
             	String nombre = datos[0];
             	String continente = datos[1];
-            	int mundiales = Integer.parseInt(datos[2]);
-            	int participaciones = Integer.parseInt(datos[3]);
-            	String cultura = datos[4];
-            	String datosFutbol = datos[5];
+            	String codigo = datos[2];
+            	int mundiales = Integer.parseInt(datos[3]);
+            	int participaciones = Integer.parseInt(datos[4]);
+            	String cultura = datos[5];
+            	String datosFutbol = datos[6];
 
             	ArrayList<Jugador> jugadores = new ArrayList<>();
 
-            	for (int i = 6; i < datos.length; i++) {
+            	for (int i = 7; i < datos.length; i++) {
             	    String[] j = datos[i].split(",");
 
             	    if (j.length == 3) {
@@ -36,7 +43,7 @@ public class Manager{
             	    }
             	}
 
-            	Pais p = new Pais(nombre, continente, mundiales, participaciones, cultura, datosFutbol, jugadores);
+            	Pais p = new Pais(nombre, continente, codigo, mundiales, participaciones, cultura, datosFutbol, jugadores);
             	lista.add(p);
         	}
 
@@ -45,5 +52,27 @@ public class Manager{
     	}
 
     	return lista;
+	}
+	
+	public Pais buscarPais(String nombre) {
+		
+		for (Pais p : paises) {
+			if (p.getNombre().equals(nombre)) {
+				return p;
+			}
+		}
+		
+		return null;
+	}
+	
+	public Pais buscarPorCodigo(String codigo) {
+		
+		for (Pais p : paises) {
+			if (p.getCodigoBandera().equals(codigo)) {
+				return p;
+			}
+		}
+		
+		return null;
 	}
 }

@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+/*import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -25,11 +25,14 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Rectangle;
 
 public class Main extends Application {
 
-    private final int WIDTH = 1000;
-    private final int HEIGHT = 800;
+    private final int WIDTH = 1300;
+    private final int HEIGHT = 660;
     
     private int indicePregunta = 0;
 
@@ -119,7 +122,7 @@ public class Main extends Application {
         // LEER TXT
         // =================================================
 
-        paises = Manager.leerPaisTxt("paises.txt");
+        paises = ManagerPais.leerPaisTxt("paises.txt");
 
         // =================================================
         // FUENTE
@@ -142,111 +145,280 @@ public class Main extends Application {
         Scene menuScene = crearMenu(stage);
 
         Scene tutorScene = crearTutor(stage, menuScene);
-        
+
         Scene testScene = crearTest(stage, menuScene);
 
-        VBox rootMenu = (VBox) menuScene.getRoot();
-
-        Button btnIniciar =
-                		(Button) rootMenu
-                        .getChildren()
-                        .get(1);
-
-        btnIniciar.setOnAction(e -> {
-            stage.setScene(tutorScene);
-        });
-        
-        Button btnTest =
-                (Button) rootMenu
-                        .getChildren()
-                        .get(2);
-
-        btnTest.setOnAction(e -> {
-            stage.setScene(testScene);
-        });
+        Scene principalScene =
+                crearPantallaPrincipal(
+                        stage,
+                        tutorScene,
+                        testScene
+                );
 
         // =================================================
         // STAGE
         // =================================================
 
-        stage.setTitle("Tutor Mundial 2026");
+        stage.setTitle("");
         stage.setScene(menuScene);
+        stage.setMaximized(true);
         stage.show();
     }
-
+    
     // =================================================
     // MENU
     // =================================================
 
     private Scene crearMenu(Stage stage) {
 
-        VBox panMenu = new VBox(25);
+        VBox root = new VBox(40);
 
-        panMenu.setAlignment(Pos.CENTER);
+        root.setAlignment(Pos.CENTER);
 
-        panMenu.setPadding(new Insets(20));
+        root.setPadding(new Insets(20));
 
-        aplicarFondo(panMenu);
+        aplicarFondo(root);
 
-        Label lblTitulo = new Label(
-                "MENU TUTOR MUNDIAL"
+        // =========================================
+        // LOGO
+        // =========================================
+
+        Image logo = new Image(
+                getClass().getResourceAsStream(
+                        "/images/logo_FWC.png"
+                )
         );
 
-        aplicarFuente(lblTitulo);
+        ImageView logoView = new ImageView(logo);
+        
+        logoView.setOpacity(0.95);
 
-        lblTitulo.setStyle("""
+        logoView.setFitWidth(150);
+
+        logoView.setPreserveRatio(true);
+
+        // =========================================
+        // BOTON ENTRAR
+        // =========================================
+
+        Button btnEntrar =
+                new Button("!Entrar!");
+
+        btnEntrar.setPrefWidth(280);
+
+        btnEntrar.setPrefHeight(65);
+
+        btnEntrar.setStyle("""
+            -fx-background-color: rgba(255,255,255,0.10);
+
+            -fx-border-color: rgba(255,255,255,0.55);
+
+            -fx-border-width: 2;
+
+            -fx-background-radius: 35;
+
+            -fx-border-radius: 35;
+
+            -fx-text-fill: white;
+
+            -fx-font-size: 20px;
+
+            -fx-font-family: "Arial";
+
+            -fx-font-weight: bold;
+
+            -fx-letter-spacing: 1px;
+        """);
+        
+        btnEntrar.setOnMouseEntered(e -> {
+
+            btnEntrar.setStyle("""
+                -fx-background-color: rgba(255,255,255,0.20);
+
+                -fx-border-color: white;
+
+                -fx-border-width: 2;
+
+                -fx-background-radius: 35;
+
+                -fx-border-radius: 35;
+
                 -fx-text-fill: white;
-                """);
 
-        Button btnIniciar =
-                new Button("Iniciar Tutor");
+                -fx-font-size: 20px;
 
-        Button btnTest =
-                new Button("Iniciar Test");
+                -fx-font-family: "Arial";
 
-        Button btnSalir =
-                new Button("Salir");
+                -fx-font-weight: bold;
+            """);
 
-        aplicarFuente(btnIniciar);
+            btnEntrar.setScaleX(1.05);
 
-        aplicarFuente(btnTest);
-
-        aplicarFuente(btnSalir);
-
-        btnIniciar.setPrefWidth(250);
-
-        btnTest.setPrefWidth(250);
-
-        btnSalir.setPrefWidth(250);
-
-        estilizarBoton(
-                btnIniciar,
-                "#2196F3"
-        );
-
-        estilizarBoton(
-                btnTest,
-                "#4CAF50"
-        );
-
-        estilizarBoton(
-                btnSalir,
-                "#F44336"
-        );
-
-        btnSalir.setOnAction(e -> {
-            System.exit(0);
+            btnEntrar.setScaleY(1.05);
         });
 
-        panMenu.getChildren().addAll(
-                lblTitulo,
-                btnIniciar,
-                btnTest,
-                btnSalir
+        btnEntrar.setOnMouseExited(e -> {
+
+            btnEntrar.setStyle("""
+                -fx-background-color: rgba(255,255,255,0.10);
+                -fx-border-color: rgba(255,255,255,0.55);
+                -fx-border-width: 2;
+                -fx-background-radius: 35;
+                -fx-border-radius: 35;
+                -fx-text-fill: white;
+                -fx-font-size: 20px;
+                -fx-font-family: "Arial";
+                -fx-font-weight: bold;
+            """);
+
+            btnEntrar.setScaleX(1);
+
+            btnEntrar.setScaleY(1);
+        });
+
+        // =========================================
+        // ESCENA PRINCIPAL
+        // =========================================
+
+        btnEntrar.setOnAction(e -> {
+
+        	Scene menuScene = crearMenu(stage);
+
+        	Scene tutorScene = crearTutor(stage, menuScene);
+
+        	Scene testScene = crearTest(stage, menuScene);
+
+        	Scene principalScene =
+        	        crearPantallaPrincipal(
+        	                stage,
+        	                tutorScene,
+        	                testScene
+        	        );
+
+            stage.setScene(principalScene);
+        });
+
+        // =========================================
+        // AGREGAR
+        // =========================================
+
+        root.getChildren().addAll(
+                logoView,
+                btnEntrar
         );
 
+        Scene scene = new Scene(
+                root,
+                WIDTH,
+                HEIGHT
+        );
+
+        // =========================================
+        // CERRAR CON ESC
+        // =========================================
+
+        scene.setOnKeyPressed(e -> {
+
+            if (e.getCode() == KeyCode.ESCAPE) {
+
+                System.exit(0);
+            }
+        });
+
+        return scene;
+    }
+    
+    private Scene crearPantallaPrincipal(
+            Stage stage,
+            Scene tutorScene,
+            Scene testScene
+    ) {
+    	
+    	FlowPane panelBotones = new FlowPane();
+
+    	panelBotones.setAlignment(Pos.CENTER);
+
+    	panelBotones.setHgap(25);
+
+    	panelBotones.setVgap(25);
+
+        VBox root = new VBox(30);
+
+        root.setAlignment(Pos.CENTER);
+
+        root.setPadding(new Insets(25));
+
+        aplicarFondo(root);
+
+        // =========================================
+        // CARDS
+        // =========================================
+
+        Button btnTour = crearBotonMenu(
+                "TOUR MUNDIAL",
+                "Explora las selecciones clasificadas",
+                "tour_mundial.png"
+        );
+
+        Button btnTest = crearBotonMenu(
+                "TEST",
+                "Demuestra cuánto sabes del Mundial",
+                "test.png"
+        );
+
+        Button btnMercancia = crearBotonMenu(
+                "MERCANCIA",
+                "Visualiza productos oficiales FIFA",
+                "mercancia.png"
+        );
+
+        Button btnFixture = crearBotonMenu(
+                "FIXTURE",
+                "Consulta partidos y enfrentamientos",
+                "fixture.png"
+        );
+
+        Button btnEstadios = crearBotonMenu(
+                "ESTADIOS",
+                "Conoce las sedes del Mundial 2026",
+                "estadios.png"
+        );
+
+        Button btnSound = crearBotonMenu(
+                "FIFA SOUND",
+                "Escucha canciones y ambiente FIFA",
+                "fifa_sound.png"
+        );
+        
+        btnTour.setOnAction(e -> {
+            stage.setScene(tutorScene);
+        });
+
+        btnTest.setOnAction(e -> {
+            stage.setScene(testScene);
+        });
+
+        // =========================================
+        // AGREGAR GRID
+        // =========================================
+
+        panelBotones.getChildren().addAll(
+                btnTour,
+                btnTest,
+                btnMercancia,
+                btnFixture,
+                btnEstadios,
+                btnSound
+        );
+
+        // =========================================
+        // AGREGAR ROOT
+        // =========================================
+
+        root.getChildren().add(panelBotones);
+
         return new Scene(
-                panMenu,
+                root,
                 WIDTH,
                 HEIGHT
         );
@@ -994,6 +1166,152 @@ public class Main extends Application {
 
         return boton;
     }
+    
+    private Button crearBotonMenu(
+            String titulo,
+            String descripcion,
+            String imagenNombre
+    ) {
+
+        // =================================================
+        // IMAGEN
+        // =================================================
+
+        Image imagen = new Image(
+                getClass().getResourceAsStream(
+                        "/images/menu/" + imagenNombre
+                )
+        );
+
+        ImageView imgView = new ImageView(imagen);
+
+        imgView.setFitWidth(320);
+        imgView.setFitHeight(220);
+        imgView.setPreserveRatio(false);
+        
+        Rectangle clip = new Rectangle(320, 220);
+
+        clip.setArcWidth(40);
+        clip.setArcHeight(40);
+
+        imgView.setClip(clip);
+
+        // =================================================
+        // DEGRADADO
+        // =================================================
+
+        VBox overlay = new VBox(8);
+
+        overlay.setAlignment(Pos.TOP_LEFT);
+
+        overlay.setPadding(new Insets(18));
+
+        overlay.setPrefSize(320, 220);
+
+        overlay.setStyle("""
+        	    -fx-background-color:
+        	        linear-gradient(
+        	            to bottom,
+        	            rgba(0,0,0,0.85),
+        	            rgba(0,0,0,0.45),
+        	            rgba(0,0,0,0.05)
+        	        );
+
+        	    -fx-background-radius: 40;
+        	    """);
+
+        // =================================================
+        // TITULO
+        // =================================================
+
+        Label lblTitulo = new Label(titulo);
+
+        lblTitulo.setFont(
+                Font.font(
+                        fuente.getFamily(),
+                        22
+                )
+        );
+
+        lblTitulo.setStyle("""
+                -fx-text-fill: white;
+                """);
+
+        // =================================================
+        // DESCRIPCION
+        // =================================================
+
+        Label lblDescripcion = new Label(descripcion);
+
+        lblDescripcion.setWrapText(true);
+
+        lblDescripcion.setStyle("""
+                -fx-text-fill: #dddddd;
+                -fx-font-size: 14px;
+                -fx-font-family: "Arial";
+                """);
+
+        overlay.getChildren().addAll(
+                lblTitulo,
+                lblDescripcion
+        );
+
+        // =================================================
+        // STACK
+        // =================================================
+
+        StackPane contenido = new StackPane();
+        
+        contenido.setStyle("""
+        	    -fx-background-radius: 40;
+        	    -fx-border-radius: 40;
+        	    """);
+
+        contenido.getChildren().addAll(
+                imgView,
+                overlay
+        );
+
+        // =================================================
+        // BOTON
+        // =================================================
+
+        Button boton = new Button();
+
+        boton.setGraphic(contenido);
+
+        boton.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+
+        boton.setStyle("""
+        	    -fx-background-color: transparent;
+        	    -fx-padding: 0;
+        	    -fx-background-radius: 40;
+        	    """);
+
+        boton.setPrefSize(320, 220);
+
+        // =================================================
+        // HOVER
+        // =================================================
+
+        boton.setOnMouseEntered(e -> {
+
+        	boton.setScaleX(1.05);
+        	boton.setScaleY(1.05);
+
+        	boton.setTranslateY(-3);
+        });
+
+        boton.setOnMouseExited(e -> {
+
+            boton.setScaleX(1);
+            boton.setScaleY(1);
+            
+            boton.setTranslateY(0);
+        });
+
+        return boton;
+    }
 
     // =================================================
     // MOSTRAR INFORMACION
@@ -1167,7 +1485,7 @@ public class Main extends Application {
                 // =========================================
                 // AGREGAR PANELES
                 // =========================================
-
+                
                 contenedorCentral.getChildren()
                         .addAll(
                                 panelCultura,
@@ -1267,9 +1585,7 @@ public class Main extends Application {
                         700
                 );
 
-                ventana.setTitle(
-                        p.getNombre()
-                );
+                ventana.setTitle("");
 
                 ventana.setScene(scene);
 
@@ -1357,32 +1673,32 @@ public class Main extends Application {
 
     private void aplicarFondo(VBox panel) {
 
-    	Image fondo = new Image(
-             getClass().getResourceAsStream(
-                     "/images/fondo.png"
-             )
-    	);
+        Image fondo = new Image(
+                getClass().getResourceAsStream(
+                        "/images/fondo.png"
+                )
+        );
 
-    	BackgroundSize bgSize = new BackgroundSize(
-             100,
-             100,
-             true,
-             true,
-             true,
-             false
-    	);
+        BackgroundSize bgSize = new BackgroundSize(
+                100,
+                100,
+                true,
+                true,
+                true,
+                true
+        );
 
-    	BackgroundImage bgImage =
-             new BackgroundImage(
-                     fondo,
-                     BackgroundRepeat.NO_REPEAT,
-                     BackgroundRepeat.NO_REPEAT,
-                     BackgroundPosition.CENTER,
-                     bgSize
-             );
+        BackgroundImage bgImage =
+                new BackgroundImage(
+                        fondo,
+                        BackgroundRepeat.NO_REPEAT,
+                        BackgroundRepeat.NO_REPEAT,
+                        BackgroundPosition.CENTER,
+                        bgSize
+                );
 
-    	panel.setBackground(
-             new Background(bgImage)
-    	);
+        panel.setBackground(
+                new Background(bgImage)
+        );
     }
-}
+} */

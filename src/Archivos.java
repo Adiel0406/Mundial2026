@@ -4,5 +4,5 @@ public interface Archivos {
 	static final String archivoPreguntasF = "preguntasF.dat";
 	static final String archivoPreguntasM = "preguntasM.dat";
 	static final String archivoPreguntasD = "preguntasD.dat";
-	static final String archivoPuntajes = "puntajes.txt";
+	static final String archivoResultados = "resultados.dat";
 }

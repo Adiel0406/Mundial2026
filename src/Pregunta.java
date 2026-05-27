@@ -1,61 +1,73 @@
+import java.io.Serializable;
 
-
-public abstract class Pregunta {
-	protected Tipo tipo;
-    protected String nombre;
-    protected String respuesta;
+public abstract class Pregunta implements Serializable{
+	private static final long serialVersionUID = 1L;
+	protected String enunciado;
+    protected String respuestaCorrecta;
+    protected String dificultad;
     protected int puntuacion;
     
-	public Pregunta(Tipo tipo, String nombre, String respuesta, int puntuacion) {
-		this.tipo = tipo;
-		this.nombre = nombre;
-		this.respuesta = respuesta;
+	public Pregunta(String enunciado, String respuestaCorrecta, String dificultad, int puntuacion) {
+		
+		this.enunciado = enunciado;
+		this.respuestaCorrecta = respuestaCorrecta;
+		this.dificultad = dificultad;
 		this.puntuacion = puntuacion;
 	}
 
-	
-	public String getRespuesta() {
-		return respuesta;
+	public String getEnunciado() {
+		return enunciado;
 	}
 
 
-	public void setRespuesta(String respuesta) {
-		this.respuesta = respuesta;
+
+	public void setEnunciado(String enunciado) {
+		this.enunciado = enunciado;
 	}
+
+
+
+	public String getRespuestaCorrecta() {
+		return respuestaCorrecta;
+	}
+
+
+
+	public void setRespuestaCorrecta(String respuestaCorrecta) {
+		this.respuestaCorrecta = respuestaCorrecta;
+	}
+
+
+
+	public String getDificultad() {
+		return dificultad;
+	}
+
+
+
+	public void setDificultad(String dificultad) {
+		this.dificultad = dificultad;
+	}
+
 
 
 	public int getPuntuacion() {
-	    return puntuacion;
+		return puntuacion;
 	}
+
 
 
 	public void setPuntuacion(int puntuacion) {
 		this.puntuacion = puntuacion;
 	}
 
-	public String getNombre() {
-	    return nombre;
-	}
-	
-	public Tipo getTipo() {
-	    return tipo;
-	}
-	
+
 	@Override
 	public String toString() {
-
-	    return nombre;
+		return "Pregunta [enunciado=" + enunciado + ", respuestaCorrecta=" + respuestaCorrecta + ", dificultad="
+				+ dificultad + ", puntuacion=" + puntuacion + "]";
 	}
 
-	public abstract void mostrarPregunta();
-    
-	public boolean validarRespuesta(
-	        String entradaUsuario
-	) {
-
-	    return this.respuesta.equalsIgnoreCase(
-	            entradaUsuario.trim()
-	    );
-	}
+	public abstract boolean validarRespuesta(String respuesta);
     
 }
