@@ -1702,3 +1702,26 @@ public class Main extends Application {
         );
     }
 } */
+
+import java.util.ArrayList;
+
+public class Main {
+	public static void main(String[] args) {
+		ManagerCancion mc =
+			    new ManagerCancion();
+
+			ArrayList<Cancion> canciones =
+			    mc.cargarCanciones(
+			        Archivos.ARCHIVO_CANCIONES
+			    );
+
+			for (Cancion c : canciones) {
+
+			    System.out.println(c);
+
+			    System.out.println(
+			        c.getLetra()
+			    );
+			}
+    }
+}

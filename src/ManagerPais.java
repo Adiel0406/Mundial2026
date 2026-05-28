@@ -75,4 +75,14 @@ public class ManagerPais{
 		
 		return null;
 	}
+
+	public ArrayList<Pais> getPaises() {
+		return paises;
+	}
+
+	public void setPaises(ArrayList<Pais> paises) {
+		this.paises = paises;
+	}
+	
+	
 }

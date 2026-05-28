@@ -80,4 +80,9 @@ public class Pais {
 				+ ", datosFutbol=" + datosFutbol + ", jugadores=" + jugadores + "]";
 	}
 	
+	public void agregarJugador(Jugador jugador) {
+
+	    jugadores.add(jugador);
+	}
+	
 }
