@@ -1,0 +1,127 @@
+================================
+Mexico
+Estadio Azteca
+Ciudad de Mexico
+Club America
+87523
+Uno de los estadios mas historicos del futbol mundial. Sera el primer estadio en albergar tres Copas del Mundo diferentes y destaca por su enorme capacidad, atmosfera y tradicion futbolistica.
+
+================================
+Mexico
+Estadio BBVA
+Monterrey
+Rayados de Monterrey
+53500
+Considerado uno de los estadios mas modernos de Latinoamerica. Posee una estructura futurista con vista hacia el Cerro de la Silla y tecnologia avanzada para eventos internacionales.
+
+================================
+Mexico
+Estadio Akron
+Guadalajara
+Chivas de Guadalajara
+49850
+Cuenta con un diseño inspirado en un volcan y un cesped de alta calidad. Es reconocido por su arquitectura moderna y por ser uno de los recintos mas innovadores de Mexico.
+
+================================
+Canada
+BMO Field
+Toronto
+Toronto FC
+30000
+Estadio moderno adaptado especialmente para grandes competiciones internacionales. Posee ampliaciones temporales y una infraestructura flexible para eventos FIFA.
+
+================================
+Canada
+BC Place
+Vancouver
+Vancouver Whitecaps
+54500
+Famoso por su techo retractil y tecnologia de iluminacion avanzada. Es uno de los estadios multiproposito mas importantes de Canada y ha recibido numerosos eventos internacionales.
+
+================================
+Estados Unidos
+MetLife Stadium
+New Jersey
+New York Giants / New York Jets
+82500
+Uno de los estadios mas grandes y tecnologicos de Estados Unidos. Alberga eventos deportivos de primer nivel y sera sede de la final del Mundial 2026.
+
+================================
+Estados Unidos
+AT&T Stadium
+Arlington
+Dallas Cowboys
+80000
+Reconocido por su gigantesca pantalla central y diseño moderno. Es uno de los recintos deportivos mas impresionantes del mundo por su tecnologia y capacidad.
+
+================================
+Estados Unidos
+SoFi Stadium
+Los Angeles
+Los Angeles Rams / Los Angeles Chargers
+70240
+Estadio ultramoderno inaugurado recientemente. Destaca por su pantalla 360 grados, techo translucido y compleja infraestructura tecnologica.
+
+================================
+Estados Unidos
+Mercedes-Benz Stadium
+Atlanta
+Atlanta Falcons / Atlanta United
+71000
+Posee un techo retractil unico inspirado en la apertura de una camara fotografica y una enorme pantalla circular interior de alta definicion.
+
+================================
+Estados Unidos
+Hard Rock Stadium
+Miami
+Miami Dolphins
+65300
+Recinto moderno renovado completamente para eventos internacionales. Destaca por su comodidad, zonas VIP y excelente adaptacion climatica.
+
+================================
+Estados Unidos
+NRG Stadium
+Houston
+Houston Texans
+72220
+Estadio multiproposito con techo retractil y tecnologia avanzada para espectaculos deportivos y musicales de gran escala.
+
+================================
+Estados Unidos
+Lincoln Financial Field
+Philadelphia
+Philadelphia Eagles
+69596
+Conocido por su ambiente intenso y moderno sistema audiovisual. Es uno de los estadios mas importantes de la costa este estadounidense.
+
+================================
+Estados Unidos
+Lumen Field
+Seattle
+Seattle Seahawks / Seattle Sounders
+68740
+Reconocido mundialmente por el ruido de su aficion y su diseño que potencia la acustica dentro del estadio.
+
+================================
+Estados Unidos
+Levi's Stadium
+Santa Clara
+San Francisco 49ers
+68500
+Estadio sustentable con tecnologia ecologica avanzada. Posee paneles solares y sistemas inteligentes de ahorro energetico.
+
+================================
+Estados Unidos
+Gillette Stadium
+Foxborough
+New England Patriots
+65878
+Complejo deportivo moderno que combina infraestructura deportiva con zonas comerciales y de entretenimiento.
+
+================================
+Estados Unidos
+Arrowhead Stadium
+Kansas City
+Kansas City Chiefs
+76416
+Famoso por registrar algunos de los niveles de ruido mas altos del futbol americano y por la pasion de sus aficionados.

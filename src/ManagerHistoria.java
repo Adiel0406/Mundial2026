@@ -77,4 +77,91 @@ public class ManagerHistoria {
 
         return historias;
     }
+    
+    public HistoriaMundial buscarPorAnio(
+            ArrayList<HistoriaMundial> historias,
+            int anio
+    ) {
+
+        for (HistoriaMundial h : historias) {
+
+            if (h.getAnio() == anio) {
+
+                return h;
+            }
+        }
+
+        return null;
+    }
+    
+    public void mostrarCampeones(
+            ArrayList<HistoriaMundial> historias
+    ) {
+
+        for (HistoriaMundial h : historias) {
+
+            System.out.println(
+                h.getAnio()
+                + " - "
+                + h.getCampeon()
+            );
+        }
+    }
+    
+    public int contarTitulos(
+            ArrayList<HistoriaMundial> historias,
+            String pais
+    ) {
+
+        int cantidad = 0;
+
+        for (HistoriaMundial h : historias) {
+
+            if (
+                h.getCampeon()
+                .equalsIgnoreCase(pais)
+            ) {
+
+                cantidad++;
+            }
+        }
+
+        return cantidad;
+    }
+    
+    public void mostrarFinal(
+            HistoriaMundial h
+    ) {
+
+        System.out.println(
+            "MUNDIAL "
+            + h.getAnio()
+        );
+
+        System.out.println(
+            h.getCampeon()
+            + " "
+            + h.getResultado()
+            + " "
+            + h.getSubcampeon()
+        );
+
+        System.out.println(
+            "Estadio: "
+            + h.getEstadio()
+        );
+
+        System.out.println(
+            "Sede: "
+            + h.getSede()
+        );
+
+        System.out.println(
+            "Contexto:"
+        );
+
+        System.out.println(
+            h.getContexto()
+        );
+    }
 }

@@ -122,4 +122,98 @@ public class ManagerCancion {
 
         return canciones;
     }
+    
+    public Cancion buscarCancion(
+            ArrayList<Cancion> canciones,
+            String nombre
+    ) {
+
+        for (Cancion c : canciones) {
+
+            if (
+                c.getNombre()
+                 .equalsIgnoreCase(nombre)
+            ) {
+
+                return c;
+            }
+        }
+
+        return null;
+    }
+    
+    public ArrayList<Cancion> buscarPorPais(
+            ArrayList<Cancion> canciones,
+            String pais
+    ) {
+
+        ArrayList<Cancion> resultado =
+            new ArrayList<>();
+
+        for (Cancion c : canciones) {
+
+            for (String p : c.getPaises()) {
+
+                if (
+                    p.equalsIgnoreCase(pais)
+                ) {
+
+                    resultado.add(c);
+                }
+            }
+        }
+
+        return resultado;
+    }
+    
+    public ArrayList<Cancion> buscarPorArtista(
+            ArrayList<Cancion> canciones,
+            String artista
+    ) {
+
+        ArrayList<Cancion> resultado =
+            new ArrayList<>();
+
+        for (Cancion c : canciones) {
+
+            for (
+                String a
+                : c.getArtistas()
+            ) {
+
+                if (
+                    a.equalsIgnoreCase(artista)
+                ) {
+
+                    resultado.add(c);
+                }
+            }
+        }
+
+        return resultado;
+    }
+    
+    public boolean existeCancion(
+            ArrayList<Cancion> canciones,
+            String nombre
+    ) {
+
+        return buscarCancion(
+            canciones,
+            nombre
+        ) != null;
+    }
+    
+    public void ordenarCancionesAlf(
+            ArrayList<Cancion> canciones
+    ) {
+
+    	canciones.sort((a, b) ->
+        a.getNombre()
+         .compareTo(
+             b.getNombre()
+        	)
+    	);
+    }
+    
 }

@@ -20,4 +20,10 @@ public interface Archivos {
     
     String ARCHIVO_CANCIONES =
     	    "canciones.txt";
+    
+    String ARCHIVO_HISTORIA =
+    	    "historia.txt";
+    
+    String ARCHIVO_ESTADIOS =
+    	    "estadios.txt";
 }
