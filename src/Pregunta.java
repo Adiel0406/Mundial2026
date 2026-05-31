@@ -64,10 +64,9 @@ public abstract class Pregunta implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Pregunta [enunciado=" + enunciado + ", respuestaCorrecta=" + respuestaCorrecta + ", dificultad="
-				+ dificultad + ", puntuacion=" + puntuacion + "]";
-	}
 
+	    return enunciado;
+	}
 	public abstract boolean validarRespuesta(String respuesta);
     
 }

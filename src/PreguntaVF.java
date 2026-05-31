@@ -11,4 +11,10 @@ public class PreguntaVF extends Pregunta {
 	public boolean validarRespuesta(String respuesta) {
 		return respuestaCorrecta.equalsIgnoreCase(respuesta);
 	}
+	
+	@Override
+	public String toString() {
+
+	    return enunciado;
+	}
 }

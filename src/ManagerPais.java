@@ -22,14 +22,15 @@ public class ManagerPais{
             	String nombre = datos[0];
             	String continente = datos[1];
             	String codigo = datos[2];
-            	int mundiales = Integer.parseInt(datos[3]);
-            	int participaciones = Integer.parseInt(datos[4]);
-            	String cultura = datos[5];
-            	String datosFutbol = datos[6];
+            	String grupo = datos[3];
+            	int mundiales = Integer.parseInt(datos[4]);
+            	int participaciones = Integer.parseInt(datos[5]);
+            	String cultura = datos[6];
+            	String datosFutbol = datos[7];
 
             	ArrayList<Jugador> jugadores = new ArrayList<>();
 
-            	for (int i = 7; i < datos.length; i++) {
+            	for (int i = 8; i < datos.length; i++) {
             	    String[] j = datos[i].split(",");
 
             	    if (j.length == 3) {
@@ -43,7 +44,7 @@ public class ManagerPais{
             	    }
             	}
 
-            	Pais p = new Pais(nombre, continente, codigo, mundiales, participaciones, cultura, datosFutbol, jugadores);
+            	Pais p = new Pais(nombre, continente, codigo, grupo, mundiales, participaciones, cultura, datosFutbol, jugadores);
             	lista.add(p);
         	}
 

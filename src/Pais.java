@@ -3,16 +3,18 @@ import java.util.ArrayList;
 public class Pais {
 	private String nombre,continente;
 	private String codigoBandera;
+	private String grupo;
 	private int mundiales,participantes;
 	private String cultura, datosFutbol;
 	private ArrayList<Jugador> jugadores;
 	
-	public Pais(String nombre, String continente, String codigoBandera, int mundiales, int participantes,
+	public Pais(String nombre, String continente, String codigoBandera, String grupo, int mundiales, int participantes,
 			String cultura, String datosFutbol, ArrayList<Jugador> jugadores) {
 		
 		this.nombre = nombre;
 		this.continente = continente;
 		this.codigoBandera = codigoBandera;
+		this.grupo = grupo;
 		this.mundiales = mundiales;
 		this.participantes = participantes;
 		this.cultura = cultura;
@@ -73,10 +75,18 @@ public class Pais {
 		this.codigoBandera = codigoBandera;
 	}
 
+	public String getGrupo() {
+		return grupo;
+	}
+
+	public void setGrupo(String grupo) {
+		this.grupo = grupo;
+	}
+
 	@Override
 	public String toString() {
-		return "Pais [nombre=" + nombre + ", continente=" + continente + ", codigoBandera=" + codigoBandera
-				+ ", mundiales=" + mundiales + ", participantes=" + participantes + ", cultura=" + cultura
+		return "Pais [nombre=" + nombre + ", continente=" + continente + ", codigoBandera=" + codigoBandera + ", grupo="
+				+ grupo + ", mundiales=" + mundiales + ", participantes=" + participantes + ", cultura=" + cultura
 				+ ", datosFutbol=" + datosFutbol + ", jugadores=" + jugadores + "]";
 	}
 	

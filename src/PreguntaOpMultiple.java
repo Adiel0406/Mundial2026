@@ -39,7 +39,8 @@ public class PreguntaOpMultiple extends Pregunta {
 
 	@Override
 	public String toString() {
-		return "PreguntaOpMultiple [opciones=" + opciones + "]";
+
+	    return enunciado;
 	}
 
 

@@ -91,4 +91,50 @@ public class ManagerPregunta {
 	    );
 	}
 	
+	public ArrayList<Pregunta> elegirPreguntasPorDificultad(
+	        String archivo,
+	        String dificultad,
+	        int cantidad
+	) {
+
+	    ArrayList<Pregunta> todas =
+	        cargarPreguntas(archivo);
+
+	    ArrayList<Pregunta> filtradas =
+	        new ArrayList<>();
+
+	    for (Pregunta p : todas) {
+
+	        if (
+	            p.getDificultad()
+	            .equalsIgnoreCase(dificultad)
+	        ) {
+
+	            filtradas.add(p);
+	        }
+	    }
+
+	    Collections.shuffle(filtradas);
+
+	    ArrayList<Pregunta> elegidas =
+	        new ArrayList<>();
+
+	    for (
+	        int i = 0;
+
+	        i < cantidad
+	        &&
+	        i < filtradas.size();
+
+	        i++
+	    ) {
+
+	        elegidas.add(
+	            filtradas.get(i)
+	        );
+	    }
+
+	    return elegidas;
+	}
+	
 }
