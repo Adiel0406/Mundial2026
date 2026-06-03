@@ -6,12 +6,6 @@ public class Mundial implements Serializable{
 
 	private ArrayList<Grupo> grupos;
 
-	private FaseFinal dieciseisavos;
-	private FaseFinal octavos;
-	private FaseFinal cuartos;
-	private FaseFinal semifinal;
-	private FaseFinal finalMundial;
-
 	private Pais campeon;
 	
 	public Mundial() {
@@ -27,46 +21,6 @@ public class Mundial implements Serializable{
 		this.grupos = grupos;
 	}
 
-	public FaseFinal getDieciseisavos() {
-		return dieciseisavos;
-	}
-
-	public void setDieciseisavos(FaseFinal dieciseisavos) {
-		this.dieciseisavos = dieciseisavos;
-	}
-
-	public FaseFinal getOctavos() {
-		return octavos;
-	}
-
-	public void setOctavos(FaseFinal octavos) {
-		this.octavos = octavos;
-	}
-
-	public FaseFinal getCuartos() {
-		return cuartos;
-	}
-
-	public void setCuartos(FaseFinal cuartos) {
-		this.cuartos = cuartos;
-	}
-
-	public FaseFinal getSemifinal() {
-		return semifinal;
-	}
-
-	public void setSemifinal(FaseFinal semifinal) {
-		this.semifinal = semifinal;
-	}
-
-	public FaseFinal getFinalMundial() {
-		return finalMundial;
-	}
-
-	public void setFinalMundial(FaseFinal finalMundial) {
-		this.finalMundial = finalMundial;
-	}
-
 	public Pais getCampeon() {
 		return campeon;
 	}
@@ -77,8 +31,49 @@ public class Mundial implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Mundial [grupos=" + grupos + ", dieciseisavos=" + dieciseisavos + ", octavos=" + octavos + ", cuartos="
-				+ cuartos + ", semifinal=" + semifinal + ", finalMundial=" + finalMundial + ", campeon=" + campeon
-				+ "]";
+		return "Mundial [grupos=" + grupos + "]";
+	}
+	
+	public Pais obtenerGanador(
+	        Partido partido
+	) {
+
+	    if (!partido.isJugado()) {
+
+	        return null;
+	    }
+
+	    // GANA NORMAL
+
+	    if (
+	        partido.getGolesLocal()
+	        >
+	        partido.getGolesVisitante()
+	    ) {
+
+	        return partido.getLocal();
+	    }
+
+	    if (
+	        partido.getGolesVisitante()
+	        >
+	        partido.getGolesLocal()
+	    ) {
+
+	        return partido.getVisitante();
+	    }
+
+	    // EMPATE -> PENALES
+
+	    if (
+	        partido.getPenalesLocal()
+	        >
+	        partido.getPenalesVisitante()
+	    ) {
+
+	        return partido.getLocal();
+	    }
+
+	    return partido.getVisitante();
 	}
 }

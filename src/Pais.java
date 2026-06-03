@@ -1,6 +1,9 @@
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Pais {
+public class Pais implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	private String nombre,continente;
 	private String codigoBandera;
 	private String grupo;

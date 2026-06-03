@@ -155,12 +155,104 @@ public class PantallaMenu {
         StackPane btnFixture =
         		crearBotonModo(
 
-            		"Fixture",
+            		"Clasificacion",
 
-            		"Analiza los partidos del mundial colocando los resultados.",
+            		"Analiza que necesita un equipo para pasar de grupos.",
 
             		"images/menu/fixture.png"
         		);
+        
+        btnFixture.setOnMouseClicked(e -> {
+
+            ManagerPais managerPais =
+                new ManagerPais(
+                    Archivos.ARCHIVO_PAISES
+                );
+
+            ManagerFixture managerFixture =
+                new ManagerFixture(
+                    managerPais
+                );
+
+            // =========================
+            // MANAGER MUNDIAL
+            // =========================
+
+            ManagerMundial managerMundial =
+                new ManagerMundial();
+
+            // =========================
+            // CARGAR DAT
+            // =========================
+
+            Mundial mundial =
+                managerMundial.cargarMundial(
+                    Archivos.ARCHIVO_MUNDIAL
+                );
+
+            // =========================
+            // SI NO EXISTE
+            // =========================
+
+            if (mundial == null) {
+
+                mundial = new Mundial();
+
+                mundial.setGrupos(
+                    managerFixture.crearGrupos()
+                );
+
+                managerMundial.guardarMundial(
+                    mundial,
+                    Archivos.ARCHIVO_MUNDIAL
+                );
+            }
+
+            // =========================
+            // PANTALLA
+            // =========================
+
+            PantallaPartidosMenu fixture =
+                new PantallaPartidosMenu(
+                    mundial
+                );
+
+            Scene scene =
+                fixture.crearScene(stage);
+
+            // =========================
+            // TRANSICION
+            // =========================
+
+            ScaleTransition zoom =
+                new ScaleTransition(
+                    Duration.seconds(0.8),
+                    root
+                );
+
+            zoom.setToX(1.2);
+
+            zoom.setToY(1.2);
+
+            FadeTransition fade =
+                new FadeTransition(
+                    Duration.seconds(0.8),
+                    root
+                );
+
+            fade.setToValue(0);
+
+            fade.setOnFinished(ev -> {
+
+                stage.setScene(scene);
+
+                stage.setMaximized(true);
+            });
+
+            zoom.play();
+
+            fade.play();
+        });
         
         StackPane btnHistoria =
         		crearBotonModo(

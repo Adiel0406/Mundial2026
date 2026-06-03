@@ -1,5 +1,7 @@
 import java.io.*;
 
+import javafx.scene.Scene;
+
 public class ManagerMundial {
 
 	public void guardarMundial(
@@ -61,4 +63,6 @@ public class ManagerMundial {
 	        file.delete();
 	    }
 	}
+	
+	public Scene getScene() { return getScene(); }
 }

@@ -113,7 +113,7 @@ public class ManagerFixture {
 	        crearGrupo(
 	            "B",
 	            "Canada",
-	            "Bosnia y Herzegobina",
+	            "Bosnia y Herzegovina",
 	            "Catar",
 	            "Suiza"
 	        )
@@ -132,7 +132,7 @@ public class ManagerFixture {
 	    grupos.add(
 		     crearGrupo(
 		        "D",
-		        "Estdos Unidos",
+		        "Estados Unidos",
 		        "Paraguay",
 		        "Australia",
 		        "Turquia"
@@ -506,50 +506,6 @@ public class ManagerFixture {
 	    return mejores;
 	}
 	
-	public FaseFinal generarDieciseisavos(
-	        ArrayList<Grupo> grupos
-	) {
-
-	    ArrayList<EquipoGrupo> clasificados =
-	        obtenerClasificados(grupos);
-
-	    FaseFinal dieciseisavos =
-	        new FaseFinal(
-	            "Dieciseisavos"
-	        );
-
-	    int inicio = 0;
-	    int fin =
-	        clasificados.size() - 1;
-
-	    while (inicio < fin) {
-
-	        Pais local =
-	            clasificados
-	                .get(inicio)
-	                .getPais();
-
-	        Pais visitante =
-	            clasificados
-	                .get(fin)
-	                .getPais();
-
-	        Partido partido =
-	            new Partido(
-	                local,
-	                visitante
-	            );
-
-	        dieciseisavos
-	            .agregarPartido(partido);
-
-	        inicio++;
-	        fin--;
-	    }
-
-	    return dieciseisavos;
-	}
-	
 	public Partido buscarPartido(
 	        Grupo grupo,
 	        Pais a,
@@ -624,184 +580,5 @@ public class ManagerFixture {
 	    clasificados.addAll(terceros);
 
 	    return clasificados;
-	}
-	
-	public Pais obtenerGanador(
-	        Partido partido
-	) {
-
-	    if (!partido.isJugado()) {
-
-	        return null;
-	    }
-
-	    if (
-	        partido.getGolesLocal()
-	        >
-	        partido.getGolesVisitante()
-	    ) {
-
-	        return partido.getLocal();
-	    }
-
-	    if (
-	        partido.getGolesVisitante()
-	        >
-	        partido.getGolesLocal()
-	    ) {
-
-	        return partido.getVisitante();
-	    }
-
-	    return null;
-	}
-	
-	public FaseFinal generarSiguienteFase(
-	        FaseFinal faseActual,
-	        String nombreNuevaFase
-	) {
-
-	    FaseFinal nueva =
-	        new FaseFinal(
-	            nombreNuevaFase
-	        );
-
-	    ArrayList<Pais> ganadores =
-	        new ArrayList<>();
-
-	    // OBTENER GANADORES
-
-	    for (
-	        Partido p :
-	        faseActual.getPartidos()
-	    ) {
-
-	        Pais ganador =
-	            obtenerGanador(p);
-
-	        if (ganador != null) {
-
-	            ganadores.add(ganador);
-	        }
-	    }
-
-	    // CREAR NUEVOS PARTIDOS
-
-	    for (
-	        int i = 0;
-	        i < ganadores.size();
-	        i += 2
-	    ) {
-
-	        Partido nuevo =
-	            new Partido(
-	                ganadores.get(i),
-	                ganadores.get(i + 1)
-	            );
-
-	        nueva.agregarPartido(nuevo);
-	    }
-
-	    return nueva;
-	}
-	
-	public ArrayList<Pais> obtenerGanadores(
-	        FaseFinal fase
-	) {
-
-	    ArrayList<Pais> ganadores =
-	        new ArrayList<>();
-
-	    for (Partido p : fase.getPartidos()) {
-
-	        // GANA EN PARTIDO
-
-	        if (
-	            p.getGolesLocal()
-	            >
-	            p.getGolesVisitante()
-	        ) {
-
-	            ganadores.add(
-	                p.getLocal()
-	            );
-	        }
-
-	        else if (
-	            p.getGolesVisitante()
-	            >
-	            p.getGolesLocal()
-	        ) {
-
-	            ganadores.add(
-	                p.getVisitante()
-	            );
-	        }
-
-	        // EMPATE → PENALES
-
-	        else {
-
-	            if (
-	                p.getPenalesLocal()
-	                >
-	                p.getPenalesVisitante()
-	            ) {
-
-	                ganadores.add(
-	                    p.getLocal()
-	                );
-
-	            } else {
-
-	                ganadores.add(
-	                    p.getVisitante()
-	                );
-	            }
-	        }
-	    }
-
-	    return ganadores;
-	}
-	
-	public FaseFinal generarSiguienteFase(
-	        String nombre,
-	        ArrayList<Pais> clasificados
-	) {
-
-	    FaseFinal fase =
-	        new FaseFinal(nombre);
-
-	    for (
-	        int i = 0;
-	        i < clasificados.size();
-	        i += 2
-	    ) {
-
-	        Partido partido =
-	            new Partido(
-	                clasificados.get(i),
-	                clasificados.get(i + 1)
-	            );
-
-	        fase.agregarPartido(partido);
-	    }
-
-	    return fase;
-	}
-	
-	public void registrarPenales(
-	        Partido partido,
-	        int penalesLocal,
-	        int penalesVisitante
-	) {
-
-	    partido.setPenalesLocal(
-	        penalesLocal
-	    );
-
-	    partido.setPenalesVisitante(
-	        penalesVisitante
-	    );
 	}
 }
