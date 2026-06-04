@@ -3,6 +3,8 @@ public class Estadio {
     private String pais;
 
     private String nombre;
+    
+    private String codigo;
 
     private String ciudad;
 
@@ -12,10 +14,11 @@ public class Estadio {
 
     private String infraestructura;
 
-	public Estadio(String pais, String nombre, String ciudad, String equipo, int capacidad, String infraestructura) {
+	public Estadio(String pais, String nombre, String codigo, String ciudad, String equipo, int capacidad, String infraestructura) {
 		super();
 		this.pais = pais;
 		this.nombre = nombre;
+		this.codigo = codigo;
 		this.ciudad = ciudad;
 		this.equipo = equipo;
 		this.capacidad = capacidad;
@@ -36,6 +39,14 @@ public class Estadio {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 
 	public String getCiudad() {
@@ -72,7 +83,7 @@ public class Estadio {
 
 	@Override
 	public String toString() {
-		return "Estadio [pais=" + pais + ", nombre=" + nombre + ", ciudad=" + ciudad + ", equipo=" + equipo
-				+ ", capacidad=" + capacidad + ", infraestructura=" + infraestructura + "]";
+		return "Estadio [pais=" + pais + ", nombre=" + nombre + ", codigo=" + codigo + ", ciudad=" + ciudad
+				+ ", equipo=" + equipo + ", capacidad=" + capacidad + ", infraestructura=" + infraestructura + "]";
 	}
 }

@@ -35,36 +35,40 @@ public class ManagerEstadio {
             		    continue;
             		}
             	String pais =
-            		    linea;
+            	    linea;
 
-            		String nombre =
-            		    br.readLine();
+            	String nombre =
+            	    br.readLine();
+            	
+            	String codigo =
+            		br.readLine();
 
-            		String ciudad =
-            		    br.readLine();
+            	String ciudad =
+            	    br.readLine();
 
-            		String equipo =
-            		    br.readLine();
+            	String equipo =
+            	    br.readLine();
 
-            		int capacidad =
-            		    Integer.parseInt(
-            		        br.readLine()
+            	int capacidad =
+            	    Integer.parseInt(
+            	        br.readLine()
+            	    );
+
+            	String infraestructura =
+            	    br.readLine();
+            	
+            	Estadio estadio =
+            		    new Estadio(
+            		        pais,
+            		        nombre,
+            		        codigo,
+            		        ciudad,
+            		        equipo,
+            		        capacidad,
+            		        infraestructura
             		    );
-
-            		String infraestructura =
-            		    br.readLine();
             		
-            		Estadio estadio =
-            			    new Estadio(
-            			        pais,
-            			        nombre,
-            			        ciudad,
-            			        equipo,
-            			        capacidad,
-            			        infraestructura
-            			    );
-            		
-            		estadios.add(estadio);
+            	estadios.add(estadio);
             }
 
         } catch (Exception e) {
@@ -115,65 +119,5 @@ public class ManagerEstadio {
         }
 
         return null;
-    }
-    
-    public void mostrarDetalles(
-            Estadio estadio
-    ) {
-
-        if (estadio == null) {
-
-            System.out.println(
-                "Estadio no encontrado."
-            );
-
-            return;
-        }
-
-        System.out.println(
-            "================================"
-        );
-
-        System.out.println(
-            estadio.getNombre()
-        );
-
-        System.out.println(
-            "================================"
-        );
-
-        System.out.println(
-            "Pais: "
-            + estadio.getPais()
-        );
-
-        System.out.println(
-            "Ciudad: "
-            + estadio.getCiudad()
-        );
-
-        System.out.println(
-            "Equipo: "
-            + estadio.getEquipo()
-        );
-
-        System.out.println(
-            "Capacidad: "
-            + estadio.getCapacidad()
-        );
-
-        System.out.println();
-
-        System.out.println(
-            "Infraestructura:"
-        );
-
-        System.out.println(
-            estadio.getInfraestructura()
-        );
-
-        System.out.println(
-            "================================"
-        );
     }
 }

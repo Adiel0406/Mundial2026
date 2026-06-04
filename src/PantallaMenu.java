@@ -264,6 +264,35 @@ public class PantallaMenu {
         			"images/menu/historia.png"
         		);
         
+        btnHistoria.setOnMouseClicked(e -> {
+
+            PantallaHistoria historia =
+                new PantallaHistoria();
+
+            Scene scene =
+                historia.crearScene(stage);
+
+            ScaleTransition zoom =
+                new ScaleTransition(Duration.seconds(0.8), root);
+
+            zoom.setToX(1.2);
+            zoom.setToY(1.2);
+
+            FadeTransition fade =
+                new FadeTransition(Duration.seconds(0.8), root);
+
+            fade.setToValue(0);
+
+            fade.setOnFinished(ev -> {
+
+                stage.setScene(scene);
+                stage.setMaximized(true);
+            });
+
+            zoom.play();
+            fade.play();
+        });
+        
         StackPane btnEstadios =
         		crearBotonModo(
 
@@ -273,6 +302,48 @@ public class PantallaMenu {
 
         			"images/menu/estadios.png"
         		);
+        
+        btnEstadios.setOnMouseClicked(e -> {
+
+            PantallaEstadios estadios =
+                new PantallaEstadios();
+
+            Scene scene =
+                estadios.crearScene(stage);
+
+            // =========================
+            // TRANSICION
+            // =========================
+
+            ScaleTransition zoom =
+                new ScaleTransition(
+                    Duration.seconds(0.8),
+                    root
+                );
+
+            zoom.setToX(1.2);
+
+            zoom.setToY(1.2);
+
+            FadeTransition fade =
+                new FadeTransition(
+                    Duration.seconds(0.8),
+                    root
+                );
+
+            fade.setToValue(0);
+
+            fade.setOnFinished(ev -> {
+
+                stage.setScene(scene);
+
+                stage.setMaximized(true);
+            });
+
+            zoom.play();
+
+            fade.play();
+        });
         
         StackPane btnFifaSound =
         		crearBotonModo(
