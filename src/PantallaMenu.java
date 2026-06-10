@@ -355,6 +355,44 @@ public class PantallaMenu {
         			"images/menu/fifa_sound.png"
         		);
         
+        btnFifaSound.setOnMouseClicked(e -> {
+
+            PantallaFifaSound fifaSound =
+                new PantallaFifaSound();
+
+            Scene scene =
+                fifaSound.crearScene(stage);
+
+            ScaleTransition zoom =
+                new ScaleTransition(
+                    Duration.seconds(0.8),
+                    root
+                );
+
+            zoom.setToX(0.9);
+
+            zoom.setToY(0.9);
+
+            FadeTransition fade =
+                new FadeTransition(
+                    Duration.seconds(0.8),
+                    root
+                );
+
+            fade.setToValue(0);
+
+            fade.setOnFinished(ev -> {
+
+                stage.setScene(scene);
+
+                stage.setMaximized(true);
+            });
+
+            zoom.play();
+
+            fade.play();
+        });
+        
         GridPane grid =
         	    new GridPane();
 

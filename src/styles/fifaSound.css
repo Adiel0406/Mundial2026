@@ -1,0 +1,25 @@
+.titled-pane {
+
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.titled-pane > .title {
+
+    -fx-background-color: #7ED957;
+    -fx-background-radius: 20;
+}
+
+.titled-pane > .title > .arrow-button .arrow {
+
+    -fx-background-color: white;
+}
+
+.titled-pane > .content {
+
+    -fx-background-color: #244A7A;
+    -fx-background-radius: 0 0 20 20;
+
+    -fx-border-color: transparent;
+}

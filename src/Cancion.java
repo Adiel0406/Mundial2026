@@ -4,38 +4,60 @@ public class Cancion {
 
     private String nombre;
 
-    private ArrayList<String> artistas;
-    private ArrayList<String> paises;
+    private ArrayList<Cantante> cantantes;
 
-    private String letra;
+    private ArrayList<LineaLetra> letraSincronizada;
+
+    private String rutaAudio;
+
+    private String rutaImagen;
+
+    private double duracion;
 
     public Cancion(
             String nombre,
-            ArrayList<String> artistas,
-            ArrayList<String> paises,
-            String letra
+            ArrayList<Cantante> cantantes,
+            ArrayList<LineaLetra> letraSincronizada,
+            String rutaAudio,
+            String rutaImagen,
+            double duracion
     ) {
 
         this.nombre = nombre;
-        this.artistas = artistas;
-        this.paises = paises;
-        this.letra = letra;
+
+        this.cantantes = cantantes;
+
+        this.letraSincronizada = letraSincronizada;
+
+        this.rutaAudio = rutaAudio;
+
+        this.rutaImagen = rutaImagen;
+
+        this.duracion = duracion;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public ArrayList<String> getArtistas() {
-        return artistas;
+    public ArrayList<Cantante> getCantantes() {
+        return cantantes;
     }
 
-    public ArrayList<String> getPaises() {
-        return paises;
+    public ArrayList<LineaLetra> getLetraSincronizada() {
+        return letraSincronizada;
     }
 
-    public String getLetra() {
-        return letra;
+    public String getRutaAudio() {
+        return rutaAudio;
+    }
+
+    public String getRutaImagen() {
+        return rutaImagen;
+    }
+
+    public double getDuracion() {
+        return duracion;
     }
 
     @Override
@@ -43,13 +65,6 @@ public class Cancion {
 
         return nombre
                 + " | "
-                + artistas;
-    }
-    
-    public String resumen() {
-
-        return nombre
-                + " - "
-                + artistas;
+                + cantantes;
     }
 }

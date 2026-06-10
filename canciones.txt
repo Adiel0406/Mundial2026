@@ -1,449 +1,1395 @@
-====================================
-Dai-Dai
-ARTISTAS
-Shakira, Burna Boy
-Colombia, Nigeria
-LETRA
-Oh-eh-oh-eh (oh-eh)
-Eh-oh-eh (oh-eh)
-Oh-eh-oh-eh (oh-eh)
-Eh-oh-eh
-
-You knew from the day you were born
-That here in this place you belong
-You've been this brave all along
-What broke you once made you strong (strong)
-
-Dai, dai, ikou, dale, allez, let's go
-Dai, dai, ikou, dale, allez, let's go (ow)
-
-Come follow your desire
-Where there's a will, there's a way
-You are the owner of that fire
-No one can take it away
-Sweat and blood to write your story
-That is how you paved the way
-You're about to reach the glory
-Only one step away
-
-All the highs and lows
-All the tears and the pain
-You been there through it all, been through it all
-Just do it again
-Now you got to believe (I believe)
-'Cause you know what it takes
-To be living my dream
-At the top of your game
-
-Feel it, got everything you need it
-Now bring it like you mean it
-Just like you mean it
-Dale, no olvide' lo que vales
-Juega como tú sabes
-Como tú sabe'
-
-Energy is contagious (you know)
-And it never fails us (no, no)
-No one's getting tired (I know)
-'Cause you got that fire (ayo)
-Dream a little higher
-Let's go, let's go, let's go
-
-Ayo
-Ayo
-
-We've taken all that our hearts can hold
-We can't hold on to the past no more (mm)
-From the dirt and the tears, we make gold
-We are more than flesh and bones
-
-All the highs and lows (highs and lows)
-All the tears and the pain
-You been there through it all, been through it all
-Just do it again
-Now you got to believe (I believe)
-'Cause you know what it takes
-To be living my dream
-At the top of your game
-
-Feel it, got everything you need it
-Now bring it like you mean it
-Just like you mean it
-Dale, no olvide' lo que vales
-Juega como tú sabes
-Como tú sabe'
-
-Pelé, Maradona, Maldini, Romário
-Cristiano, Ronaldo
-El Pibe, Iniesta, Beckham y Kaká
-Messi, Mbappé, Salah
-Brasil, Uruguay, Argentina, Colombia
-US, England, Germany, France
-South Africa, España, México, Japan
-Korea, Netherlands
-
-Oh-eh-oh-eh (oh-eh)
-Eh-oh-eh
-Oh-eh-oh-eh (oh-eh)
-Eh-oh-eh
-
-Knew from the day you were born
-Here in this place you belong
-You've been this brave all along
-What broke you once made you strong (ow)
-
-Dai, dai, ikou, dale, allez, let's go
-Dai, dai, ikou, dale, allez, let's go
-Dai, dai, ikou, dale, allez, let's go
-Dai, dai, ikou, dale, allez, let's go
-FIN
-
-====================================
 Goals
-ARTISTAS
-LISA, Anitta, Rema
-Tailandia, Brasil, Nigeria
-LETRA
-Yes, I'm
-Goals, goals, goals, goals
-Goals, goals, goals, goals
-My body (goals), my fit (goals)
-My friends (goals), my whip (goals)
-My body (goals), my fit (goals)
-My friends (goals), my whip (goals)
 
-Shots on shots on shots on shots
-Thots on thots on thots on thots
-Buy out the club, I do it for the plot
-How much it cost? I don't know, what's a lot? (A lot, a lot, a lot)
-Forty band, fifty band, that's a drop (drop)
-Drop in the bucket, I love it, I love it
-I live in the moment, I do what I want
+src/sounds/fifa_sound/goals.mp3
+src/images/imagenes_musica/goals.jpg
+189
 
-I look so good
-I ain't worried 'bout nothing
-Me and my girls, we got our tongues out and you love it
-I look so good
-I ain't worried 'bout nothing
-From the skin under my clothes, from my head to my toes
+3
 
-Yes, I'm
-Goals, goals, goals, goals (la-la-la-la)
-Goals, goals, goals, goals (la-la-la-la)
-My body (goals), my fit (goals)
-My friends (goals), my whip (goals)
-My body (goals), my fit (goals)
-My friends (goals), my whip (goals)
+LISA
+Tailandia
+29
 
-Bet I'm (goals)
-My body (goals), my fit (goals)
-My friends (goals), my whip (goals)
-(Goals)
-My body (goals), my fit (goals)
-My friends (goals), my whip
-Yes, I'm goals
+Anitta
+Brasil
+33
 
-Yeah, yeah
-Yeah, yeah, yeah, yeah
+Rema
+Nigeria
+26
 
-Pégate, que tú querías una mami
-Tengo lo que estás buscando, aquí está tu Brazilian body
-Eu rebolo bem, quero ver você também
-Yo sí me muevo bien, quiero ver si tú también
+[00:08.94] Yes, I'm
+[00:09.75] Goals, goals, goals, goals
+[00:13.16] Goals, goals, goals, goals
+[00:16.69] My body (Goals), my fit (Goals)
+[00:18.39] My friends (Goals), my whip (Goals)
+[00:20.26] My body (Goals), my fit (Goals)
+[00:22.08] My friends (Goals), my whip (Goals)
+[00:24.61] Shots on shots on shots on shots
+[00:26.39] Thots on thots on thots on thots
+[00:28.27] Buy out the club, I do it for the plot
+[00:29.89] How much it cost? I don't know, what's a lot?
+[00:31.76] (A lot, a lot, a lot)
+[00:33.10] Forty band, fifty band, that's a drop (Drop)
+[00:34.64] Drop in the bucket, I love it, I love it
+[00:36.35] I live in the moment, I do what I want
+[00:38.20] I look so good, I ain't worried 'bout nothing
+[00:41.77] Me and my girls, we got our tongues out and you love it
+[00:45.38] I look so good, I ain't worried 'bout nothing
+[00:48.88] From the skin under my clothes, from my head to my toes
+[00:52.93] Yes, I'm
+[00:53.81] Goals, goals, goals, goals (La-la-la-la)
+[00:57.15] Goals, goals, goals, goals (La-la-la-la)
+[01:00.60] My body (Goals), my fit (Goals)
+[01:02.34] My friends (Goals), my whip (Goals)
+[01:04.08] My body (Goals), my fit (Goals)
+[01:05.84] My friends (Goals), my whip (Goals)
+[01:07.54] Bet I'm goals
+[01:11.65] My body (Goals), my fit (Goals)
+[01:13.30] My friends (Goals), my whip (Goals)
+[01:15.34] Goals
+[01:18.86] My body (Goals), my fit (Goals)
+[01:20.66] My friends (Goals), my whip
+[01:22.29] Yes, I'm goals
+[01:23.35] Yeah, yeah
+[01:24.79] Yeah, yeah, yeah, yeah
+[01:26.70] Pégate que tú querías una mami
+[01:29.51] Tengo lo que estás buscando, aquí está tu Brazilian body
+[01:33.22] Eu rebolo bem, quero ver você também
+[01:37.17] Yo si me muevo bien, quiero ver si tú también
+[01:40.40] I look so good, I ain't worried 'bout nothing
+[01:43.91] Me and my girls, we got our tongues out and you love it
+[01:47.45] I look so good, I ain't worried 'bout nothing
+[01:51.40] From the skin under my clothes, from my head to my toes
+[01:55.20] Yes, I'm goals
+[01:59.11] My body (Goals), my fit (Goals)
+[02:00.93] My friends (Goals), my whip (Goals)
+[02:03.17] Goals
+[02:06.51] My body (Goals), my fit (Goals)
+[02:08.27] My friends (Goals), my whip (Goals)
+[02:10.00] Yes, I'm goals
+[02:14.15] Goal, goal, goal, goal, goal, goal, goal, goal
+[02:16.30] Breaking all their record, now they wan shift the goal post
+[02:18.19] Normally Remy get unlimited flow
+[02:19.91] One of one, check around the world, me no get clone
+[02:22.04] From Nigeria to Monaco
+[02:23.29] Anywhere the mission dey tell me I go show, I go show
+[02:25.44] Original baller, no dagbo
+[02:27.03] Take a trip into my mind, you go see I'm all about the ego
+[02:28.68] Run, run, run, run, run, run, run
+[02:31.05] 'Cause I'm coming like the Titan
+[02:32.59] Everybody, they know I'm the one champion
+[02:34.41] It's my time put your lights up
+[02:36.18] Run, run, run, run, run, run, run
+[02:38.20] 'Cause I'm coming like the Titan
+[02:39.18] From the skin under my clothes, from my head to my toes
+[02:42.80] Yes, I'm goals
+[02:46.67] My body (Goals), my fit (Goals)
+[02:48.46] My friends (Goals), my whip (Goals)
+[02:50.73] Goals
+[02:54.02] My body (Goals), my fit (Goals)
+[02:55.83] My friends (Goals), my whip (Goals)
+[02:57.50] Yes, I'm goals
+[02:59.09]
 
-I look so good
-I ain't worried 'bout nothing (yeah)
-Me and my girls, we got our tongues out and you love it
-I look so good (so good)
-I ain't worried 'bout nothing
-From the skin under my clothes, from my head to my toes
-
-Yes, I'm (goals) (la-la-la-la)
-My body (goals), my fit (goals)
-My friends (goals), my whip (goals) (la-la-la-la)
-(Goals) (la-la-la-la)
-My body (goals), my fit (goals)
-My friends (goals), my whip (goals)
-Yes, I'm goals
-
-Yeah
-
-Go, go, go, go, go, go, go, go, go, go
-Breakin' all their record, now they wan' shift the goal post
-Normally Remy get unlimited flow (yeah)
-One of one, check around the world, me no get clone
-From Nigeria to Monaco
-Anywhere the mission dey tell me I go show, I go show
-Original baller, no dagbo
-Take a trip into my mind, you go see I'm all about the ego
-
-Run, run, run, run, run, run, run
-'Cause I'm comin' like the Titan
-Everybody, they know I'm the one champion
-It's my time, put your lights up
-Run, run, run, run, run, run, run (yeah)
-'Cause I'm comin' like the Titan
-
-From the skin under my clothes, from my head to my toes
-
-Yes, I'm (goals) (la-la-la-la)
-My body (goals), my fit (goals)
-My friends (goals), my whip (goals) (la-la-la-la)
-(Goals) (la-la-la-la)
-My body (goals), my fit (goals)
-My friends (goals), my whip (goals)
-Yes, I'm goals
 FIN
 
-====================================
-Por Ella
-ARTISTAS
-Los Ángeles Azules, Belinda
-Mexico, Mexico
-LETRA
-Uy, ajaja
-De México para el mundo
-Los Ángeles Azules
-Y Belinda
+================================
 
-A ella todo' la desean, pero solo uno la puede tener (ah)
-Es dura la competencia, pues no por cualquiera se deja querer
-Por tenerla conmigo, recorro el mundo
-Daría lo que fuera, cada segundo
-Por ella, solamente por ella
+Game Time
+src/sounds/fifa_sound/game_time.mp3
+src/images/imagenes_musica/game_time.jpg
+206
 
-Lo que daría por ella, por ella
-Porque brillara aquí en mi pecho igual que las estrellas, tan bella
-Y darle un beso cuando la tenga entre mis brazos
-Gritar que la amo
-Que se escuche hasta el cielo
-Que ya nos la ganamos
+2
 
-Y que suene el: Olé, olé, olé
-El estadio completo está de pie
-Que la vibra en el aire se sienta
-Como un gol al minuto 90
+Future
+Estados Unidos
+42
 
-Y que suene el: Olé
-Y que suene el: Olé
-Que la vibra en el aire se sienta
-Como un gol al minuto 90
+Tyla
+Sudafrica
+24
 
-Ah-ah
-Y que suene el: Olé, olé
-Olé, olé
+[00:00.00] Man, heard what you said through the grapevine
+[00:02.10] Funny thing 'bout your problems, they ain't mine (Mine)
+[00:04.59] Stayin' up through the late night (Stayin' up)
+[00:06.84] Twenty seconds 'til game time
+[00:08.90] Gettin' religious with it (Get, get)
+[00:11.00] How I'm crossin' these state lines
+[00:12.84] Workin' hard through the late nights (Workin')
+[00:14.90] Twenty seconds 'til game time (Twenty seconds, go)
+[00:17.55] I see the stars in the sky
+[00:18.80] I see me standin' on top of it (Woah)
+[00:21.42] Need two accountants
+[00:23.00] Made a lot, more than a lot of it (Let's go)
+[00:25.54] Im with the fam, fam
+[00:27.50] We Batman and Robin it (Signs)
+[00:29.64] Call for the game, game
+[00:31.30] Nah, there ain't no stoppin' me
+[00:34.29] Yeah (Oh)
+[00:35.79] Game time
+[00:38.10] Oh, yeah, oh, yeah
+[00:40.04] Game time
+[00:41.05] Kick it like FIFA across the world
+[00:43.00] No stoppin' me, shawties be clockin' me (Woah)
+[00:45.12] This for the ones that came out of poverty
+[00:47.14] This for the ones that never gave up
+[00:49.27] This for the ones that's turnin' it up (Who else?)
+[00:51.14] This for the fans, my fam, my trust (Yeah)
+[00:53.36] This for the game we love (Game)
+[00:55.27] Seven figures all above (Above)
+[00:57.32] Goin' all way 'round the world (The world)
+[00:59.36] Icing the cup out with pearls (Ski)
+[01:02.92] Yeah (Oh)
+[01:04.50] Game time
+[01:06.75] Oh, yeah, oh, yeah
+[01:08.61] Game time
+[01:09.81] It's true, I'm an issue
+[01:11.03] If you don't wanna win, how can I assist you?
+[01:13.18] Make a referee wanna blow the whistle
+[01:15.29] Everything fit, I'm official, ha
+[01:17.82] You don't wanna see me go beast mode
+[01:19.81] You don't wanna see me on a good day
+[01:21.93] Pullin' up, lookin' like a cheat code
+[01:23.89] Boricuas screamin' out, "Olé" (Olé)
+[01:26.10] Caviar, escargot
+[01:28.15] I'm A-POP star, yeah, this is platinum rocks (Olé)
+[01:30.74] Pluto brought the princess to the block
+[01:32.04] I ain't want the pink one, he got the tiger from the shop (Olé)
+[01:34.98] Olé, ah, yebo, ah, yebo
+[01:38.29] Tens with me, never cincos
+[01:40.42] Tens on me like I'm 'Dinho
+[01:42.70] Man, heard what you said through the grapevine (Oh)
+[01:44.90] Funny thing 'bout your problems, they ain't mine
+[01:47.29] Stayin' up through the late night (Oh)
+[01:49.21] Twenty seconds 'til game time (Yeah)
+[01:51.79] Gettin' religious with it (Get, get, oh)
+[01:53.50] How I'm crossin' these state lines (Yeah)
+[01:55.49] Workin' hard through the late nights (Workin' hard)
+[01:57.48] Twenty seconds 'til game time
+[02:00.01] I see the stars in the sky
+[02:01.70] I see me standin' on top of it (I see the stars in the sky, go)
+[02:03.86] Need two accountants
+[02:05.59] Made a lot, more than a lot of it (I am a astronaut)
+[02:08.28] I'm with the fam, fam
+[02:09.72] We Batman and Robin it (I got my federal signs)
+[02:12.05] Come for the game, game
+[02:13.79] Nah, there ain't no stoppin' me (We in the game now)
+[02:15.48] Ah-woah, there ain't no stoppin' it
+[02:19.00] There ain't no stoppin' it
+[02:20.50] There ain't no stoppin' it
+[02:22.85] Woah, oh-woah
+[02:25.64] Every day I be grindin' and stackin'
+[02:28.40] That's why I'm so proud of it
+[02:31.28] Ah-ah, woah
+[02:33.89] Flyin' like I'm in a paper plane, landin' in my privatest property
+[02:39.42] Oh, yeah
+[02:42.23] Put it on everything, ain't no stoppin' it, no, no, it ain't no stoppin' it (Game time)
+[02:48.59] Man, heard what you said through the grapevine
+[02:50.50] Funny thing 'bout your problems, they ain't mine
+[02:52.90] Stayin' up through the late night
+[02:54.58] Twenty seconds 'til game time (Twenty seconds)
+[02:57.40] Gettin' religious with it (Get, get)
+[02:59.15] How I'm crossin' these state lines (Yeah)
+[03:00.94] Workin' hard through the late nights (Workin' hard)
+[03:03.30] Twenty seconds 'til game time (Woo)
+[03:05.62] I see the stars in the sky
+[03:07.13] I see me standin' on top of it (I see the stars in the sky, go)
+[03:09.79] Need two accountants
+[03:11.20] Made a lot, more than a lot of it (I am an astronaut, man)
+[03:13.51] I'm with the fam, fam
+[03:15.38] We Batman and Robin it (I got my federal signs)
+[03:17.80] Come for the game, game
+[03:19.45] Nah, there ain't no stoppin' it (We in the game now)
+[03:22.25]
 
-En la cancha, no dejamos nada
-Ponemos todo el corazón
-Aquí no faltan latidos
-Aquí sobra la pasión
-
-Lo que daría por ella, por ella
-Porque brillara aquí en mi pecho igual que las estrellas, tan bella
-Y darle un beso cuando la tenga entre mis brazos
-Gritar que la amo
-Que se escuche hasta el cielo
-Que ya nos la ganamos
-
-Y que suene el: Olé, olé, olé
-El estadio completo está de pie
-Que la vibra en el aire se sienta
-Como un gol al minuto 90
-
-Y que suene el: Olé
-Y que suene el: Olé
-Que la vibra en el aire se sienta
-Como un gol al minuto 90
-
-Y aquí estamos al millón
-Porque al cien, cualquiera
-Viva México
-Béli-Bélica
-Jajaja
 FIN
 
-====================================
+================================
+
 Illuminate
-ARTISTAS
-Fat Joe, DJ Khaled, Amr Diab
-Estados Unidos, Estados Unidos, Egipto
-LETRA
-Oh, can you see our colors in the dark?
-We're shinin' on forever, illuminate
-Oh, can you see our colors in the dark?
-Our spirit on our shoulders, oh, yeah, oh, yeah, oh, yeah
 
-Illuminate-ate, yeah
-Illuminate-ate, yeah, yeah, ayy (yeah, mm)
+src/sounds/fifa_sound/illuminate.mp3
+src/images/imagenes_musica/illuminate.jpg
+183
 
-We walk in the room kinda like Hov
-In a room full of vultures, we ain't gon' (lose)
-We walk in the room kinda like Luda
-We need some space, baby, you should (move)
-Kinda like a rose had sex with a bomb and it birthed us
-Baby, 'bout to watch us (bloom), 'bout to watch us (boom)
+2
 
-I feel the limit is the sky
-اوه يا ليل اوه يا ليل اوه يا ليل (yeah, yeah, yeah)
-'Cause we are champions tonight
-اوه يا ليل اوه يا ليل اوه يا ليل
+Jessie Reyez
+Canada
+35
 
-Oh, can you see our colors in the dark?
-We're shinin' on forever, illuminate
-Oh, can you see our colors in the dark?
-Our spirit on our shoulders, oh, yeah, oh, yeah, oh, yeah
+Elyanna
+Palestina
+23
 
-Illuminate-ate, yeah (ayy)
-Illuminate-ate (ayy), yeah, yeah, ayy
+[00:06.97] Oh, can you see our colors in the dark?
+[00:10.48] We're shinin' on forever, illuminate
+[00:14.65] Oh, can you see our colors in the dark?
+[00:18.18] Our spirit on our shoulders, oh yeah, oh yeah, oh yeah
+[00:22.01] Illuminate-ate, yeah
+[00:29.58] Illuminate-ate, yeah, yeah, aye
+[00:39.01] We walk in the room kinda like Hov
+[00:40.81] In a room full of vultures, we ain't gon' (Lose)
+[00:42.80] We walk in the room kinda like Luda
+[00:44.71] We need some space, baby, you should (Move)
+[00:46.68] Kinda like a rose had sex with a bomb and it birthed us
+[00:49.14] Baby, 'bout to watch us (Bloom)
+[00:51.27] 'Bout to watch us (Boom)
+[00:53.39] I feel the limit is the sky
+[00:57.28] اوه يا ليل اوه يا ليل اوه يا ليل
+[01:01.03] 'Cause we are champions tonight
+[01:04.94] اوه يا ليل اوه يا ليل اوه يا ليل
+[01:08.53] Oh, can you see our colors in the dark?
+[01:11.96] We're shinin' on forever, illuminate
+[01:16.17] Oh, can you see our colors in the dark?
+[01:19.63] Our spirit on our shoulders, oh yeah, oh yeah, oh yeah
+[01:23.41] Illuminate-ate, yeah, aye
+[01:31.06] Illuminate-ate, yeah, yeah, aye
+[01:40.15] Shine bright, never dim that light
+[01:42.09] تعال تعال تعال
+[01:43.99] Can't stop, going side by side
+[01:45.93] تعال تعال تعال
+[01:47.78] سمعني صوتك، الأول بالعالم
+[01:51.86] تحية للأبطال
+[01:53.67] تعال تعال تعال
+[01:54.77] I feel the limit is the sky
+[01:58.72] اوه يا ليل اوه يا ليل اوه يا ليل
+[02:02.49] 'Cause we are champions tonight
+[02:06.35] اوه يا ليل اوه يا ليل اوه يا ليل
+[02:09.98] Oh, can you see our colors in the dark?
+[02:13.40] We're shinin' up forever, illuminate
+[02:17.62] Oh, can you see our colors in the dark?
+[02:21.02] Our spirit on our shoulders, oh yeah, oh yeah, oh yeah
+[02:24.81] Illuminate-ate, yeah, aye
+[02:32.43] Illuminate-ate, yeah, yeah, aye
+[02:41.61] 'Luminate-luminate-luminate
+[02:43.55] ايوا ايوا ايوا
+[02:45.41] 'Luminate-luminate-luminate-nate
+[02:47.23] ايوا
+[02:47.88] Illuminate
+[02:49.27] 'Luminate-luminate-luminate
+[02:51.16] ايوا ايوا ايوا
+[02:53.07] 'Luminate-luminate-luminate-nate
+[02:54.91] ايوا
+[02:55.56] Illuminate
+[03:00.45]
 
-Shine bright, never dim that light
-(تعال تعال تعال)
-Can't stop, going side by side
-(تعال تعال تعال)
-سمعني صوتك، الأول بالعالم
-تحية للأبطال
-(تعال تعال تعال)
-
-I feel the limit is the sky
-اوه يا ليل اوه يا ليل اوه يا ليل (yeah, yeah, yeah)
-'Cause we are champions tonight
-اوه يا ليل اوه يا ليل اوه يا ليل
-
-Oh, can you see our colors in the dark?
-We're shinin' up forever, illuminate
-Oh, can you see our colors in the dark?
-Our spirit on our shoulders, oh, yeah, oh, yeah, oh, yeah (oh, yeah)
-
-Illuminate-ate (oh), yeah (oh, ayy)
-Illuminate-ate, yeah, yeah, ayy (oh)
-
-'Luminate-luminate-luminate, ايوا ايوا ايوا
-'Luminate-luminate-luminate-nate, ايوا (illuminate)
-'Luminate-luminate-luminate, ايوا ايوا ايوا
-'Luminate-luminate-luminate-nate, ايوا (illuminate)
 FIN
 
-====================================
+================================
+
 Echo
-ARTISTAS
-Daddy Yankee, Tainy, Shenseea
-Puerto Rico, Puerto Rico, Jamaica
-LETRA
-We run the world
-DY, Tainy, Shenseea
-'Tamos ready
-Let's go
 
-Long as you gotta go, it don't matter where you start
-So wherever you go and wherever you are
-Never lose your hope, no, you came this far
-No turning back, oh, yeah
+src/sounds/fifa_sound/echo.mp3
+src/images/imagenes_musica/echo.jpg
+135
 
-You are tougher than you struggle
-Levántate y camina
-Vámono' hasta el final
-We are better when together
-Then we can last forever
-Yeah, yeah (go), yeah (go), yeah (go, come on)
-Let's go
-Legends will last forever yeah, yeah, yeah, yeah (yeah)
-Manos arriba y grita: Yeah, yeah, yeah, yeah (let's go)
+2
 
-Echo (booyah-booyah)
-Echo (booyah-booyah)
-Echo (booyah-booyah)
-When we go (booyah-booyah)
-We go (booyah-booyah)
-We go (booyah-booyah)
-We go (booyah-booyah), eh
+Daddy Yankee
+Puerto Rico
+49
 
-Hoy me levanté más lleno de vida y me siento maravilloso
-Porque aprendí de todas mis caídas, ahora camino victorioso (oh-woah)
-Na-na, un corazón, una bandera (wuh, wuh)
-Na-na (wuh), la música cruza frontera'
-Los pies en la calle, la mente en la cima
-Soy una estrella sin estar en tarima
-Tengo la meta fijada, en la mira
-Si viene el odio le cambiamo' el clima
-El amor está en la casa, el que tira la mala se atrasa
-Con mi gente qué bueno se pasa
-Dame ruido, que grite la masa
+Shenseea
+Jamaica
+29
 
-Legends will last forever, yeah, yeah, yeah, yeah
-(Yeah) oh-lalala
-Manos arriba y grita: Yeah, yeah, yeah, yeah
+[00:03.44] We run the world
+[00:06.96] DY
+[00:08.94] Tainy
+[00:10.14] Shenseea
+[00:11.28] 'Tamos ready
+[00:13.75] Let's go
+[00:15.13] Long as you gotta go, it don't matter where you start
+[00:18.75] So wherever you go and wherever you are
+[00:21.72] Plo, plo
+[00:22.52] Never lose your hope, no, you came this far
+[00:25.80] Rra
+[00:26.21] No turning back, oh, yeah, yeah, yeah
+[00:29.47] You are tougher than your struggle
+[00:33.06] Levántate y camina
+[00:34.91] Vámono' hasta el final
+[00:36.64] We are better, stand together
+[00:40.29] Then we can last forever, yeah, yeah, yeah, yeah
+[00:42.20] Go, go, go, come on
+[00:46.51] Let's go
+[00:47.62] Legends will last forever, yeah, yeah, yeah, yeah
+[00:54.85] Manos arriba y grita, yeah, yeah, yeah, yeah
+[00:57.81] Let's go
+[00:59.46] Echo
+[01:00.32] Booyah, booyah
+[01:01.27] Echo
+[01:02.14] Booyah, booyah
+[01:03.09] Echo
+[01:04.02] Booyah, booyah
+[01:04.84] We go
+[01:05.79] Booyah, booyah
+[01:06.68] We go
+[01:07.56] Booyah, booyah
+[01:08.51] We go
+[01:09.39] Booyah, booyah
+[01:10.33] We go, eh
+[01:11.29] Booyah, booyah
+[01:12.64] Hoy me levanté más lleno de vida y me siento maravilloso
+[01:16.30] Porque aprendí de toda' mis caída', ahora camino victorioso
+[01:19.90] Na-na, un corazón, una bandera
+[01:23.60] Na-na, la música cruza frontera'
+[01:27.10] Los pies en la calle, la mente en la cima, soy una estrella sin estar en tarima
+[01:30.85] Tengo la meta fijada en la mira, si viene el odio, le cambiamo' el clima
+[01:34.29] El amor 'ta en la casa, el que tira la mala se atrasa
+[01:37.40] Con mi gente qué bueno se pasa, dame ruido, que grite la masa
+[01:45.81] Legends will last forever, yeah, yeah, yeah, yeah
+[01:53.02] Manos arriba y grita, yeah, yeah, yeah, yeah
+[01:57.59] Echo
+[01:58.49] Booyah, booyah
+[01:59.44] Echo
+[02:00.34] Booyah, booyah
+[02:01.22] Echo
+[02:02.17] Booyah, booyah
+[02:03.00] We go
+[02:03.98] Booyah, booyah
+[02:04.87] We go
+[02:05.74] Booyah, booyah
+[02:06.70] We go
+[02:07.60] Booyah, booyah
+[02:08.46] We go
+[02:09.43] Booyah, booyah, eh
+[02:10.76] Boom
+[02:11.40]
 
-Echo (booyah-booyah)
-Echo (booyah-booyah)
-Echo (booyah-booyah)
-When we go (booyah-booyah)
-We go (booyah-booyah)
-We go (booyah-booyah)
-We go (booyah-booyah-eh)
 FIN
 
-====================================
+================================
+
+Por ella
+
+src/sounds/fifa_sound/por_ella.mp3
+src/images/imagenes_musica/por_ella.jpg
+181
+
+2
+
+Los Angeles Azules
+Mexico
+48
+
+Belinda
+España
+36
+
+[00:02.53] Uy, ajaja
+[00:09.80] De México para el mundo
+[00:13.48] Los Ángeles Azules
+[00:17.43] Y Belinda
+[00:24.96] A ella todo' la desean, pero solo uno la puede tener (ah)
+[00:30.07] Es dura la competencia, pues no por cualquiera se deja querer
+[00:35.25] Por tenerla conmigo, recorro el mundo
+[00:38.10] Daría lo que fuera, cada segundo
+[00:40.84] Por ella, solamente por ella
+[00:44.48] Lo que daría por ella, por ella
+[00:48.40] Porque brillara aquí en mi pecho igual que las estrellas, tan bella
+[00:53.81] Y darle un beso cuando la tenga entre mis brazos
+[00:58.48] Gritar que la amo
+[01:01.25] Que se escuche hasta el cielo
+[01:03.45] Que ya nos la ganamos
+[01:06.55] Y que suene el: Olé, olé, olé
+[01:09.13] El estadio completo está de pie
+[01:11.84] Que la vibra en el aire se sienta
+[01:14.58] Como un gol al minuto 90
+[01:17.00] Y que suene el: Olé
+[01:19.81] Y que suene el: Olé
+[01:22.55] Que la vibra en el aire se sienta
+[01:25.51] Como un gol al minuto 90
+[01:28.09] Ah-ah
+[01:43.48] Y que suene el: Olé, olé
+[01:47.04] Olé, olé
+[01:49.48] En la cancha, no dejamos nada
+[01:51.45] Ponemos todo el corazón
+[01:54.55] Aquí no faltan latidos
+[01:57.27] Aquí sobra la pasión
+[01:59.75] Lo que daría por ella, por ella
+[02:03.57] Porque brillara aquí en mi pecho igual que las estrellas, tan bella
+[02:08.53] Y darle un beso cuando la tenga entre mis brazos
+[02:13.43] Gritar que la amo
+[02:16.21] Que se escuche hasta el cielo
+[02:18.51] Que ya nos la ganamos
+[02:21.09] Y que suene el: Olé, olé, olé
+[02:23.75] El estadio completo está de pie
+[02:26.41] Que la vibra en el aire se sienta
+[02:29.03] Como un gol al minuto 90
+[02:31.74] Y que suene el: Olé
+[02:34.20] Y que suene el: Olé
+[02:37.28] Que la vibra en el aire se sienta
+[02:40.02] Como un gol al minuto 90
+[02:44.90] Y aquí estamos al millón
+[02:46.58] Porque al cien, cualquiera
+[02:51.58] Viva México
+[02:53.62] Béli-Bélica
+[02:56.10] Jajaja
+[02:58.34] 
+
+FIN
+
+================================
+
 Lighter
-ARTISTAS
-Jelly Roll, Carín León
-Estados Unidos, Mexico
-LETRA
-Never felt this free before
-I'm high and I'm getting higher
-Chains don't matter no more
-Good Lord, I'm feeling lighter
 
-They were cold, cold, way too heavy
-Wear me down like a broke-down Chevy
-Till my soul, soul was good and ready, to lay them burdens down
-I was shackled and battling in a war with myself
-I was praying and praying my way out of that hell
-Same old boots, but they're off the ground
-Devil try to catch me now
+src/sounds/fifa_sound/lighter.mp3
+src/images/imagenes_musica/lighter.jpg
+179
 
-Now them chains don't rattle no more
-Good Lord I'm feeling lighter
-They dropping on a hardwood floor
-To the rhythm of a heavenly choir
+2
 
-Never felt this free before
-I'm high and I'm getting higher
-Chains don't rattle no more
-Good Lord I'm feeling lighter
+Jelly Roll
+Estados Unidos
+41
 
-Nadie, nadie sabe
-Lo que me ha costado eso nadie lo sabe
-Decían que terminaría en la calle
-Mírenme volando, ya no hay quién me baje
+Carin Leon
+Mexico
+36
 
-Chains don't rattle no more
-Good Lord I'm feeling lighter
-They dropping on a hardwood floor
-To the rhythm of a heavenly choir
+[00:01.26] Never felt this free before
+[00:04.56] I'm high and I'm getting higher
+[00:07.64] Chains don't rattle no more
+[00:10.76] Good Lord, I'm feeling lighter
+[00:25.91] They were cold, cold, way too heavy
+[00:29.29] Weighing me down like a broke down Chevy
+[00:32.09] Till my soul, soul was good and ready to lay them burdens down
+[00:38.17] I was shackled and battling, in a war with myself
+[00:41.37] I was praying and praying my way out of that hell
+[00:44.68] Same old boots but they're off the ground
+[00:47.72] Devil, try to catch me now
+[00:50.43] Now them chains don't rattle no more
+[00:53.81] Good Lord, I'm feeling lighter
+[00:56.91] They dropping on a hard wood floor
+[00:59.74] To the rhythm of a heavenly choir
+[01:02.74] Never felt this free before
+[01:06.09] I'm high and I'm getting higher
+[01:09.22] Chains don't rattle no more
+[01:12.32] Good Lord, I'm feeling lighter
+[01:15.47] Nadie, nadie sabe
+[01:18.47] Lo que me ha costado eso nadie lo sabe
+[01:21.47] Decían que terminaría en la calle
+[01:24.52] Mírenme volando, ya no hay quién me baje
+[01:27.75] Chains don't rattle no more
+[01:30.60] Good Lord, I'm feeling lighter
+[01:33.84] They dropping on a hard wood floor
+[01:36.58] To the rhythm of a heavenly choir
+[01:39.67] Never felt this free before
+[01:42.99] I'm high and I'm getting higher
+[01:46.26] Chains don't rattle no more
+[01:48.98] Good Lord, I'm feeling lighter
+[01:54.09] Lighter
+[01:55.65] Sigo volando
+[02:00.35] Lighter
+[02:04.17] Años en el infierno, pero salí de él
+[02:07.59] Rezando y rezando para ya no volver
+[02:10.77] Same old boots but they're off the ground
+[02:13.75] Devil, try to catch me now
+[02:16.47] Now them chains don't rattle no more
+[02:20.07] Good Lord, I'm feeling lighter
+[02:23.10] They dropping on a hard wood floor
+[02:25.87] To the rhythm of a heavenly choir
+[02:28.99] Never felt this free before
+[02:32.24] I'm high and I'm getting higher
+[02:35.48] Chains don't rattle no more
+[02:38.54] Good Lord, I'm feeling lighter
+[02:43.62] Lighter
+[02:49.75] Lighter
+[02:51.12]
 
-Never felt this free before
-I'm high and I'm getting higher
-Chains don't rattle no more
-Good Lord I'm feeling lighter
+FIN
 
-Lighter
-Sigo volando
-Lighter
+================================
 
-Rezando y rezando para ya no volver
-Same old boots, but they're off the ground
-Devil try to catch me now
+No place like home
 
-Now them chains don't rattle no more
-Good Lord I'm feeling lighter (Oh-oh)
-They dropping on a hardwood floor
-To the rhythm of a heavenly choir
+src/sounds/fifa_sound/no_place_like_home.mp3
+src/images/imagenes_musica/no_place_like_home.jpg
+155
 
-Never felt this free before
-I'm high and I'm getting higher
-Chains don't rattle no more
-Good Lord I'm feeling lighter
+3
 
-Lighter
-Lighter
+Major Lazer
+Estados Unidos
+47
+
+Nelly Furtado
+Canada
+47
+
+Davido
+Nigeria
+33
+
+[00:02.01] Oh, There’s No Place
+[00:05.17] No Place Like Home, No Place Like Home
+[00:09.13] Oh, Eh, Oh, It’s The Place
+[00:13.48] Where I Belong, Where I Belong
+[00:17.55] Do You Wanna Another Life That’s Certain?
+[00:20.65] You Give Me The Light To Keep Me Burning
+[00:22.51] Passionate Like A River Flowing In My Body
+[00:26.30] Like A Wave, Goodbye
+[00:29.27] But You Never Finish
+[00:31.21] And After All This Time
+[00:33.48] It’s Only Been A Minute (Yeah, Yeah)
+[00:35.83] I Waited My Whole Life
+[00:37.80] Just To Get Right Back (Right, Right)
+[00:39.68] I Wanna Get Right Back To You
+[00:41.43] Yeah, Yeah, Yeah (Back To You Like)
+[00:42.88] Oh, There’s No Place
+[00:46.75] No Place Like Home, No Place Like Home
+[00:50.39] Oh, Eh, Oh, It’s The Place
+[00:55.03] Where I Belong, Where I Belong
+[00:58.82] Shoutout To Africa
+[01:02.72] Give Grace To Mother Land
+[01:04.31] Show Love To My Brothers From Cairo
+[01:06.87] All Love To Mandela
+[01:08.25] Ayy, Let’s Go, Let’s Light Up This Fire
+[01:10.70] Pulling Us To Straight To Match Up That Match, Ah
+[01:12.80] No, I Can’t Stumble, We Don’t Discuss, Ah
+[01:14.92] Show Them Nobody Else Better
+[01:17.27] No Place Like Home (Home)
+[01:18.78] Africa Is Home (Home)
+[01:20.70] Where Love Is More
+[01:22.98] Just Give Up, There’s No Place Like Home
+[01:24.91] Oh, There’s No Place
+[01:27.97] No Place Like Home, No Place Like Home (No Place Like Home)
+[01:32.29] Oh, Eh, Oh, It’s The Place
+[01:36.25] Where I Belong, Where I Belong (Where I Belong)
+[01:40.72] Oh, Eh, Oh (Take Me Home), There’s No Place (Take Me Home)
+[01:44.77] No Place Like Home (Home), No Place Like Home (Home)
+[01:48.37] Oh, Eh, Oh (Take Me Home), It’s The Place (Take Me Home)
+[01:52.77] Where I Belong (Home), Where I Belong (Let’s Go)
+[01:57.18] Oh, Eh, Oh, There’s No Place
+[02:01.02] No Place Like Home, No Place Like Home
+[02:05.11] Oh, Eh, Oh, It’s The Place
+[02:09.30] Where I Belong, Where I Belong
+[02:13.43] Oh, Eh, Oh, There’s No Place
+[02:17.73] No Place Like Home, No Place Like Home
+[02:21.87]
+
+FIN
+
+================================
+
+In the stars (Remix)
+
+src/sounds/fifa_sound/in_the_stars.mp3
+src/images/imagenes_musica/in_the_stars.jpg
+299
+
+1
+
+The Rolling Stones
+Reino Unido
+80
+
+[00:14.06] It’s In The Stars
+[00:21.24] It’s In The Stars
+[00:29.03] It’s In The Stars, Stars, Stars, Stars, Stars, Stars, Stars, Stars, Stars, Stars, Stars, Stars, Stars, Stars, Stars
+[00:40.53] Yeah
+[00:47.88] Yeah
+[00:51.67] It’s In The Stars
+[00:55.47] Yeah
+[01:02.73] Yeah
+[01:06.66] Some People Seek Their Fortune On The Turn Of A Card (Yeah)
+[01:14.45] Or Throwing Some Bones In A Whiskey Glass (Yeah)
+[01:21.30] ‘Cause If You Wanna Seek Your Fortune, Need A Lot Of Luck (Yeah)
+[01:29.30] I Was Standing There When The Lightning Struck (Yeah)
+[01:41.08] It’s In The Stars, It’s Our Destiny
+[01:48.05] It’s In The Stars, Written You And Me
+[01:51.72] It’s In The Stars
+[01:56.25] It’s In The Stars, It’s No Mystery, Yeah
+[02:03.33] It’s In The Stars, Written You And Me
+[02:06.18] It’s In The Stars, Stars, Stars, Stars, Stars, Stars, Stars, Stars, Stars, Stars, Stars, Stars, Stars, Stars, Stars
+[02:17.74] Yeah
+[02:25.21] Yeah
+[02:29.03] It’s In The Stars
+[02:33.25] Yeah
+[02:40.22] Yeah
+[02:43.90] Well, There’s A Poisonous Cloud, There’s A Sickness In The Land (Yeah)
+[02:51.51] All The Judges In Their Robes Got Their Rubber Stamps (Yeah)
+[02:59.13] Well, Do You Wanna Dance Till The Roof Caves In? (Yeah)
+[03:06.05] Yeah, And The Guitars Scream And The Choir Still Sings (Yeah)
+[03:18.38] It’s In The Stars, It’s Our Destiny
+[03:25.47] It’s In The Stars, Written You And Me
+[03:28.81] It’s In The Stars, Stars, Stars, Stars, Stars, Stars, Stars
+[03:36.70] It’s In The Stars, It’s Our Destiny
+[03:44.89] It’s In The Stars, Written You And Me
+[03:48.87] It’s In The Stars, In The Stars, In The Stars
+[03:52.66] It’s In The Stars, In The Stars, In The Stars, Stars
+[03:56.16] It’s In The Stars, Woo
+[04:02.79] Yeah
+[04:06.34] Yeah
+[04:10.06] Yeah
+[04:14.19] Yeah
+[04:28.02] Yeah
+[04:36.37] Yeah
+[04:39.65] It’s In The Stars
+[04:43.47] Yeah
+[04:50.44] Yeah
+[04:52.50]
+
+FIN
+
+================================
+
+Mi mexico lindo
+
+src/sounds/fifa_sound/mi_mexico_lindo.mp3
+src/images/imagenes_musica/mi_mexico_lindo.jpg
+154
+
+1
+
+Alejandro Fernandez
+Mexico
+55
+
+[00:18.10] ¿Cómo no voy a amar a mi México lindo?
+[00:21.89] Solo mira nomás qué chulos paisajes
+[00:26.06] Que soy nacido aquí, ay, por eso brindo
+[00:29.45] Y para celebrar, el mariachi me traje
+[00:33.39] Y que suene ese canto de Tijuana a Jalisco
+[00:37.60] Hasta parece un sueño, una bendición, que me den un pellizco
+[00:41.68] Del Cerro de la Silla hasta por Villa Hermosa
+[00:45.44] Está lleno de playas, de gente, de ambiente y mujeres hermosas
+[00:49.76] México lindo, cómo me encantas
+[00:57.57] Con unos buenos tequilas encima más fuerte se canta
+[01:01.72] México lindo, cómo te quiero
+[01:09.05] Y les aviso que yo aquí nací y aquí mismo me muero
+[01:16.04] ¡Y viva mi México, campeones!
+[01:21.28] Yija
+[01:27.96] ¿Cómo no voy a amar a mi México lindo?
+[01:31.81] Con su gente bonita y sus tradiciones
+[01:36.43] Aquí se come bien de lunes a domingo
+[01:39.92] Qué fortuna vivir entre tantos colores
+[01:43.69] Aquí nadie se raja, es tierra de chingones
+[01:47.49] De guerreros aztecas, traemos la sangre, cuna de campeones
+[01:51.71] Esta tierra bendita no la cambio por nada
+[01:55.65] Porque de aquí me grita nuestra Virgencita, la Guadalupana
+[01:59.70] México lindo, cómo me encantas
+[02:07.88] Con unos buenos tequilas encima más fuerte se canta
+[02:11.80] México lindo, cómo te quiero
+[02:19.48] Y yo les grito que aquí yo nací y aquí mismo me muero
+[02:24.09] Me muero
+[02:29.86]
+
+FIN
+
+================================
+
+Show me
+
+src/sounds/fifa_sound/show_me.mp3
+src/images/imagenes_musica/show_me.jpg
+208
+
+2
+
+Ayra Starr
+Nigeria
+24
+
+Latto
+Estados Unidos
+28
+
+[00:00.21] Let me ask you a question
+[00:03.40] If I push up, can you apply the pressure?
+[00:07.08] I need to see some type of dedicate
+[00:10.66] Show me how bad you wanna be the next one (Ayy)
+[00:18.19] If you're gonna love me, you should love me proper
+[00:21.52] I don't need disturbing, money's calling, I'm just dotting my i's
+[00:25.98] Got the hustle at mind, Ajé
+[00:28.70] What is the agenda? Is it just a game to you?
+[00:32.41] It's so hard to trust, love can get lost (Yeah)
+[00:36.88] Don't get me wrong, I'm in it for life
+[00:40.59] All in the eyes, oh, are you here? Are you ready?
+[00:45.39] All in my feelings for you
+[00:48.66] Time aftеr time, it's another game
+[00:51.94] Gotta know I'm morе than just another name
+[00:55.67] Before we hit the point of no return, baby, wait, wait, wait
+[01:01.37] Let me ask you a question
+[01:05.02] If I push up, can you apply the pressure?
+[01:08.87] I need to see some type of dedicate
+[01:12.14] Show me how bad you wanna be the next one
+[01:16.39] Give me all your attention
+[01:20.26] Show me that this is not an accident
+[01:23.93] Just know this body come from Africa
+[01:27.42] I'm tryna see if you can handle that (Ayy)
+[01:33.16] Ayy, Big Mama, I don't do the small talk (Brr)
+[01:35.94] To pop out with me, you gotta pop out
+[01:37.76] New Revuelto with the top off (Skrrt)
+[01:39.58] Fell in love with the real 'cuh they knock-offs
+[01:41.67] To go with me, you gotta go all out
+[01:43.58] Put that on everything, like hot sauce
+[01:45.10] He don't hoop, but he know he gotta ball out (Swish)
+[01:47.41] I'm the type make a rapper go rock out (Ice)
+[01:49.55] You was in my DMs for a minute
+[01:51.11] I know your type, so I see it and spend it (Frr)
+[01:53.21] Can't treat a real one like a scrimmage
+[01:54.76] Bad to the bone, but I'm good for the image
+[01:57.16] He ain't know he had nothing, now I got him in his feelings
+[01:59.13] Tell me what you want, and I'ma tell you how to get it
+[02:01.06] You ain't come to play, let me show you how to win it
+[02:03.14] Let me ask you a question
+[02:06.58] If I push up, can you apply the pressure?
+[02:09.99] I need to see some type of dedicate
+[02:13.58] Show me how bad you wanna be the next one
+[02:18.45] Give me all your attention
+[02:21.99] Show me that this is not an accident
+[02:24.90] Just know this body come from Africa
+[02:29.07] I'm tryna see if you can handle that (Ayy; Oh)
+[02:34.08] Come show me why, yeah
+[02:36.93] Oh, come show me why I
+[02:38.58] Come show me why, yeah
+[02:40.80] Oh, come show me why I
+[02:42.88] Come show me why, yeah
+[02:44.38] Oh, come show me why I
+[02:46.64] Come show me why, yeah
+[02:48.33] Oh, come show me why I
+[02:50.75] Come show me why, yeah
+[02:52.37] Oh, come show me why I
+[02:54.32] Come show me why, yeah
+[02:56.34] Oh, come show me why I
+[02:57.85] Come show me why, yeah
+[02:59.80] Oh, come show me why I
+[03:02.07] Come show me why, yeah
+[03:03.59] Oh—
+[03:04.33] Let me ask you a question
+[03:07.72] Show me that this is not an accident
+[03:11.20] Just know this body come from Africa
+[03:15.42] I'm tryna see if you can handle that (Ayy)
+[03:23.26]
+
+FIN
+
+================================
+
+Blessings
+
+src/sounds/fifa_sound/blessings.mp3
+src/images/imagenes_musica/blessings.jpg
+216
+
+3
+
+Stormzy
+Reino Unido
+33
+
+Fridayy
+Estados Unidos
+30
+
+Angel
+Reino Unido
+27
+
+[00:00.02] Why am I stressing?
+[00:01.25] I better count my blessing
+[00:03.17] Life could've been more threatening
+[00:05.82] But it ain't, we good
+[00:07.84] Why am I stressing?
+[00:09.33] I better count my blessing
+[00:11.06] Life could've been more threatening
+[00:14.16] But it ain't, we good
+[00:15.75] I need angels all around me
+[00:18.37] Blessings all around me
+[00:19.85] I see devils all around me
+[00:21.96] They can never harm me
+[00:23.82] I know pressure's always on me
+[00:25.87] Pressure's heavy on me
+[00:27.97] They wanna put the devil on me
+[00:29.97] So I keep the weapon on me
+[00:31.89] I got sunshine in the rain, sunshine in the rain
+[00:35.93] I got good times on the way, good times on the way
+[00:39.99] I got blessings on my name, blessings on my name
+[00:43.85] And You're the only one I call my leader, lead us
+[00:47.42] Why am I
+[00:48.22] Why am I stressing?
+[00:49.44] I better count my blessing
+[00:51.46] Life could've been more threatening
+[00:53.82] But it ain't, we good
+[00:55.90] Why am I stressing?
+[00:57.43] I better count my blessing
+[00:59.27] Life could've been more threatening
+[01:01.81] But it ain't, we good
+[01:03.84] Why am I stressing? (Stressing)
+[01:05.22] I better count my blessing (Blessing)
+[01:07.22] Life could've been more threatening
+[01:09.67] But it ain't, we good
+[01:11.86] Why am I stressing? (Stressing)
+[01:13.21] I better count my blessing (Blessing)
+[01:15.11] Life could've been more threatening (Oh)
+[01:17.78] But it ain't, we good
+[01:19.99] Mm
+[01:21.54] If I think about where You brought me from (Brought me from)
+[01:24.54] Then I'll never have to worry 'bout what will come (What will come)
+[01:29.33] With the strength You've given me, I already won (Already won)
+[01:33.22] Every battle before me is already done
+[01:35.76] You prepare me a table (Table) in front of my enemies
+[01:39.60] I will never sell my soul, so Your blessings will follow me
+[01:43.48] I was lost before You found me, I was blind, now I can see
+[01:47.85] Made a way out for me, gave me more than I needed
+[01:51.81] Why am I stressing? (Stressing)
+[01:53.21] I better count my blessing (Blessing)
+[01:55.30] Life could've been more threatening
+[01:57.84] But it ain't, we good
+[01:59.83] Why am I stressing? (Stressing)
+[02:01.39] I better count my blessing (Blessing)
+[02:03.42] Life could've been more threatening (Oh)
+[02:05.77] But it ain't, we good
+[02:07.92] Why am I stressing? (Why am I stressing?)
+[02:09.41] I better count my blessing (Count my blessing)
+[02:11.59] Life could've been more threatening
+[02:13.78] But it ain't, we good
+[02:15.95] Why am I stressing? (Stressing)
+[02:17.32] I better count my blessing (I better count my blessing)
+[02:19.51] Life could've been more threatening (Oh)
+[02:21.80] But it ain't, we good
+[02:25.74] When it comes crashing down
+[02:29.87] I will be still
+[02:33.40] You are my solid ground
+[02:36.91] I will be still
+[02:41.15] Was lost, but now I'm found (Ah)
+[02:50.17] Amazing Grace
+[02:54.13] I don't know
+[02:55.70] Why am I stressing? (Stressing)
+[02:57.23] I better count my blessing (Count my blessing)
+[02:59.50] Life could've been more threatening
+[03:01.86] But it ain't, we good
+[03:03.97] Why am I stressing? (Stressing)
+[03:05.54] I better count my blessing (Blessing)
+[03:07.36] Life could've been more threatening (Oh)
+[03:09.99] But it ain't, we good
+[03:11.93] Why am I stressing? (Why am I stressing?)
+[03:13.27] I better count my blessing (Count my blessing)
+[03:15.55] Life could've been more threatening
+[03:17.91] But it ain't, we good
+[03:19.71] Why am I stressing?
+[03:21.22] I better count my blessing (I better count my blessing)
+[03:23.88] Life could've been more threatening (Oh)
+[03:25.89] But it ain't, we good
+[03:27.80] Why am I stressing?
+[03:30.35]
+
+FIN
+
+================================
+
+Energy
+
+src/sounds/fifa_sound/energy.mp3
+src/images/imagenes_musica/energy.jpg
+181
+
+2
+
+Ava Max
+Estados Unidos
+32
+
+BIA
+Estados Unidos
+35
+
+[00:00.95] Energy
+[00:04.75] Energy
+[00:07.56] Price Goin’ Up, Up, Up
+[00:09.14] I Don’t Go Down, Down, Down
+[00:11.22] Energy Can’t Be Touched
+[00:12.96] I Am On Higher Ground
+[00:14.68] Energy’s Making It Look Easy
+[00:16.43] Blink One Time And You Might Not See Me
+[00:18.66] But Look At Me, I’m On TV
+[00:19.78] Ah, Ah, Ah
+[00:21.42] (Energy) Oh, Woah
+[00:22.93] Taking Showers In Champagne
+[00:26.70] Celebrate, Let That Confetti Rain Down
+[00:30.57] You Can Try To Clip My Wings, Ain’t No Way
+[00:35.41] Ain’t Nobody Touching My, My, My Energy
+[00:38.64] Can’t Bring Me Down, I Got That High, High, High Energy
+[00:42.44] Oh, Baby, If You Tryna Kill My Vibe, I’ll Blow A Kiss Goodbye
+[00:47.09] Ain’t Touching My, My, My Energy
+[00:51.51] (Oh, Oh, Woah, Oh)
+[00:53.48] My, My, My
+[00:55.18] (Oh, Oh, Woah, Oh)
+[00:57.25] Energy
+[00:59.31] (Oh, Oh, Woah, Oh)
+[01:00.88] My, My, My-y
+[01:02.81] (Oh, Oh, Woah, Oh)
+[01:04.94] Uh, BIA, BIA
+[01:05.94] I Bring The V-I-P, Eh, Energy (Uh)
+[01:07.96] You Got High Hopes And I Got Friends With Me (Uh-huh)
+[01:09.79] Ava Turn Me Up To The Max (To The Max)
+[01:11.65] You’ll See The Baddest Girls Out This Century
+[01:13.42] I Wanna Know You Hearing Me From The Back (To The Back)
+[01:15.40] I’m On A Good Vibe, Call Me Your Party Pack
+[01:16.99] Yo Soy Loca, Livin’ Mi Vida
+[01:18.94] I’m Finna Kick It All Night Like Fifa
+[01:20.61] Turn Me Up And You Could Be My Bae
+[01:22.36] I Like Charters Out In Saint Tropez (Uh)
+[01:24.21] By The Water Of The Sand, I Lay
+[01:25.90] Must Be The One If You Could Handle Me
+[01:27.83] (Energy)
+[01:29.67] Taking Showers In Champagne
+[01:32.92] Celebrate, Let That Confetti Rain Down
+[01:36.90] You Can Try To Clip My Wings, Ain’t No Way
+[01:41.94] Ain’t Nobody Touching My, My, My Energy
+[01:45.24] Can’t Bring Me Down, I Got That High, High, High Energy
+[01:48.99] Oh, Baby, If You Tryna Kill My Vibe, I’ll Blow A Kiss Goodbye
+[01:53.70] Ain’t Touching My, My, My Energy
+[01:58.28] (Oh, Oh, Woah, Oh)
+[02:00.01] My, My, My
+[02:02.12] (Oh, Oh, Woah, Oh)
+[02:03.73] Energy
+[02:05.55] (Oh, Oh, Woah, Oh)
+[02:07.52] My, My, My-y
+[02:09.29] (Oh, Oh, Woah, Oh)
+[02:10.96] Energy
+[02:14.07] Energy
+[02:17.23] Energy
+[02:21.53] Energy
+[02:23.90] Oh, Oh, Oh, Oh
+[02:27.14] Oh
+[02:27.99] My, My, My Energy
+[02:29.55] Can’t Bring Me Down, I Got That High, High, High Energy
+[02:33.11] Oh, Baby, If You Tryna Kill My Vibe, I’ll Blow A Kiss Goodbye
+[02:38.17] Ain’t Touching My, My, My Energy
+[02:42.45] (Oh, Oh, Woah, Oh)
+[02:44.18] (Oh) My, My, My
+[02:46.30] (Oh, Oh, Woah, Oh)
+[02:47.93] Energy
+[02:49.94] (Oh, Oh, Woah, Oh)
+[02:51.77] (Ayy, Tonight) My, My, My-y
+[02:53.76] (Oh, Oh, Woah, Oh)
+[02:55.32] (My) Energy
+[02:58.52]
+
+FIN
+
+================================
+
+Three Nations
+
+src/sounds/fifa_sound/three_nations.mp3
+src/images/imagenes_musica/three_nations.jpg
+210
+
+3
+
+21 Savage
+Reino Unido
+34
+
+Nata Cano
+Mexico
+25
+
+French Montana
+Marruecos
+41
+
+[00:06.19] Thrill of the fight (Fight), thrill of the rage (Rage)
+[00:10.15] Crushing my opponents (Opponents), foot up off the brake (Brakes)
+[00:13.63] Cleaning all the plates (Plates), finna make bank (Bank)
+[00:17.07] Finna make history, turn this pain to energy
+[00:20.18] Tres naciones, posiciones, ya tomamos nuestras decisiones
+[00:23.53] Cambiamos de juego, a la cuenta de banco le aumentamos varios millones
+[00:26.84] Mundiales todas mis canciones, ustedes con más complicaciones
+[00:30.64] Mi raza rebasa y traspasa fronteras, no existe barrera, solo conexione'
+[00:34.07] Hago lo quе quiera, así nací, así me muero
+[00:37.11] Salimos dеl agujero directo pa'l Fashion Week (Fashion Week)
+[00:40.91] Bamboo Cartier on my wrist (On my wrist), vuelo pa' Francia y me siento un king (Un king)
+[00:44.21] Todos saben, cuando llegue a LA los voy a poner a sufrir (Ja)
+[00:47.64] Yo me siento como Freddy Krueger, yo nunca me voy a morir
+[00:50.70] Dos Maybach, LV, y me miran como si tengo las cinco Copas de Brasil
+[00:54.37] Saco el pecho por toda mi tierra, defendemos todos la bandera
+[00:58.02] No me sacan de mi tierra, puros guerreros aztecas
+[01:01.73] Thrill of the fight (Fight), thrill of the rage (Rage)
+[01:04.96] Crushing my opponents (Opponents), foot up off the brake (Brakes)
+[01:08.38] Cleaning all the plates (Plates), finna make bank (Bank)
+[01:11.77] Finna make history, turn this pain to energy
+[01:16.60] Three nations under God (God)
+[01:18.84] We don't play, no, we go hard (21, 21)
+[01:23.25] Three nations under God (God, 21, 21)
+[01:29.95] Three nations under God
+[01:32.05] We don't play, no, we go hard
+[01:33.68] I sprint to it, I don't jog (21, 21)
+[01:36.98] Three nations under God
+[01:38.92] Used to stay on boulevard now my bank account too large (God)
+[01:42.68] If I come, I came to win, yeah, they cap
+[01:46.55] They all pretend, I don't care 'bout making friends (21, 21)
+[01:50.51] I'm the champ, I'll do it again, I hate L's 'cause they so cringe
+[01:54.27] W's what make me grin (21)
+[01:56.56] Thrill of the fight (Fight), thrill of the rage (Rage)
+[01:59.79] Crushing my opponents (Opponents), foot up off the brake (Brakes)
+[02:03.11] Cleaning all the plates (Plates), finna make bank (Bank)
+[02:06.66] Finna make history, turn this pain to energy
+[02:11.48] Three nations under God (God)
+[02:13.63] We don't play, no, we go hard (21, 21)
+[02:17.95] Three nations under God (Hahn, hahn)
+[02:21.26] We don't play, no, we go hard
+[02:23.79] Three nations under God, U.S., Morocco, and Mexico
+[02:27.06] Miss the moon, you with the stars, know we going up, so let's go
+[02:30.55] I got, I got (Woo), I got César goals non-stop
+[02:33.71] I got the line around the block, I got my whole town on lock (Hahn)
+[02:37.43] Thrill of the fight (Okay), thrill of the night (Night)
+[02:40.90] Crush my competition ('Tition), kiss the game goodnight (Goornight)
+[02:44.23] Ayy, top dog, but the under card, try win today and win tomorrow
+[02:47.69] Can't take the loss, but can't win them all
+[02:49.48] Talkin' Maradona when I hit the ball, hey
+[02:51.28] Thrill of the fight (Fight), thrill of the rage (Rage)
+[02:54.93] Crushing my opponents (Opponents), foot up off the brake (Brakes, woo)
+[02:58.05] Cleaning all the plates (Plates), finna make bank (Bank)
+[03:01.60] Finna make history, turn this pain to energy (Hahn)
+[03:06.87] Three nations under God (God, okay)
+[03:08.97] We don't play, no, we go hard (21, 21)
+[03:13.26] Three nations under God (Woo)
+[03:16.88] We don't play, no, we go hard
+[03:21.82]
+
+FIN
+
+================================
+
+Siir siir
+
+src/sounds/fifa_sound/siir_siir.mp3
+src/images/imagenes_musica/siir_siir.jpg
+186
+
+3
+
+Nora Fatehi
+Canada
+34
+
+Vegedream
+Francia
+33
+
+Sanjoy
+Bangladesh
+42
+
+NO LETRA
+
+FIN
+
+================================
+
+Partidazo
+
+src/sounds/fifa_sound/partidazo.mp3
+src/images/imagenes_musica/partidazo.jpg
+143
+
+1
+
+Danny Ocean
+Venezuela
+34
+
+[00:00.83] Full Harmony
+[00:08.67] Si salimos en la kiss, un besito tornasol
+[00:11.54] Ahí viene la ola, mami, ponte en posición
+[00:13.92] Tú me tiene' loco aquí, derretío' como cheese
+[00:16.41] Hoy salgo ganando o ganando en el amor
+[00:18.84] Un guiñito para el cielo (El cielo)
+[00:20.81] Hoy ganamos en el suelo (En el suelo)
+[00:23.79] Brisita pa'l calor, agüita pa'l sudor
+[00:26.26] Hoy nos damos un beso cada que meta un gol
+[00:28.61] Tú y yo somos un partidazo, un partidazo
+[00:31.55] Imagínate tú y yo dándonos un besazo
+[00:34.15] Boquita a boquita en medio de un golazo
+[00:36.53] Romance en el mundial, mami, qué planazo
+[00:39.03] Somo' un partidazo, un partidazo
+[00:41.52] No andamo' en tiempo extra, mami, por si acaso
+[00:43.83] Imagínate tú y yo dándonos un besazo
+[00:46.28] En el medio de un gol, de un golazo
+[00:48.74] Nos corean, nos gritan
+[00:50.62] El mejor culito es una mexicana en el estadio
+[00:53.45] Tu camisa apretaíta' apreta en la cinturita
+[00:56.40] La favorita en to' los comentarios, mmm
+[00:59.32] Demasiado flow (Demasiado flow)
+[01:02.26] Hoy ganamos, baby, hoy ganamos tú y yo
+[01:04.90] Porque somos un partidazo, un partidazo
+[01:08.17] Somos un partidazo, un partidazo
+[01:10.87] ¿Te imaginas tú y yo dándonos un besazo?
+[01:13.26] Boquita a boquita en medio de un golazo
+[01:15.68] Romance en el mundial, mami, qué planazo
+[01:18.14] Somo' un partidazo, un partidazo
+[01:20.67] Imagínate tú y yo dándono' un besazo
+[01:23.03] No andamo' en tiempo extra, mami, por si acaso
+[01:25.69] Dame un besazo en un golazo
+[01:28.07] Uh-uh-uh-uh
+[01:31.14] Uh-uh-uh-uh
+[01:32.95] Tú ere' un bombonazo (Un bombonazo), uh
+[01:35.90] Tú y yo somos un partidazo
+[01:37.68] Creo que somos mago', no necesitamo' de la suerte
+[01:41.03] Ya es una magia el hecho de tenerte
+[01:43.56] Presente, y ah
+[01:45.49] Boca a boca porque ahí
+[01:47.07] Tú y yo somos un partidazo, un partidazo
+[01:50.03] Imagínate tú y yo dándonos un besazo
+[01:52.48] Boquita a boquita en medio de un golazo
+[01:54.95] Romance en el mundial, mami, qué planazo
+[01:57.47] Somo' un partidazo, un partidazo
+[01:59.73] No andamo' en tiempo extra, mami, por si acaso
+[02:02.24] Imagínate tú y yo dándono' un besazo
+[02:04.64] En el medio de un gol, de un golazo
+[02:09.06] Babylon girl
+[02:11.68] Mmm, mmm, mmm
+[02:16.60]
+
+FIN
+
+================================
+
+Champion
+
+src/sounds/fifa_sound/champion.mp3
+src/images/imagenes_musica/champion.jpg
+256
+
+1
+
+IShowSpeed
+Estados Unidos
+21
+
+[00:05.72] 'Cause it's that time
+[00:09.98] Let's play football
+[00:12.10] Oh, ayy-oh, ayy-oh, ayy-oh
+[00:16.10] Let's go, we the champions (ha)
+[00:20.09] Oh, ayy-oh, ayy-oh, ayy-oh (ayy, i-it's the World Cup time)
+[00:24.55] Let's go, we the champions (i-it's the World Cup time)
+[00:27.59] 'Cause this is the World Cup (World Cup)
+[00:29.89] Put your flags up in the air (in the air)
+[00:31.67] Put your hands up in the air (in the air)
+[00:33.49] Put your flags up
+[00:34.74] 'Cause this is the World Cup (World Cup)
+[00:37.27] Put your flags up in the air (in the air)
+[00:39.10] Put your hands up in the air (in the air)
+[00:41.10] Put your flags up, leave 'em there
+[00:42.80] Let's go (let's go), let's fight (let's fight)
+[00:45.29] We up (we up) tonight (tonight)
+[00:46.83] Won't break (won't break), that's right (that's right)
+[00:48.98] One world (one world), unite (unite)
+[00:50.59] We own it, we going, we live for this moment
+[00:54.70] We told 'em, we showed 'em, we told it
+[00:57.49] Oh, ayy-oh, ayy-oh, ayy-oh
+[01:01.32] Let's go, we the champions (ha)
+[01:05.22] Oh, ayy-oh, ayy-oh, ayy-oh (i-it's the World Cup time)
+[01:09.78] Let's go, we the champions (i-it's the World Cup time)
+[01:13.30] (Na-na-na-na-na)
+[01:15.66] (Na-na-na) o-oh
+[01:17.65] (Na-na-na-na-na) let's go, we the champions
+[01:20.32] (Na-na-na) o-oh
+[01:21.75] (Na-na-na-na-na)
+[01:24.13] (Na-na-na) o-oh
+[01:25.27] (Na-na-na-na-na) let's go, we the champions
+[01:27.71] (Na-na-na) o-oh
+[01:28.12] We gotta rise till we rise to the end
+[01:30.19] We gotta dream till we dream till we win
+[01:32.20] Give me the cup, the championship
+[01:34.08] Told them I'm bringing it back to the crib (olé, olé)
+[01:36.58] To' el mundo mirando
+[01:38.12] Everybody gritando (aye)
+[01:40.46] La bola girando
+[01:42.05] Uno, dos, tres, cuatro
+[01:43.85] Let's go (let's go), let's fight (let's fight)
+[01:45.54] We up (we up) tonight (tonight)
+[01:47.50] Won't break (won't break), that's right (that's right)
+[01:49.26] One world (one world), unite (unite)
+[01:51.10] We own it, we going, we live for this moment
+[01:54.93] We told 'em, we showed 'em, we told it
+[01:58.15] Oh, ayy-oh, ayy-oh, ayy-oh
+[02:01.81] Let's go, we the champions (ha)
+[02:05.74] Oh, ayy-oh, ayy-oh, ayy-oh (i-it's the World Cup time)
+[02:09.71] Let's go, we the champions (i-it's the World Cup time)
+[02:14.49] (Na-na-na-na-na)
+[02:15.95] (Na-na-na) o-oh
+[02:17.53] (Na-na-na-na-na) let's go, we the champions
+[02:21.20] (Na-na-na) o-oh
+[02:22.51] (Na-na-na-na-na)
+[02:24.29] (Na-na-na) o-oh
+[02:25.00] (Na-na-na-na-na) let's go, we the champions
+[02:28.38] 'Cause this is the World Cup
+[02:30.55] Put your flags up in the air
+[02:32.61] Put your hands up in the air
+[02:34.52] Put your flags up
+[02:35.78] 'Cause this is the World Cup
+[02:38.12] Put your flags up in the air
+[02:40.12] Put your hands up in the air
+[02:42.03] Put your flags up, leave 'em there
+[02:44.79] (Na-na-na-na-na) ha
+[02:46.30] (Na-na-na) 2026, baby
+[02:48.92] (Na-na-na-na-na) it's that World Cup time
+[02:50.95] (Na-na-na) stand up
+[02:52.69] (Na-na-na-na-na) let's go
+[02:54.53] (Na-na-na) o-oh
+[02:55.68] (Na-na-na-na-na) let's go, we the champions
+[02:58.67] (Na-na-na) o-oh
+[02:59.81] Let's go, we the champions
+[03:03.88] When I step
+[03:05.86] I step with my left
+[03:07.68] I step with my right
+[03:09.31] I pump my chest
+[03:10.97] I focus my mind
+[03:12.65] I take a breath
+[03:14.39] And wait for the ref
+[03:16.92] Uh
+[03:18.38] Uh
+[03:19.51] This is the World Cup, put your hands up in the air
+[03:22.27] This is the World Cup, put the flags up in the air
+[03:25.61] This is the World Cup, everybody come and cheer
+[03:29.43] And stand up, and stand up if you ain't got no fear
+[03:32.46] This is the World Cup, this is the World Cup
+[03:36.31] This is the World Cup, this is the World Cup
+[03:39.69] This is the World Cup, this is the World Cup
+[03:43.14] This is the World Cup, this is the World Cup
+[03:46.56] This is the World Cup, this is the World Cup
+[03:49.91] This is the World Cup, this is the World Cup
+[03:53.53] This is the World Cup, this is the World Cup
+[03:56.77] This is the World Cup, this is the World Cup
+[04:05.13]
+
+FIN
+
+================================
+
+Love Always Wins
+
+src/sounds/fifa_sound/love_always_wins.mp3
+src/images/imagenes_musica/love_always_wins.jpg
+188
+
+3
+
+Shaggy
+Jamaica
+58
+
+Cimafunk
+Cuba
+36
+
+Zema
+Etiopia
+29
+
+NO LETRA
+
+FIN
+
+================================
+
+Dai dai
+
+src/sounds/fifa_sound/dai_dai.mp3
+src/images/imagenes_musica/dai_dai.jpg
+225
+
+2
+
+Shakira
+Colombia
+49
+
+Burna Boy
+Nigeria
+35
+
+[00:00.00] Oh-eh-oh-eh, eh-oh-eh
+[00:04.10] Oh-eh-oh-eh, eh-oh-eh
+[00:07.92] You knew from the day you were born
+[00:12.07] That here in this place you belong
+[00:16.44] You been this brave all along
+[00:20.54] What broke you once made you strong
+[00:24.46] Dai, dai, iko
+[00:26.50] Dale, allez, let's go
+[00:28.51] Dai, dai, iko
+[00:30.62] Dale, allez, let's go
+[00:41.00] Come follow your desire
+[00:43.02] Where there's a will, there's a way
+[00:45.05] You are the owner of that fire
+[00:47.09] No one can take it away
+[00:49.16] Sweat and blood to write your story
+[00:51.31] That is how you paved the way
+[00:53.30] You're about to reach the glory
+[00:55.47] Only one step away
+[00:57.44] All the highs and lows
+[00:59.48] All the tears and the pain
+[01:01.58] You been there through it all, been through it all
+[01:03.96] Just do it again
+[01:05.83] Now you got to believe (I believe)
+[01:07.84] 'Cause you know what it takes
+[01:09.95] To be living my dream
+[01:11.89] At the top of your game
+[01:14.35] Feel it, got everything you needed
+[01:17.16] Now bring it like you mean it
+[01:19.80] Just like you mean it
+[01:22.59] Dale, no olvides lo que vales
+[01:25.42] Juega como tú sabes
+[01:28.04] Como tú sabes
+[01:30.64] Energy is contagious, you know
+[01:32.74] And it never fails
+[01:34.79] No, no
+[01:35.29] No one's getting tired
+[01:36.93] I know
+[01:37.40] 'Cause you got that fire
+[01:38.92] Hey-oh
+[01:39.48] Dream a little higher
+[01:40.91] Let's go, let's go, let's go
+[01:47.33] Hey-oh
+[01:51.28] Hey-oh
+[01:53.25] We've taken all that our hearts can hold
+[01:57.38] We can't hold on to the past no more
+[02:01.59] From the dirt and the tears, we make gold
+[02:05.64] We are more than flesh and bones
+[02:07.85] All the highs and lows (Highs and lows)
+[02:09.98] All the tears and the pain
+[02:11.98] You been there through it all, been through it all
+[02:14.31] Just do it again
+[02:16.12] Now you got to believe (I believe)
+[02:18.25] 'Cause you know what it takes
+[02:20.24] To be living my dream
+[02:22.25] At the top of your game
+[02:24.70] Feel it, got everything you needed
+[02:27.51] Now bring it like you mean it
+[02:30.06] Just like you mean it
+[02:32.92] Dale, no olvides lo que vales
+[02:35.79] Juega como tú sabes
+[02:38.37] Como tú sabes
+[02:41.10] Pelé, Maradona, Maldini, Romário
+[02:43.62] Cristiano Ronaldo
+[02:45.32] El Pibe, Iniesta, Beckham y Kaká
+[02:47.95] Messi, Mbappé, Salah
+[02:49.42] Brazil, Uruguay, Argentina, Colombia
+[02:51.92] US, England, Germany, France
+[02:53.60] South Africa, España, México, Japan
+[02:56.05] Korea, Netherlands
+[02:57.88] Oh-eh-oh-eh, eh-oh-eh
+[03:01.85] Oh-eh-oh-eh, eh-oh-eh
+[03:05.95] You knew from the day you were born
+[03:10.11] That here in this place you belong
+[03:14.30] You been this brave all along
+[03:18.45] What broke you once made you strong
+[03:22.32] Dai, dai, iko
+[03:24.38] Dale, allez, let's go
+[03:26.44] Dai, dai, iko
+[03:28.52] Dale, allez, let's go
+[03:30.55] Dai, dai, iko
+[03:32.60] Dale, allez, let's go
+[03:34.68] Dai, dai, iko
+[03:36.79] Dale, allez, let's go
+[03:39.00]
+
 FIN

@@ -3,126 +3,308 @@ import java.util.ArrayList;
 
 public class ManagerCancion {
 
-    public ArrayList<Cancion> cargarCanciones(
-            String archivo
-    ) {
+	public ArrayList<Cancion> cargarCanciones(
+	        String archivo
+	) {
 
-        ArrayList<Cancion> canciones =
-            new ArrayList<>();
+	    ArrayList<Cancion> canciones =
+	        new ArrayList<>();
 
-        try (
+	    try (
 
-            BufferedReader br =
-                new BufferedReader(
-                    new FileReader(archivo)
-                )
+	        BufferedReader br =
+	            new BufferedReader(
+	                new FileReader(archivo)
+	            )
 
-        ) {
+	    ) {
 
-            String linea;
+	        String linea;
 
-            while (
-                (linea = br.readLine())
-                != null
-            ) {
+	        while (
+	            (linea = br.readLine()) != null
+	        ) {
 
-                if (
-                    linea.startsWith("=")
-                    || linea.isBlank()
-                ) {
+	            // =====================
+	            // SALTAR VACIOS
+	            // =====================
 
-                    continue;
-                }
+	            if (
+	                linea.isBlank()
+	                || linea.startsWith("=")
+	            ) {
 
-                // =====================
-                // NOMBRE
-                // =====================
+	                continue;
+	            }
 
-                String nombre = linea;
+	            // =====================
+	            // NOMBRE
+	            // =====================
 
-                // =====================
-                // ARTISTAS
-                // =====================
+	            String nombre = linea;
 
-                br.readLine();
+	            // =====================
+	            // RUTA AUDIO
+	            // =====================
 
-                String lineaArtistas =
-                    br.readLine();
+	            String rutaAudio =
+	                br.readLine();
 
-                ArrayList<String> artistas =
-                    new ArrayList<>();
+	            while (
+	                rutaAudio != null
+	                && rutaAudio.isBlank()
+	            ) {
 
-                String[] artistasArray =
-                    lineaArtistas.split(",");
+	                rutaAudio = br.readLine();
+	            }
 
-                for (
-                    String a
-                    : artistasArray
-                ) {
+	            // =====================
+	            // RUTA IMAGEN
+	            // =====================
 
-                    artistas.add(a.trim());
-                }
+	            String rutaImagen =
+	                br.readLine();
 
-                // =====================
-                // PAISES
-                // =====================
+	            while (
+	                rutaImagen != null
+	                && rutaImagen.isBlank()
+	            ) {
 
-                br.readLine();
+	                rutaImagen = br.readLine();
+	            }
 
-                String lineaPaises =
-                    br.readLine();
+	            // =====================
+	            // DURACION
+	            // =====================
 
-                ArrayList<String> paises =
-                    new ArrayList<>();
+	            String lineaDuracion =
+	                br.readLine();
 
-                String[] paisesArray =
-                    lineaPaises.split(",");
+	            while (
+	                lineaDuracion != null
+	                && lineaDuracion.isBlank()
+	            ) {
 
-                for (
-                    String p
-                    : paisesArray
-                ) {
+	                lineaDuracion =
+	                    br.readLine();
+	            }
 
-                    paises.add(p.trim());
-                }
+	            double duracion =
+	                Double.parseDouble(
+	                    lineaDuracion
+	                );
 
-                // =====================
-                // LETRA
-                // =====================
+	            // =====================
+	            // CANTIDAD CANTANTES
+	            // =====================
 
-                br.readLine();
+	            String lineaCantidad =
+	                br.readLine();
 
-                StringBuilder letra =
-                    new StringBuilder();
+	            while (
+	                lineaCantidad != null
+	                && lineaCantidad.isBlank()
+	            ) {
 
-                while (
-                    !(linea = br.readLine())
-                        .equals("FIN")
-                ) {
+	                lineaCantidad =
+	                    br.readLine();
+	            }
 
-                    letra.append(linea)
-                         .append("\n");
-                }
+	            int cantidadCantantes =
+	                Integer.parseInt(
+	                    lineaCantidad
+	                );
 
-                Cancion cancion =
-                    new Cancion(
-                        nombre,
-                        artistas,
-                        paises,
-                        letra.toString()
-                    );
+	         // =====================
+	         // CANTANTES
+	         // =====================
 
-                canciones.add(cancion);
-            }
+	         ArrayList<Cantante> cantantes =
+	             new ArrayList<>();
 
-        } catch (Exception e) {
+	         for (
+	             int i = 0;
+	             i < cantidadCantantes;
+	             i++
+	         ) {
 
-            e.printStackTrace();
-        }
+	             String nombreCantante =
+	                 br.readLine();
 
-        return canciones;
-    }
-    
+	             // saltar vacios
+	             while (
+	                 nombreCantante != null
+	                 && nombreCantante.isBlank()
+	             ) {
+
+	                 nombreCantante =
+	                     br.readLine();
+	             }
+
+	             String pais =
+	                 br.readLine();
+
+	             while (
+	                 pais != null
+	                 && pais.isBlank()
+	             ) {
+
+	                 pais =
+	                     br.readLine();
+	             }
+
+	             String lineaEdad =
+	                 br.readLine();
+
+	             while (
+	                 lineaEdad != null
+	                 && lineaEdad.isBlank()
+	             ) {
+
+	                 lineaEdad =
+	                     br.readLine();
+	             }
+
+	             int edad =
+	                 Integer.parseInt(
+	                     lineaEdad
+	                 );
+
+	             Cantante cantante =
+	                 new Cantante(
+	                     nombreCantante,
+	                     pais,
+	                     edad
+	                 );
+
+	             cantantes.add(cantante);
+	         }
+
+	      // =====================
+	      // LETRA
+	      // =====================
+
+	      ArrayList<LineaLetra>
+	          letraSincronizada =
+	              new ArrayList<>();
+
+	      while (
+	          (linea = br.readLine()) != null
+	      ) {
+
+	          if (
+	              linea.equals("FIN")
+	          ) {
+
+	              break;
+	          }
+
+	          if (
+	              linea.isBlank()
+	          ) {
+
+	              continue;
+	          }
+
+	          // =====================
+	          // SI NO TIENE TIEMPO
+	          // =====================
+
+	          if (
+	              !linea.startsWith("[")
+	              || !linea.contains("]")
+	          ) {
+
+	              letraSincronizada.add(
+
+	                  new LineaLetra(
+	                      0,
+	                      linea
+	                  )
+	              );
+
+	              continue;
+	          }
+
+	          try {
+
+	              int cierre =
+	                  linea.indexOf("]");
+
+	              String tiempoTexto =
+	                  linea.substring(
+	                      1,
+	                      cierre
+	                  );
+
+	              String texto =
+	                  linea.substring(
+	                      cierre + 1
+	                  );
+
+	              String[] partes =
+	                  tiempoTexto.split(":");
+
+	              double minutos =
+	                  Double.parseDouble(
+	                      partes[0]
+	                  );
+
+	              double segundos =
+	                  Double.parseDouble(
+	                      partes[1]
+	                  );
+
+	              double tiempo =
+	                  (minutos * 60)
+	                  + segundos;
+
+	              letraSincronizada.add(
+
+	                  new LineaLetra(
+	                      tiempo,
+	                      texto
+	                  )
+	              );
+
+	          } catch (Exception ex) {
+
+	              System.out.println(
+	                  "Linea invalida: "
+	                  + linea
+	              );
+	          }
+	      }
+
+	            // =====================
+	            // CREAR CANCION
+	            // =====================
+
+	            Cancion cancion =
+	                new Cancion(
+	                    nombre,
+	                    cantantes,
+	                    letraSincronizada,
+	                    rutaAudio,
+	                    rutaImagen,
+	                    duracion
+	                );
+
+	            canciones.add(cancion);
+	        }
+
+	    } catch (Exception e) {
+
+	        e.printStackTrace();
+	    }
+
+	    return canciones;
+	}
+
+    // =========================
+    // BUSCAR POR NOMBRE
+    // =========================
+
     public Cancion buscarCancion(
             ArrayList<Cancion> canciones,
             String nombre
@@ -141,7 +323,11 @@ public class ManagerCancion {
 
         return null;
     }
-    
+
+    // =========================
+    // BUSCAR POR PAIS
+    // =========================
+
     public ArrayList<Cancion> buscarPorPais(
             ArrayList<Cancion> canciones,
             String pais
@@ -152,20 +338,30 @@ public class ManagerCancion {
 
         for (Cancion c : canciones) {
 
-            for (String p : c.getPaises()) {
+            for (
+                Cantante cantante
+                : c.getCantantes()
+            ) {
 
                 if (
-                    p.equalsIgnoreCase(pais)
+                    cantante.getPais()
+                    .equalsIgnoreCase(pais)
                 ) {
 
                     resultado.add(c);
+
+                    break;
                 }
             }
         }
 
         return resultado;
     }
-    
+
+    // =========================
+    // BUSCAR POR ARTISTA
+    // =========================
+
     public ArrayList<Cancion> buscarPorArtista(
             ArrayList<Cancion> canciones,
             String artista
@@ -177,22 +373,29 @@ public class ManagerCancion {
         for (Cancion c : canciones) {
 
             for (
-                String a
-                : c.getArtistas()
+                Cantante cantante
+                : c.getCantantes()
             ) {
 
                 if (
-                    a.equalsIgnoreCase(artista)
+                    cantante.getNombre()
+                    .equalsIgnoreCase(artista)
                 ) {
 
                     resultado.add(c);
+
+                    break;
                 }
             }
         }
 
         return resultado;
     }
-    
+
+    // =========================
+    // EXISTE CANCION
+    // =========================
+
     public boolean existeCancion(
             ArrayList<Cancion> canciones,
             String nombre
@@ -203,17 +406,21 @@ public class ManagerCancion {
             nombre
         ) != null;
     }
-    
+
+    // =========================
+    // ORDENAR
+    // =========================
+
     public void ordenarCancionesAlf(
             ArrayList<Cancion> canciones
     ) {
 
-    	canciones.sort((a, b) ->
-        a.getNombre()
-         .compareTo(
-             b.getNombre()
-        	)
-    	);
+        canciones.sort((a, b) ->
+
+            a.getNombre()
+             .compareTo(
+                 b.getNombre()
+             )
+        );
     }
-    
 }
