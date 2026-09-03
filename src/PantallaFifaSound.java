@@ -86,8 +86,6 @@ public class PantallaFifaSound {
 
     private Scene escenaFifaSound;
 
-    private Stage stageActual;
-
     // ============================================================
     // CACHÉ DE IMÁGENES
     // ============================================================
@@ -107,7 +105,7 @@ public class PantallaFifaSound {
 
     public Scene crearScene(Stage stage) {
 
-        stageActual = stage;
+        
 
         // --------------------------------------------------------
         // FUENTE

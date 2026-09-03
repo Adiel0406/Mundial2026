@@ -68,8 +68,6 @@ public class PantallaLetra {
 
     private final PantallaFifaSound pantallaFifaSound;
 
-    private final Stage stage;
-
     private VBox contenedorLetra;
 
     private ScrollPane scrollLetra;
@@ -107,8 +105,6 @@ public class PantallaLetra {
         this.reproductor = reproductor;
 
         this.pantallaFifaSound = pantallaFifaSound;
-
-        this.stage = stage;
     }
 
     // =============================================================
