@@ -1,102 +1,145 @@
-import javafx.animation.FadeTransition;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
 import javafx.animation.ScaleTransition;
-import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.FileInputStream;
-import java.util.ArrayList;
-
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-
-import java.io.File;
-import java.util.Collections;
-
-import javafx.scene.Cursor;
-
-
-
 public class PantallaFifaSound {
-	
-	private static MediaPlayer reproductor;
 
-	private static ArrayList<Cancion> playlist;
+    // ============================================================
+    // CONFIGURACIÓN
+    // ============================================================
 
-	private static int indicePlaylist = 0;
-	
-	private static ImageView discoView;
+    private static final double ANCHO_LISTA = 650;
 
-	private static ImageView portadaView;
+    private Font fuenteFWC;
 
-	private static RotateTransition rotacionDisco;
-	
-	private static Label lblCancionActual;
-	
-	private static Slider barraProgreso;
-	
-	private static ImageView btnPause;
-	private static ImageView btnPlayControl;
-	private static ImageView btnSiguiente;
-	private static ImageView btnAnterior;
-	
-	private static Label lblTiempo;
-	
-	private static Button btnVideo;
-	private static Button btnLetra;
+    // ============================================================
+    // REPRODUCTOR
+    // ============================================================
 
-	private static HBox contenedorPrincipal;
-	private static VBox panelMusica;
+    private MediaPlayer reproductor;
 
-	private static VBox panelDerecho;
-	
-	private static boolean modoExpandido = false;
+    private ArrayList<Cancion> playlist;
 
-	private static String modoActual = "";
+    private int indicePlaylist = 0;
 
-	private static StackPane izquierda;
-	
-	private static VBox panelLetra;
-	
-	private static ArrayList<Label> labelsLetra;
-	
-	private static ScrollPane scrollLetra;
-	
-	private static Font fuenteFWClabel;
-	
-	private static TranslateTransition animacionLetra;
+    // ============================================================
+    // ELEMENTOS DEL REPRODUCTOR
+    // ============================================================
+
+    private ImageView discoView;
+    private ImageView portadaView;
+
+    private RotateTransition rotacionDisco;
+
+    private Label lblCancionActual;
+    private Label lblTiempo;
+
+    private Slider barraProgreso;
+
+    // ============================================================
+    // CONTROLES
+    // ============================================================
+
+    private ImageView btnAnterior;
+    private ImageView btnPlay;
+    private ImageView btnPause;
+    private ImageView btnSiguiente;
+
+    private Button btnLetra;
+
+    // ============================================================
+    // ESCENA
+    // ============================================================
+
+    private Scene escenaFifaSound;
+
+    private Stage stageActual;
+
+    // ============================================================
+    // CACHÉ DE IMÁGENES
+    // ============================================================
+
+    private final Map<String, Image> cacheImagenes =
+        new HashMap<>();
+
+    // ============================================================
+    // CONTROL DE BARRA
+    // ============================================================
+
+    private boolean usuarioMoviendoBarra = false;
+
+    // ============================================================
+    // CREAR ESCENA
+    // ============================================================
 
     public Scene crearScene(Stage stage) {
 
-        BorderPane root =
+        stageActual = stage;
+
+        // --------------------------------------------------------
+        // FUENTE
+        // --------------------------------------------------------
+
+        cargarFuente();
+
+        // --------------------------------------------------------
+        // RAÍZ
+        // --------------------------------------------------------
+
+        BorderPane raiz =
             new BorderPane();
 
-        // =========================
+        // --------------------------------------------------------
         // FONDO
-        // =========================
+        // --------------------------------------------------------
 
-        BackgroundImage bg =
+        Image imagenFondo =
+            cargarImagen(
+                "images/FWC/fondo.png",
+                1920,
+                1080,
+                true
+            );
+
+        BackgroundImage fondo =
             new BackgroundImage(
-
-                new Image(
-                    "images/FWC/fondo.png"
-                ),
-
+                imagenFondo,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.CENTER,
-
                 new BackgroundSize(
                     100,
                     100,
@@ -107,30 +150,135 @@ public class PantallaFifaSound {
                 )
             );
 
-        root.setBackground(
-            new Background(bg)
+        raiz.setBackground(
+            new Background(fondo)
         );
 
-        // =========================
-        // BOTON ATRAS
-        // =========================
+        // --------------------------------------------------------
+        // BOTÓN ATRÁS
+        // --------------------------------------------------------
+
+        ImageView btnAtras =
+            crearBotonAtras(stage);
+
+        HBox barraSuperior =
+            new HBox(
+                btnAtras
+            );
+
+        barraSuperior.setAlignment(
+            Pos.TOP_LEFT
+        );
+
+        barraSuperior.setPadding(
+            new Insets(
+                25,
+                0,
+                0,
+                25
+            )
+        );
+
+        raiz.setTop(
+            barraSuperior
+        );
+
+        // --------------------------------------------------------
+        // LISTA
+        // --------------------------------------------------------
+
+        VBox contenido =
+            crearLista();
+
+        // --------------------------------------------------------
+        // REPRODUCTOR DERECHO
+        // --------------------------------------------------------
+
+        VBox reproductorDerecho =
+            crearReproductorDerecho(stage);
+
+        // --------------------------------------------------------
+        // BORDERPANE
+        // --------------------------------------------------------
+
+        raiz.setLeft(
+            contenido
+        );
+
+        raiz.setCenter(
+            reproductorDerecho
+        );
+
+        // --------------------------------------------------------
+        // CREAR UNA SOLA SCENE
+        // --------------------------------------------------------
+
+        escenaFifaSound =
+            new Scene(
+                raiz,
+                1280,
+                720
+            );
+
+        // --------------------------------------------------------
+        // REPRODUCIR DESPUÉS DE CREAR LA INTERFAZ
+        // --------------------------------------------------------
+
+        Platform.runLater(() -> {
+
+            if (playlist != null
+                && !playlist.isEmpty()
+                && reproductor == null) {
+
+                reproducirCancion();
+            }
+        });
+
+        return escenaFifaSound;
+    }
+
+    // ============================================================
+    // OBTENER ESCENA ACTUAL
+    // ============================================================
+
+    public Scene getEscenaFifaSound() {
+
+        return escenaFifaSound;
+    }
+
+    // ============================================================
+    // BOTÓN ATRÁS
+    // ============================================================
+
+    private ImageView crearBotonAtras(
+        Stage stage
+    ) {
 
         ImageView btnAtras =
             new ImageView(
-                new Image(
-                    "images/FWC/atras.png"
+                cargarImagen(
+                    "images/FWC/atras.png",
+                    55,
+                    55,
+                    false
                 )
             );
 
-        btnAtras.setFitWidth(55);
-
-        btnAtras.setPreserveRatio(true);
-
-        btnAtras.setCursor(
-            javafx.scene.Cursor.HAND
+        btnAtras.setFitWidth(
+            55
         );
 
-        // hover
+        btnAtras.setPreserveRatio(
+            true
+        );
+
+        btnAtras.setCursor(
+            Cursor.HAND
+        );
+
+        // --------------------------------------------------------
+        // HOVER ORIGINAL
+        // --------------------------------------------------------
 
         ScaleTransition agrandar =
             new ScaleTransition(
@@ -158,7 +306,13 @@ public class PantallaFifaSound {
             e -> achicar.playFromStart()
         );
 
+        // --------------------------------------------------------
+        // VOLVER AL MENÚ
+        // --------------------------------------------------------
+
         btnAtras.setOnMouseClicked(e -> {
+
+            liberarReproductor();
 
             PantallaMenu menu =
                 new PantallaMenu();
@@ -166,53 +320,34 @@ public class PantallaFifaSound {
             Scene scene =
                 menu.crearScene(stage);
 
-            stage.setScene(scene);
+            stage.setScene(
+                scene
+            );
 
-            stage.setMaximized(true);
+            stage.setMaximized(
+                true
+            );
         });
 
-        HBox topBar =
-            new HBox(btnAtras);
+        return btnAtras;
+    }
 
-        topBar.setPadding(
-            new Insets(25)
+    // ============================================================
+    // CREAR LISTA COMPLETA
+    // ============================================================
+
+    private VBox crearLista() {
+
+        VBox lista =
+            new VBox(12);
+
+        lista.setAlignment(
+            Pos.TOP_LEFT
         );
 
-        root.setTop(topBar);
-
-        // =========================
-        // FUENTE FWC
-        // =========================
-
-        Font fuenteFWC;
-
-        try {
-
-            fuenteFWC =
-                Font.loadFont(
-
-                    new FileInputStream(
-                        "src/fonts/FWC2026.ttf"
-                    ),
-
-                    20
-                );
-
-        } catch (Exception e) {
-
-            fuenteFWC =
-                Font.font(
-                    "Arial",
-                    FontWeight.BOLD,
-                    20
-                );
-        }
-        
-        fuenteFWClabel = fuenteFWC;
-
-        // =========================
-        // MANAGER
-        // =========================
+        // --------------------------------------------------------
+        // CARGAR CANCIONES
+        // --------------------------------------------------------
 
         ManagerCancion manager =
             new ManagerCancion();
@@ -222,998 +357,1200 @@ public class PantallaFifaSound {
                 Archivos.ARCHIVO_CANCIONES
             );
 
-        // =========================
+        // --------------------------------------------------------
         // PLAYLIST
-        // =========================
+        // --------------------------------------------------------
 
         playlist =
-        	new ArrayList<>(canciones);
-
-        Collections.shuffle(playlist);
-
-        // =========================
-        // PANEL IZQUIERDO
-        // =========================
-
-        VBox listaCanciones =
-            new VBox(18);
-
-        listaCanciones.setPadding(
-            new Insets(20)
-        );
-
-        listaCanciones.setPrefWidth(600);
-
-        // =========================
-        // CANCIONES
-        // =========================
-
-        for (Cancion c : canciones) {
-
-            VBox contenido =
-                new VBox(12);
-
-            contenido.setPadding(
-                new Insets(15)
+            new ArrayList<>(
+                canciones
             );
 
-            contenido.setStyle(
-                "-fx-background-color: #244A7A;" +
-                "-fx-background-radius: 0 0 18 18;"
-            );
+        // --------------------------------------------------------
+        // CREAR FILAS
+        // --------------------------------------------------------
 
-            // =========================
-            // CANTANTES
-            // =========================
+        for (Cancion cancion : canciones) {
 
-            for (
-                Cantante cantante
-                : c.getCantantes()
-            ) {
-
-                Label lblNombre =
-                    new Label(
-                        cantante.getNombre()
-                    );
-
-                lblNombre.setFont(
-                    fuenteFWC
-                );
-
-                lblNombre.setTextFill(
-                    Color.WHITE
-                );
-
-                Label lblDatos =
-                    new Label(
-                        cantante.getPais()
-                        + " • "
-                        + cantante.getEdad()
-                        + " años"
-                    );
-
-                lblDatos.setFont(
-                    Font.font("Arial", 15)
-                );
-
-                lblDatos.setTextFill(
-                    Color.LIGHTGRAY
-                );
-
-                VBox bloqueCantante =
-                    new VBox(
-                        2,
-                        lblNombre,
-                        lblDatos
-                    );
-
-                contenido.getChildren().add(
-                    bloqueCantante
-                );
-            }
-
-            // =========================
-            // TITLED PANE
-            // =========================
-
-            TitledPane panel =
-                new TitledPane();
-
-            // =========================
-            // BOTON REPRODUCIR
-            // =========================
-
-            ImageView btnPlay =
-            	new ImageView(
-
-            		new Image(
-            			"images/FWC/reproducir.png"
-            			)
-            		);
-
-            btnPlay.setFitWidth(24);
-
-            btnPlay.setPreserveRatio(true);
-
-            btnPlay.setCursor(
-            	Cursor.HAND
-            );
-
-            // hover
-
-            ScaleTransition agrandarPlay =
-            	new ScaleTransition(
-            		Duration.millis(150),
-            		btnPlay
-            	);
-
-            agrandarPlay.setToX(1.15);
-            agrandarPlay.setToY(1.15);
-
-            ScaleTransition achicarPlay =
-            	new ScaleTransition(
-            		Duration.millis(150),
-            		btnPlay
-            	);
-
-            achicarPlay.setToX(1);
-            achicarPlay.setToY(1);
-
-            btnPlay.setOnMouseEntered(
-            	e -> agrandarPlay.playFromStart()
-            );
-
-            btnPlay.setOnMouseExited(
-            	e -> achicarPlay.playFromStart()
-            );
-            
-            btnPlay.setOnMouseClicked(e -> {
-
-                try {
-
-                    // =========================
-                    // CAMBIAR PLAYLIST
-                    // =========================
-
-                    indicePlaylist =
-                        playlist.indexOf(c);
-
-                    // =========================
-                    // DETENER ACTUAL
-                    // =========================
-
-                    if (reproductor != null) {
-
-                        reproductor.stop();
-                        reproductor.dispose();
-                    }
-                    
-                    // =========================
-                    // CAMBIAR PORTADA
-                    // =========================
-
-                    try {
-
-                    	portadaView.setImage(
-
-                    		new Image(
-                    			new FileInputStream(
-                    				c.getRutaImagen()
-                    			)
-                    		)
-                    	);
-
-                    } catch (Exception ex) {
-
-                    	ex.printStackTrace();
-                    }
-
-                    // =========================
-                    // NUEVA CANCION
-                    // =========================
-
-                    indicePlaylist =
-                        playlist.indexOf(c);
-
-                    reproducirCancion();
-
-                    reproductor.setVolume(0.6);
-
-                    System.out.println(
-                        "Reproduciendo manualmente: "
-                        + c.getNombre()
-                    );
-
-                    // =========================
-                    // CONTINUAR AUTOMATICO
-                    // =========================
-
-                    reproductor.setOnEndOfMedia(() -> {
-
-                        indicePlaylist++;
-
-                        reproducirCancion();
-                    });
-
-                } catch (Exception ex) {
-
-                    ex.printStackTrace();
-                }
-
-                e.consume();
-            });
-            
-            Label tituloCancion =
-                new Label(
-                    c.getNombre()
-                );
-
-            tituloCancion.setFont(
-                fuenteFWC
-            );
-
-            tituloCancion.setTextFill(
-                Color.WHITE
-            );
-
-            Region espacio =
-                new Region();
-
-            HBox.setHgrow(
-                espacio,
-                Priority.ALWAYS
-            );
-
-            HBox header =
-                new HBox(
-                    12,
-                    tituloCancion,
-                    espacio,
-                    btnPlay
-                );
-
-            header.setAlignment(
-                javafx.geometry.Pos.CENTER_LEFT
-            );
-
-           	panel.setGraphic(
-           	    header
-           	);
-
-            panel.setContent(
-                contenido
-            );
-
-            panel.setExpanded(false);
-
-            panel.setFont(
-                fuenteFWC
-            );
-            
-            panel.setExpanded(false);
-
-            panel.setAnimated(true);
-
-            panel.setCollapsible(true);
-
-            listaCanciones.getChildren().add(
-                panel
+            lista.getChildren().add(
+                crearFilaCancion(
+                    cancion
+                )
             );
         }
 
-        // =========================
+        // --------------------------------------------------------
         // SCROLL
-        // =========================
+        // --------------------------------------------------------
 
         ScrollPane scroll =
             new ScrollPane(
-                listaCanciones
+                lista
             );
 
-        scroll.setFitToWidth(true);
+        scroll.setFitToWidth(
+            true
+        );
 
         scroll.setHbarPolicy(
             ScrollPane.ScrollBarPolicy.NEVER
         );
 
+        scroll.setVbarPolicy(
+            ScrollPane.ScrollBarPolicy.AS_NEEDED
+        );
+
+        scroll.setPrefWidth(
+            ANCHO_LISTA
+        );
+
         scroll.setStyle(
-            "-fx-background: transparent;" +
             "-fx-background-color: transparent;"
+            + "-fx-background: transparent;"
+            + "-fx-border-color: transparent;"
         );
 
-        // =========================
-        // PANEL IZQUIERDO FINAL
-        // =========================
-
-        izquierda =
-        	    new StackPane(scroll);
-
-        izquierda.setPadding(
-            new Insets(20)
-        );
-
-        izquierda.setPrefWidth(600);
-
-        // =========================
-        // TITULO CANCION
-        // =========================
-
-        lblCancionActual =
-        	new Label("NO SONG");
-
-        lblCancionActual.setFont(
-        	Font.font(
-        		fuenteFWC.getFamily(),
-        		34
-        	)
-        );
-
-        lblCancionActual.setTextFill(
-        	Color.WHITE
-        );
-
-        lblCancionActual.setWrapText(true);
-
-        lblCancionActual.setMaxWidth(500);
-
-        // =========================
-        // DISCO
-        // =========================
-
-        discoView =
-        	new ImageView(
-
-        		new Image(
-        			"images/imagenes_musica/disco.png"
-        		)
-        	);
-
-        discoView.setFitWidth(340);
-        
-        discoView.setOpacity(0.95);
-
-        discoView.setPreserveRatio(true);
-
-        // =========================
-        // PORTADA
-        // =========================
-
-        portadaView =
-        	new ImageView();
-
-        portadaView.setFitWidth(300);
-
-        portadaView.setFitHeight(300);
-        
-        portadaView.setTranslateX(-100);
-
-        portadaView.setPreserveRatio(false);
-
-        // bordes redondos visuales
-
-        portadaView.setStyle(
-        	"-fx-background-radius: 18;"
-        );
-
-        // =========================
-        // ROTACION
-        // =========================
-
-        rotacionDisco =
-        	new RotateTransition(
-        		Duration.seconds(8),
-        		discoView
-        	);
-        
-        rotacionDisco.setFromAngle(0);
-        rotacionDisco.setToAngle(360);
-
-        rotacionDisco.setCycleCount(
-        	RotateTransition.INDEFINITE
-        );
-        
-        rotacionDisco.setInterpolator(
-            javafx.animation.Interpolator.LINEAR
-        );
-
-        // =========================
-        // STACK
-        // =========================
-
-        StackPane musicaVisual =
-        	new StackPane(
-        		discoView,
-        		portadaView
-        	);
-
-        musicaVisual.setPrefWidth(700);
-        
-        // =========================
-        // BOTONES CONTROL
-        // =========================
-
-        btnAnterior =
-        	new ImageView(
-        		new Image(
-        			"images/FWC/anterior.png"
-        		)
-        	);
-
-        btnPause =
-        	new ImageView(
-        		new Image(
-        			"images/FWC/pausa.png"
-        		)
-        	);
-
-        btnPlayControl =
-        	new ImageView(
-        		new Image(
-        			"images/FWC/play.png"
-        		)
-        	);
-
-        btnSiguiente =
-        	new ImageView(
-        		new Image(
-        			"images/FWC/siguiente.png"
-        		)
-        	);
-        
-        btnAnterior.setFitWidth(42);
-        btnPause.setFitWidth(42);
-        btnPlayControl.setFitWidth(42);
-        btnSiguiente.setFitWidth(42);
-
-        btnAnterior.setPreserveRatio(true);
-        btnPause.setPreserveRatio(true);
-        btnPlayControl.setPreserveRatio(true);
-        btnSiguiente.setPreserveRatio(true);
-        
-        btnAnterior.setCursor(Cursor.HAND);
-        btnPause.setCursor(Cursor.HAND);
-        btnPlayControl.setCursor(Cursor.HAND);
-        btnSiguiente.setCursor(Cursor.HAND);
-        
-        efectoHover(btnAnterior);
-        efectoHover(btnPause);
-        efectoHover(btnPlayControl);
-        efectoHover(btnSiguiente);
-        
-     	// =========================
-        // BARRA PROGRESO
-        // =========================
-        
-        barraProgreso =
-            new Slider();
-
-        barraProgreso.setMin(0);
-
-        barraProgreso.setMax(100);
-       	
-       	barraProgreso.setMinWidth(300);
-       	barraProgreso.setPrefWidth(300);
-       	barraProgreso.setMaxWidth(300);
-       	
-       	barraProgreso.setStyle(
-
-       	    "-fx-control-inner-background: #FFFFFF;" +
-       	    "-fx-base: #FFFFFF;" +
-       	    "-fx-accent: #FFFFFF;"
-       	);
-       	
-       	// =========================
-        // TIEMPO
-        // =========================
-       	
-       	lblTiempo =
-       	    new Label("0:00 / 0:00");
-
-       	lblTiempo.setFont(
-       	    Font.font("Arial", 15)
-       	);
-
-       	lblTiempo.setTextFill(
-       	    Color.WHITE
-       	);
-    
-       	// =========================
-       	// DERECHA
-       	// =========================
-
-       	
-
-       	// =========================
-       	// COLORES
-       	// =========================
-
-       	
-       	// =========================
-       	// FUENTES
-       	// =========================
-
-       	
-
-       	// =========================
-       	// WRAP TEXT
-       	// =========================
-
-       	
-
-   		// =========================
-   		// PANEL LETRA
-   		// =========================
-
-       	panelLetra = new VBox(20);
-
-       	panelLetra.setAlignment(
-       	    Pos.CENTER_LEFT
-       	);
-
-       	scrollLetra = new ScrollPane(panelLetra);
-       	
-       	scrollLetra.setHbarPolicy(
-       	    ScrollPane.ScrollBarPolicy.NEVER
-       	);
-
-       	scrollLetra.setVbarPolicy(
-       	    ScrollPane.ScrollBarPolicy.NEVER
-       	);
-       	
-       	scrollLetra.setPannable(false);
-       	
-       	scrollLetra.setPrefHeight(500);
-       	scrollLetra.setFitToWidth(true);
-
-       	scrollLetra.setStyle(
-       	    "-fx-background: transparent;" +
-       	    "-fx-background-color: transparent;" +
-       	    "-fx-border-color: transparent;"
-       	);
-
-       	panelDerecho = new VBox(scrollLetra);
-
-       	panelDerecho.setAlignment(
-       	    Pos.CENTER
-       	);
-
-       	panelDerecho.setPrefWidth(550);
-
-       	panelDerecho.setVisible(false);
-
-   		panelDerecho.setManaged(false);
-
-       	// =========================
-       	// STACK PLAY / PAUSE
-       	// =========================
-
-       	StackPane playPause =
-       		new StackPane(
-       			btnPlayControl,
-       			btnPause
-       		);
-       	
-       	btnVideo =
-       	    new Button("VIDEO MUSICAL");
-
-       	btnLetra =
-       	    new Button("LETRA");
-       	
-       	btnVideo.setFont(
-       	    Font.font("Arial", FontWeight.BOLD, 14)
-       	);
-
-       	btnLetra.setFont(
-       	    Font.font("Arial", FontWeight.BOLD, 14)
-       	);
-       	
-       	String estiloBoton =
-
-       	    "-fx-background-color: transparent;" +
-
-       	    "-fx-border-color: white;" +
-
-       	    "-fx-border-width: 2;" +
-
-       	    "-fx-background-radius: 25;" +
-
-       	    "-fx-border-radius: 25;" +
-
-       	    "-fx-text-fill: white;" +
-
-       	    "-fx-padding: 8 18 8 18;";
-
-       	btnVideo.setStyle(estiloBoton);
-
-       	btnLetra.setStyle(estiloBoton);
-       	
-       	btnVideo.setOnAction(e -> {
-
-       	    manejarModo("VIDEO");
-       	});
-
-       	btnLetra.setOnAction(e -> {
-
-       	    manejarModo("LETRA");
-       	});
-       	
-       	btnVideo.setCursor(Cursor.HAND);
-
-       	btnLetra.setCursor(Cursor.HAND);
-       	
-       	hoverBoton(btnVideo);
-
-       	hoverBoton(btnLetra);
-
-       	// al iniciar:
-       	// si ya reproduce -> mostrar pausa
-
-       	btnPlayControl.setVisible(false);
-
-       	HBox controles =
-       	    new HBox(
-       	        35,
-       	        btnVideo,
-       	        btnAnterior,
-       	        playPause,
-       	        btnSiguiente,
-       	        btnLetra
-       	    );
-
-       	controles.setAlignment(
-       	    Pos.CENTER
-       	);
-
-       	panelMusica =
-       	    new VBox(
-       	        30,
-       	        lblCancionActual,
-       	        musicaVisual,
-       	        barraProgreso,
-       	        lblTiempo,
-       	        controles
-       	    );
-
-       	panelMusica.setAlignment(
-       	    Pos.CENTER
-       	);
-
-       	contenedorPrincipal =
-       	    new HBox(
-       	        40,
-       	        panelMusica,
-       	        panelDerecho
-       	    );
-
-       	contenedorPrincipal.setAlignment(
-       	    Pos.CENTER
-       	);
-       	
-       	StackPane derecha =
-       	    new StackPane(
-       	        contenedorPrincipal
-       	    );
-
-        derecha.setPadding(
-        	new Insets(20)
-        );
-        
-        // iniciar
-        reproducirCancion();
-
-        // =========================
-        // LAYOUT CENTRAL
-        // =========================
-
-        HBox centro =
-            new HBox(
-                izquierda,
-                derecha
+        // --------------------------------------------------------
+        // TÍTULO
+        // --------------------------------------------------------
+
+        Label titulo =
+            new Label(
+                "FIFA SOUND"
             );
 
+        titulo.setTextFill(
+            Color.WHITE
+        );
+
+        titulo.setFont(
+            Font.font(
+                fuenteFWC.getFamily(),
+                FontWeight.BOLD,
+                32
+            )
+        );
+
+        // --------------------------------------------------------
+        // CONTENEDOR
+        // --------------------------------------------------------
+
+        VBox contenido =
+            new VBox(
+                15,
+                titulo,
+                scroll
+            );
+
+        contenido.setAlignment(
+            Pos.TOP_LEFT
+        );
+
+        contenido.setPadding(
+            new Insets(
+                25,
+                0,
+                20,
+                35
+            )
+        );
+
+        contenido.setPrefWidth(
+            ANCHO_LISTA + 50
+        );
+
+        contenido.setMaxWidth(
+            ANCHO_LISTA + 50
+        );
+
+        return contenido;
+    }
+
+    // ============================================================
+    // CREAR FILA DE CANCIÓN
+    // ============================================================
+
+    private HBox crearFilaCancion(
+        Cancion cancion
+    ) {
+
+        // --------------------------------------------------------
+        // PORTADA
+        // --------------------------------------------------------
+
+        ImageView portada =
+            new ImageView();
+
+        portada.setFitWidth(
+            75
+        );
+
+        portada.setFitHeight(
+            75
+        );
+
+        portada.setPreserveRatio(
+            false
+        );
+
+        // --------------------------------------------------------
+        // MINIATURA EN SEGUNDO PLANO
+        // --------------------------------------------------------
+
+        cargarMiniatura(
+            cancion.getRutaImagen(),
+            portada
+        );
+
+        // --------------------------------------------------------
+        // NOMBRE
+        // --------------------------------------------------------
+
+        Label nombre =
+            new Label(
+                cancion.getNombre()
+            );
+
+        nombre.setTextFill(
+            Color.WHITE
+        );
+
+        nombre.setFont(
+            Font.font(
+                "Arial",
+                FontWeight.BOLD,
+                22
+            )
+        );
+
+        nombre.setWrapText(
+            true
+        );
+
+        // --------------------------------------------------------
+        // ARTISTAS
+        // --------------------------------------------------------
+
+        Label artistas =
+            new Label(
+                obtenerNombresArtistas(
+                    cancion
+                )
+            );
+
+        artistas.setTextFill(
+            Color.LIGHTGRAY
+        );
+
+        artistas.setFont(
+            Font.font(
+                "Arial",
+                15
+            )
+        );
+
+        artistas.setWrapText(
+            true
+        );
+
+        // --------------------------------------------------------
+        // INFORMACIÓN
+        // --------------------------------------------------------
+
+        VBox informacion =
+            new VBox(
+                5,
+                nombre,
+                artistas
+            );
+
+        informacion.setAlignment(
+            Pos.CENTER_LEFT
+        );
+
+        informacion.setMaxWidth(
+            500
+        );
+
+        // --------------------------------------------------------
+        // FILA
+        // --------------------------------------------------------
+
+        HBox fila =
+            new HBox(
+                18,
+                portada,
+                informacion
+            );
+
+        fila.setAlignment(
+            Pos.CENTER_LEFT
+        );
+
+        fila.setMinHeight(
+            95
+        );
+
+        fila.setPrefWidth(
+            ANCHO_LISTA - 20
+        );
+
+        fila.setMaxWidth(
+            ANCHO_LISTA - 20
+        );
+
+        fila.setPadding(
+            new Insets(
+                10,
+                15,
+                10,
+                10
+            )
+        );
+
+        // --------------------------------------------------------
+        // ESTILO
+        // --------------------------------------------------------
+
+        String estiloNormal =
+            "-fx-background-color: rgba(0,0,0,0.35);"
+            + "-fx-background-radius: 10;"
+            + "-fx-cursor: hand;";
+
+        String estiloHover =
+            "-fx-background-color: rgba(255,255,255,0.18);"
+            + "-fx-background-radius: 10;"
+            + "-fx-cursor: hand;";
+
+        fila.setStyle(
+            estiloNormal
+        );
+
+        // --------------------------------------------------------
+        // HOVER
+        // --------------------------------------------------------
+
+        fila.setOnMouseEntered(
+            e -> fila.setStyle(
+                estiloHover
+            )
+        );
+
+        fila.setOnMouseExited(
+            e -> fila.setStyle(
+                estiloNormal
+            )
+        );
+
+        // --------------------------------------------------------
+        // SELECCIONAR CANCIÓN
+        // --------------------------------------------------------
+
+        fila.setOnMouseClicked(e -> {
+
+            seleccionarCancion(
+                cancion
+            );
+
+            e.consume();
+        });
+
+        return fila;
+    }
+
+    // ============================================================
+    // SELECCIONAR CANCIÓN
+    // ============================================================
+
+    private void seleccionarCancion(
+        Cancion cancion
+    ) {
+
+        if (playlist == null
+            || playlist.isEmpty()) {
+
+            return;
+        }
+
+        int posicion =
+            playlist.indexOf(
+                cancion
+            );
+
+        if (posicion < 0) {
+            return;
+        }
+
+        indicePlaylist =
+            posicion;
+
+        reproducirCancion();
+    }
+
+    // ============================================================
+    // CREAR REPRODUCTOR DERECHO
+    // ============================================================
+
+    private VBox crearReproductorDerecho(
+        Stage stage
+    ) {
+
+        // --------------------------------------------------------
+        // PORTADA
+        // --------------------------------------------------------
+
+        portadaView =
+            new ImageView();
+
+        portadaView.setFitWidth(
+            300
+        );
+
+        portadaView.setFitHeight(
+            300
+        );
+
+        portadaView.setPreserveRatio(
+            false
+        );
+
+        // Mantiene el diseño original
+        portadaView.setTranslateX(
+            -100
+        );
+
+        // --------------------------------------------------------
+        // DISCO
+        // --------------------------------------------------------
+
+        Image imagenDisco =
+            cargarImagen(
+                "images/imagenes_musica/disco.png",
+                340,
+                340,
+                true
+            );
+
+        discoView =
+            new ImageView(
+                imagenDisco
+            );
+
+        discoView.setFitWidth(
+            340
+        );
+
+        discoView.setPreserveRatio(
+            true
+        );
+
+        discoView.setOpacity(
+            0.95
+        );
+
+        // --------------------------------------------------------
+        // ROTACIÓN
+        // --------------------------------------------------------
+
+        rotacionDisco =
+            new RotateTransition(
+                Duration.seconds(8),
+                discoView
+            );
+
+        rotacionDisco.setFromAngle(
+            0
+        );
+
+        rotacionDisco.setToAngle(
+            360
+        );
+
+        rotacionDisco.setCycleCount(
+            RotateTransition.INDEFINITE
+        );
+
+        rotacionDisco.setInterpolator(
+            Interpolator.LINEAR
+        );
+
+        // --------------------------------------------------------
+        // DISCO + PORTADA
+        // --------------------------------------------------------
+
+        StackPane visualMusica =
+            new StackPane(
+                discoView,
+                portadaView
+            );
+
+        visualMusica.setPrefSize(
+            500,
+            340
+        );
+
+        // --------------------------------------------------------
+        // NOMBRE CANCIÓN
+        // --------------------------------------------------------
+
+        lblCancionActual =
+            new Label(
+                "NO SONG"
+            );
+
+        lblCancionActual.setTextFill(
+            Color.WHITE
+        );
+
+        lblCancionActual.setFont(
+            Font.font(
+                fuenteFWC.getFamily(),
+                FontWeight.BOLD,
+                30
+            )
+        );
+
+        lblCancionActual.setWrapText(
+            true
+        );
+
+        lblCancionActual.setMaxWidth(
+            500
+        );
+
+        lblCancionActual.setAlignment(
+            Pos.CENTER
+        );
+
+        // --------------------------------------------------------
+        // BARRA DE PROGRESO
+        // --------------------------------------------------------
+
+        barraProgreso =
+            new Slider(
+                0,
+                100,
+                0
+            );
+
+        barraProgreso.setPrefWidth(
+            400
+        );
+
+        barraProgreso.setMinWidth(
+            400
+        );
+
+        barraProgreso.setMaxWidth(
+            400
+        );
+
+        // --------------------------------------------------------
+        // TIEMPO
+        // --------------------------------------------------------
+
+        lblTiempo =
+            new Label(
+                "0:00 / 0:00"
+            );
+
+        lblTiempo.setTextFill(
+            Color.WHITE
+        );
+
+        lblTiempo.setFont(
+            Font.font(
+                "Arial",
+                15
+            )
+        );
+
+        // --------------------------------------------------------
+        // CONTROLES
+        // --------------------------------------------------------
+
+        btnAnterior =
+            crearControl(
+                "images/FWC/anterior.png"
+            );
+
+        btnPlay =
+            crearControl(
+                "images/FWC/play.png"
+            );
+
+        btnPause =
+            crearControl(
+                "images/FWC/pausa.png"
+            );
+
+        btnSiguiente =
+            crearControl(
+                "images/FWC/siguiente.png"
+            );
+
+        btnPlay.setVisible(
+            true
+        );
+
+        btnPause.setVisible(
+            false
+        );
+
+        // --------------------------------------------------------
+        // PLAY / PAUSA
+        // --------------------------------------------------------
+
+        StackPane playPause =
+            new StackPane(
+                btnPlay,
+                btnPause
+            );
+
+        // --------------------------------------------------------
+        // BOTÓN LETRA
+        // --------------------------------------------------------
+
+        btnLetra =
+            new Button(
+                "LETRA"
+            );
+
+        btnLetra.setFont(
+            Font.font(
+                "Arial",
+                FontWeight.BOLD,
+                14
+            )
+        );
+
+        btnLetra.setTextFill(
+            Color.WHITE
+        );
+
+        btnLetra.setCursor(
+            Cursor.HAND
+        );
+
+        btnLetra.setStyle(
+            "-fx-background-color: transparent;"
+            + "-fx-border-color: white;"
+            + "-fx-border-width: 2;"
+            + "-fx-background-radius: 25;"
+            + "-fx-border-radius: 25;"
+            + "-fx-padding: 8 20 8 20;"
+        );
+
+        hoverBoton(
+            btnLetra
+        );
+
+        // --------------------------------------------------------
+        // ABRIR LETRA
+        // --------------------------------------------------------
+
+        btnLetra.setOnAction(e -> {
+
+            if (reproductor == null) {
+                return;
+            }
+
+            if (playlist == null
+                || playlist.isEmpty()) {
+
+                return;
+            }
+
+            Cancion actual =
+                playlist.get(
+                    indicePlaylist
+                );
+
+            PantallaLetra pantallaLetra =
+                new PantallaLetra(
+                    actual,
+                    reproductor,
+                    this,
+                    stage
+                );
+
+            Scene scene =
+                pantallaLetra.crearScene(
+                    stage
+                );
+
+            stage.setScene(
+                scene
+            );
+
+            stage.setMaximized(
+                true
+            );
+        });
+
+        // --------------------------------------------------------
+        // CONTROLES
+        // --------------------------------------------------------
+
+        HBox controles =
+            new HBox(
+                30,
+                btnAnterior,
+                playPause,
+                btnSiguiente,
+                btnLetra
+            );
+
+        controles.setAlignment(
+            Pos.CENTER
+        );
+
+        // --------------------------------------------------------
+        // PANEL DERECHO
+        // --------------------------------------------------------
+
+        VBox panel =
+            new VBox(
+                18,
+                visualMusica,
+                lblCancionActual,
+                barraProgreso,
+                lblTiempo,
+                controles
+            );
+
+        panel.setAlignment(
+            Pos.CENTER
+        );
+
+        panel.setPadding(
+            new Insets(
+                20,
+                30,
+                30,
+                20
+            )
+        );
+
+        panel.setPrefWidth(
+            650
+        );
+
         HBox.setHgrow(
-            derecha,
+            panel,
             Priority.ALWAYS
         );
 
-        root.setCenter(centro);
+        // --------------------------------------------------------
+        // PLAY
+        // --------------------------------------------------------
 
-        // =========================
-        // SCENE
-        // =========================
+        btnPlay.setOnMouseClicked(e -> {
 
-        Scene scene =
-            new Scene(
-                root,
-                1280,
-                720
-            );
-        
-        scene.addEventFilter(
-        	    javafx.scene.input.KeyEvent.KEY_PRESSED,
-        	    e -> {
+            if (reproductor == null) {
+                return;
+            }
 
-            switch (e.getCode()) {
+            reproductor.play();
 
-            	case SPACE -> {
-
-            		e.consume();
-
-            		if (reproductor == null)
-            			return;
-
-            		MediaPlayer.Status estado =
-            			reproductor.getStatus();
-
-            		if (
-            			estado
-            			== MediaPlayer.Status.PLAYING
-            		) {
-
-            			reproductor.pause();
-
-            			btnPause.setVisible(false);
-
-            			btnPlayControl.setVisible(true);
-
-            			rotacionDisco.pause();
-
-            		} else {
-
-            			reproductor.play();
-
-            			btnPlayControl.setVisible(false);
-
-            			btnPause.setVisible(true);
-
-            			rotacionDisco.play();
-            		}
-            	}
-            	default -> {
-            	}
-            	}
-        	}
-       	);
-        
-        scene.getStylesheets().add(
-            "styles/fifaSound.css"
-        );
-
-        // =========================
-        // ANIMACION
-        // =========================
-
-        ScaleTransition zoom =
-            new ScaleTransition(
-                Duration.seconds(0.8),
-                root
+            btnPlay.setVisible(
+                false
             );
 
-        zoom.setFromX(1.2);
-        zoom.setFromY(1.2);
-
-        zoom.setToX(1);
-        zoom.setToY(1);
-
-        FadeTransition fade =
-            new FadeTransition(
-                Duration.seconds(0.8),
-                root
+            btnPause.setVisible(
+                true
             );
 
-        fade.setFromValue(0);
-        fade.setToValue(1);
+            if (rotacionDisco != null) {
+                rotacionDisco.play();
+            }
+        });
 
-        zoom.play();
-        fade.play();
-        
+        // --------------------------------------------------------
+        // PAUSA
+        // --------------------------------------------------------
 
-        return scene;
-    }
-    
-    public static void reproducirCancion() {
+        btnPause.setOnMouseClicked(e -> {
 
-        try {
+            if (reproductor == null) {
+                return;
+            }
 
-            if (indicePlaylist >= playlist.size()) {
+            reproductor.pause();
 
-                Collections.shuffle(playlist);
+            btnPause.setVisible(
+                false
+            );
+
+            btnPlay.setVisible(
+                true
+            );
+
+            if (rotacionDisco != null) {
+                rotacionDisco.pause();
+            }
+        });
+
+        // --------------------------------------------------------
+        // SIGUIENTE
+        // --------------------------------------------------------
+
+        btnSiguiente.setOnMouseClicked(e -> {
+
+            if (playlist == null
+                || playlist.isEmpty()) {
+
+                return;
+            }
+
+            indicePlaylist++;
+
+            if (indicePlaylist >=
+                playlist.size()) {
 
                 indicePlaylist = 0;
             }
 
-            Cancion actual =
-                playlist.get(indicePlaylist);
-            
-            if (labelsLetra != null) {
-                cargarLetra();
-            }
-            
-            lblCancionActual.setText(
-                actual.getNombre().toUpperCase()
-            );
-            
-            // =========================
-            // CAMBIAR PORTADA
-            // =========================
+            reproducirCancion();
+        });
 
-            try {
+        // --------------------------------------------------------
+        // ANTERIOR / REINICIAR
+        // --------------------------------------------------------
 
-                portadaView.setImage(
+        btnAnterior.setOnMouseClicked(e -> {
 
-                    new Image(
-                        new FileInputStream(
-                            actual.getRutaImagen()
-                        )
-                    )
-                );
-
-            } catch (Exception e) {
-
-                e.printStackTrace();
+            if (reproductor == null) {
+                return;
             }
 
-            Media media =
-                new Media(
+            double tiempo =
+                reproductor
+                    .getCurrentTime()
+                    .toSeconds();
 
-                    new File(
-                        actual.getRutaAudio()
-                    )
-                    .toURI()
-                    .toString()
+            // Más de 3 segundos:
+            // reiniciar canción
+
+            if (tiempo > 3) {
+
+                reproductor.seek(
+                    Duration.ZERO
                 );
 
-            if (reproductor != null) {
-
-                reproductor.stop();
-                reproductor.dispose();
+                return;
             }
 
-            reproductor =
-                new MediaPlayer(media);
+            // Menos de 3 segundos:
+            // canción anterior
 
-            reproductor.setVolume(0.6);
+            if (playlist == null
+                || playlist.isEmpty()) {
 
-            reproductor.setCycleCount(1);
+                return;
+            }
 
-            reproductor.setOnError(() -> {
+            indicePlaylist--;
 
-                System.out.println(
-                    reproductor.getError()
-                );
-            });
+            if (indicePlaylist < 0) {
 
-            reproductor.setOnReady(() -> {
-            	
-            	btnPlayControl.setVisible(false);
+                indicePlaylist =
+                    playlist.size() - 1;
+            }
 
-            	btnPause.setVisible(true);
+            reproducirCancion();
+        });
 
-            	rotacionDisco.play();
+        // --------------------------------------------------------
+        // BARRA - PRESIONAR
+        // --------------------------------------------------------
 
-                System.out.println(
-                    "Reproduciendo: "
-                    + actual.getNombre()
-                );
-                
-                barraProgreso.setMax(
-                    reproductor.getTotalDuration().toSeconds()
-                );
+        barraProgreso.setOnMousePressed(
+            e -> {
 
-                reproductor.play();
-            });
-            
-            reproductor.currentTimeProperty().addListener(
-                (obs, oldTime, newTime) -> {
+                usuarioMoviendoBarra =
+                    true;
+            }
+        );
 
-                    barraProgreso.setValue(
-                        newTime.toSeconds()
-                    );
+        // --------------------------------------------------------
+        // BARRA - SOLTAR
+        // --------------------------------------------------------
 
-                    double tiempoActual =
-                        newTime.toSeconds();
+        barraProgreso.setOnMouseReleased(
+            e -> {
 
-                    double total =
-                        reproductor
-                        .getTotalDuration()
-                        .toSeconds();
+                if (reproductor == null) {
 
-                    lblTiempo.setText(
+                    usuarioMoviendoBarra =
+                        false;
 
-                        formatoTiempo(tiempoActual)
-
-                        + " / "
-
-                        + formatoTiempo(total)
-                    );
-                    
-                    actualizarLetra(
-                    	tiempoActual
-                    );
-                    
+                    return;
                 }
-            );
-            
-            barraProgreso.setOnMouseReleased(e -> {
 
                 reproductor.seek(
                     Duration.seconds(
                         barraProgreso.getValue()
                     )
                 );
-            });
-            
-            btnPause.setOnMouseClicked(e -> {
 
-                if (reproductor != null) {
+                usuarioMoviendoBarra =
+                    false;
+            }
+        );
 
-                    reproductor.pause();
+        return panel;
+    }
 
-                    // cambiar botones
+    // ============================================================
+    // CREAR CONTROL DE IMAGEN
+    // ============================================================
 
-                    btnPause.setVisible(false);
+    private ImageView crearControl(
+        String ruta
+    ) {
 
-                    btnPlayControl.setVisible(true);
+        ImageView imagen =
+            new ImageView(
+                cargarImagen(
+                    ruta,
+                    42,
+                    42,
+                    false
+                )
+            );
 
-                    // detener disco
+        imagen.setFitWidth(
+            42
+        );
 
-                    rotacionDisco.pause();
+        imagen.setPreserveRatio(
+            true
+        );
+
+        imagen.setCursor(
+            Cursor.HAND
+        );
+
+        efectoHover(
+            imagen
+        );
+
+        return imagen;
+    }
+
+    // ============================================================
+    // REPRODUCIR CANCIÓN
+    // ============================================================
+
+    private void reproducirCancion() {
+
+        if (playlist == null
+            || playlist.isEmpty()) {
+
+            return;
+        }
+
+        // --------------------------------------------------------
+        // ASEGURAR ÍNDICE
+        // --------------------------------------------------------
+
+        if (indicePlaylist >=
+            playlist.size()) {
+
+            indicePlaylist = 0;
+        }
+
+        if (indicePlaylist < 0) {
+
+            indicePlaylist =
+                playlist.size() - 1;
+        }
+
+        // --------------------------------------------------------
+        // CANCIÓN
+        // --------------------------------------------------------
+
+        Cancion actual =
+            playlist.get(
+                indicePlaylist
+            );
+
+        // --------------------------------------------------------
+        // DETENER REPRODUCTOR ANTERIOR
+        // --------------------------------------------------------
+
+        liberarReproductor();
+
+        // --------------------------------------------------------
+        // REINICIAR DISCO
+        // --------------------------------------------------------
+
+        if (rotacionDisco != null) {
+
+            rotacionDisco.stop();
+        }
+
+        if (discoView != null) {
+
+            discoView.setRotate(
+                0
+            );
+        }
+
+        // --------------------------------------------------------
+        // PORTADA
+        // --------------------------------------------------------
+
+        try {
+
+            portadaView.setImage(
+                cargarImagen(
+                    actual.getRutaImagen(),
+                    300,
+                    300,
+                    true
+                )
+            );
+
+        } catch (Exception e) {
+
+            portadaView.setImage(
+                null
+            );
+        }
+
+        // --------------------------------------------------------
+        // NOMBRE
+        // --------------------------------------------------------
+
+        lblCancionActual.setText(
+            actual
+                .getNombre()
+                .toUpperCase()
+        );
+
+        // --------------------------------------------------------
+        // RESETEAR PROGRESO
+        // --------------------------------------------------------
+
+        barraProgreso.setValue(
+            0
+        );
+
+        barraProgreso.setMax(
+            100
+        );
+
+        lblTiempo.setText(
+            "0:00 / 0:00"
+        );
+
+        // --------------------------------------------------------
+        // ESTADO PLAY / PAUSA
+        // --------------------------------------------------------
+
+        btnPlay.setVisible(
+            false
+        );
+
+        btnPause.setVisible(
+            true
+        );
+
+        // --------------------------------------------------------
+        // AUDIO
+        // --------------------------------------------------------
+
+        File archivoAudio =
+            resolverArchivo(
+                actual.getRutaAudio()
+            );
+
+        if (archivoAudio == null
+            || !archivoAudio.exists()) {
+
+            System.out.println(
+                "Audio no encontrado: "
+                + actual.getRutaAudio()
+            );
+
+            btnPlay.setVisible(
+                true
+            );
+
+            btnPause.setVisible(
+                false
+            );
+
+            return;
+        }
+
+        try {
+
+            Media media =
+                new Media(
+                    archivoAudio
+                        .toURI()
+                        .toString()
+                );
+
+            MediaPlayer player =
+                new MediaPlayer(
+                    media
+                );
+
+            reproductor =
+                player;
+
+            player.setVolume(
+                0.6
+            );
+
+            // ----------------------------------------------------
+            // MEDIA LISTA
+            // ----------------------------------------------------
+
+            player.setOnReady(() -> {
+
+                if (reproductor != player) {
+                    return;
                 }
-            });
-            
-            btnPlayControl.setOnMouseClicked(e -> {
 
-                if (reproductor != null) {
+                double duracion =
+                    player
+                        .getTotalDuration()
+                        .toSeconds();
 
-                    reproductor.play();
+                if (!Double.isFinite(duracion)
+                    || duracion <= 0) {
 
-                    // cambiar botones
+                    duracion = 1;
+                }
 
-                    btnPlayControl.setVisible(false);
+                barraProgreso.setMax(
+                    duracion
+                );
 
-                    btnPause.setVisible(true);
+                lblTiempo.setText(
+                    "0:00 / "
+                    + formatoTiempo(
+                        duracion
+                    )
+                );
 
-                    // continuar disco
+                player.play();
+
+                if (rotacionDisco != null) {
 
                     rotacionDisco.play();
                 }
+
+                btnPlay.setVisible(
+                    false
+                );
+
+                btnPause.setVisible(
+                    true
+                );
             });
-            
-            btnSiguiente.setOnMouseClicked(e -> {
 
-                indicePlaylist++;
+            // ----------------------------------------------------
+            // PROGRESO
+            // ----------------------------------------------------
 
-                reproducirCancion();
-            });
-            
-            btnAnterior.setOnMouseClicked(e -> {
+            player.currentTimeProperty()
+                .addListener(
+                    (obs, anterior, tiempo) -> {
 
-                if (
-                    reproductor.getCurrentTime()
-                    .toSeconds() > 3
-                ) {
+                        if (reproductor != player) {
+                            return;
+                        }
 
-                    reproductor.seek(
-                        Duration.ZERO
-                    );
+                        if (usuarioMoviendoBarra) {
+                            return;
+                        }
 
-                } else {
+                        double actualSegundos =
+                            tiempo.toSeconds();
 
-                    indicePlaylist--;
+                        double total =
+                            player
+                                .getTotalDuration()
+                                .toSeconds();
 
-                    if (indicePlaylist < 0) {
+                        if (!Double.isFinite(
+                                actualSegundos)) {
 
-                        indicePlaylist =
-                            playlist.size() - 1;
+                            actualSegundos = 0;
+                        }
+
+                        if (!Double.isFinite(total)
+                            || total < 0) {
+
+                            total = 0;
+                        }
+
+                        barraProgreso.setValue(
+                            Math.min(
+                                actualSegundos,
+                                barraProgreso.getMax()
+                            )
+                        );
+
+                        lblTiempo.setText(
+                            formatoTiempo(
+                                actualSegundos
+                            )
+                            + " / "
+                            + formatoTiempo(
+                                total
+                            )
+                        );
                     }
+                );
 
-                    reproducirCancion();
+            // ----------------------------------------------------
+            // ERROR
+            // ----------------------------------------------------
+
+            player.setOnError(() -> {
+
+                if (reproductor != player) {
+                    return;
                 }
+
+                System.out.println(
+                    "Error de reproducción: "
+                    + player.getError()
+                );
+
+                btnPlay.setVisible(
+                    true
+                );
+
+                btnPause.setVisible(
+                    false
+                );
             });
 
-            reproductor.setOnEndOfMedia(() -> {
+            // ----------------------------------------------------
+            // TERMINÓ
+            // ----------------------------------------------------
+
+            player.setOnEndOfMedia(() -> {
+
+                if (reproductor != player) {
+                    return;
+                }
 
                 indicePlaylist++;
+
+                if (indicePlaylist >=
+                    playlist.size()) {
+
+                    indicePlaylist = 0;
+                }
 
                 reproducirCancion();
             });
@@ -1221,366 +1558,483 @@ public class PantallaFifaSound {
         } catch (Exception e) {
 
             e.printStackTrace();
+
+            btnPlay.setVisible(
+                true
+            );
+
+            btnPause.setVisible(
+                false
+            );
         }
     }
-    
-    private static void efectoHover(ImageView btn) {
+
+    // ============================================================
+    // LIBERAR REPRODUCTOR
+    // ============================================================
+
+    private void liberarReproductor() {
+
+        if (reproductor != null) {
+
+            try {
+
+                reproductor.stop();
+
+            } catch (Exception ignored) {
+            }
+
+            try {
+
+                reproductor.dispose();
+
+            } catch (Exception ignored) {
+            }
+
+            reproductor = null;
+        }
+    }
+
+    // ============================================================
+    // HOVER IMAGEVIEW
+    // ============================================================
+
+    private void efectoHover(
+        ImageView imagen
+    ) {
 
         ScaleTransition agrandar =
             new ScaleTransition(
                 Duration.millis(120),
-                btn
+                imagen
             );
 
-        agrandar.setToX(1.12);
-        agrandar.setToY(1.12);
+        agrandar.setToX(
+            1.12
+        );
+
+        agrandar.setToY(
+            1.12
+        );
 
         ScaleTransition volver =
             new ScaleTransition(
                 Duration.millis(120),
-                btn
+                imagen
             );
 
-        volver.setToX(1);
-        volver.setToY(1);
+        volver.setToX(
+            1
+        );
 
-        btn.setOnMouseEntered(
+        volver.setToY(
+            1
+        );
+
+        imagen.setOnMouseEntered(
             e -> agrandar.playFromStart()
         );
 
-        btn.setOnMouseExited(
+        imagen.setOnMouseExited(
             e -> volver.playFromStart()
         );
     }
-    
-    private static String formatoTiempo(double segundos) {
 
-        int min =
+    // ============================================================
+    // HOVER BOTÓN LETRA
+    // ============================================================
+
+    private void hoverBoton(
+        Button boton
+    ) {
+
+        ScaleTransition agrandar =
+            new ScaleTransition(
+                Duration.millis(120),
+                boton
+            );
+
+        agrandar.setToX(
+            1.08
+        );
+
+        agrandar.setToY(
+            1.08
+        );
+
+        ScaleTransition volver =
+            new ScaleTransition(
+                Duration.millis(120),
+                boton
+            );
+
+        volver.setToX(
+            1
+        );
+
+        volver.setToY(
+            1
+        );
+
+        boton.setOnMouseEntered(
+            e -> agrandar.playFromStart()
+        );
+
+        boton.setOnMouseExited(
+            e -> volver.playFromStart()
+        );
+    }
+
+    // ============================================================
+    // OBTENER ARTISTAS
+    // ============================================================
+
+    private String obtenerNombresArtistas(
+        Cancion cancion
+    ) {
+
+        StringBuilder nombres =
+            new StringBuilder();
+
+        ArrayList<Cantante> cantantes =
+            cancion.getCantantes();
+
+        if (cantantes == null
+            || cantantes.isEmpty()) {
+
+            return "";
+        }
+
+        for (
+            int i = 0;
+            i < cantantes.size();
+            i++
+        ) {
+
+            nombres.append(
+                cantantes
+                    .get(i)
+                    .getNombre()
+            );
+
+            if (
+                i <
+                cantantes.size() - 1
+            ) {
+
+                nombres.append(
+                    ", "
+                );
+            }
+        }
+
+        return nombres.toString();
+    }
+
+    // ============================================================
+    // FORMATO TIEMPO
+    // ============================================================
+
+    private String formatoTiempo(
+        double segundos
+    ) {
+
+        if (!Double.isFinite(segundos)
+            || segundos < 0) {
+
+            segundos = 0;
+        }
+
+        int minutos =
             (int) segundos / 60;
 
-        int seg =
+        int segundosRestantes =
             (int) segundos % 60;
 
         return String.format(
             "%d:%02d",
-            min,
-            seg
+            minutos,
+            segundosRestantes
         );
     }
-    
-    private static void moverPanelIzquierda() {
 
-        TranslateTransition mover =
-            new TranslateTransition(
-                Duration.millis(450),
-                panelMusica
-            );
+    // ============================================================
+    // CARGAR FUENTE
+    // ============================================================
 
-        mover.setToX(-200);
+    private void cargarFuente() {
 
-        mover.play();
-    }
-    
-    private static void hoverBoton(Button btn) {
+        try {
 
-        ScaleTransition agrandar =
-            new ScaleTransition(
-                Duration.millis(120),
-                btn
-            );
-
-        agrandar.setToX(1.08);
-        agrandar.setToY(1.08);
-
-        ScaleTransition volver =
-            new ScaleTransition(
-                Duration.millis(120),
-                btn
-            );
-
-        volver.setToX(1);
-        volver.setToY(1);
-
-        btn.setOnMouseEntered(
-            e -> agrandar.playFromStart()
-        );
-
-        btn.setOnMouseExited(
-            e -> volver.playFromStart()
-        );
-    }
-    
-    private static void manejarModo(String modo) {
-
-        System.out.println("Modo: " + modo);
-
-        // =========================
-        // CERRAR
-        // =========================
-
-        if (
-            modoExpandido
-            &&
-            modoActual.equals(modo)
-        ) {
-
-            volverModoNormal();
-
-            return;
-        }
-
-        // =========================
-        // ABRIR
-        // =========================
-
-        modoExpandido = true;
-
-        modoActual = modo;
-
-        panelDerecho.setVisible(true);
-
-        panelDerecho.setManaged(true);
-
-        // =========================
-        // VIDEO
-        // =========================
-
-        if (modo.equals("VIDEO")) {
-
-            btnLetra.setDisable(true);
-
-            btnVideo.setDisable(false);
-
-            panelDerecho.getChildren().clear();
-
-        }
-
-        // =========================
-        // LETRA
-        // =========================
-
-        else {
-
-            btnVideo.setDisable(true);
-
-            btnLetra.setDisable(false);
-
-            panelDerecho.getChildren().clear();
-
-            panelDerecho.getChildren().add(
-                scrollLetra
-            );
-
-            if (reproductor != null) {
-
-                cargarLetra();
-            }
-        }
-
-        // =========================
-        // OCULTAR LISTA
-        // =========================
-
-        izquierda.setVisible(false);
-
-        izquierda.setManaged(false);
-
-        // =========================
-        // MOVER REPRODUCTOR
-        // =========================
-
-        moverPanelIzquierda();
-    }
-    
-    private static void volverModoNormal() {
-
-        modoExpandido = false;
-
-        modoActual = "";
-
-        // mostrar lista
-
-        izquierda.setVisible(true);
-
-        izquierda.setManaged(true);
-
-        // habilitar botones
-
-        btnVideo.setDisable(false);
-
-        btnLetra.setDisable(false);
-        
-        panelDerecho.setVisible(false);
-
-        panelDerecho.setManaged(false);
-
-        // mover al centro
-
-        TranslateTransition volver =
-            new TranslateTransition(
-                Duration.millis(450),
-                panelMusica
-            );
-
-        volver.setToX(0);
-
-        volver.play();
-    }
-    
-    private static void cargarLetra() {
-
-        panelLetra.getChildren().clear();
-
-        labelsLetra = new ArrayList<>();
-
-        Cancion actual =
-            playlist.get(indicePlaylist);
-
-        for (LineaLetra linea :
-                actual.getLetraSincronizada()) {
-
-            Label lbl =
-                new Label(
-                    linea.getTexto()
+            fuenteFWC =
+                Font.loadFont(
+                    new File(
+                        "src/fonts/FWC2026.ttf"
+                    )
+                    .toURI()
+                    .toString(),
+                    20
                 );
 
-            lbl.setWrapText(true);
+        } catch (Exception e) {
 
-            lbl.setMaxWidth(500);
+            fuenteFWC = null;
+        }
 
-            lbl.setTextFill(Color.GRAY);
+        if (fuenteFWC == null) {
 
-            lbl.setFont(
+            fuenteFWC =
                 Font.font(
-                    fuenteFWClabel.getFamily(),
-                    16
-                )
-            );
-
-            labelsLetra.add(lbl);
-
-            panelLetra.getChildren().add(lbl);
+                    "Arial",
+                    FontWeight.BOLD,
+                    20
+                );
         }
     }
-    
-    private static void actualizarLetra(
-            double tiempoActual) {
 
-        Cancion actual =
-            playlist.get(indicePlaylist);
+    // ============================================================
+    // CARGAR MINIATURA
+    // ============================================================
 
-        ArrayList<LineaLetra> letra =
-            actual.getLetraSincronizada();
+    private void cargarMiniatura(
+        String ruta,
+        ImageView vista
+    ) {
 
-        int indiceActual = -1;
+        if (ruta == null
+            || ruta.isBlank()) {
 
-        for (int i = 0; i < letra.size(); i++) {
-
-            if (
-                tiempoActual >=
-                letra.get(i).getTiempo()
-            ) {
-
-                indiceActual = i;
-            }
-        }
-
-        if (indiceActual < 0)
-            return;
-
-        for (int i = 0; i < labelsLetra.size(); i++) {
-
-            Label lbl =
-                labelsLetra.get(i);
-
-            if (i == indiceActual) {
-
-                lbl.setTextFill(
-                    Color.WHITE
-                );
-
-                lbl.setFont(
-                    Font.font(
-                        fuenteFWClabel.getFamily(),
-                        28
-                    )
-                );
-
-            } else {
-
-                lbl.setTextFill(
-                    Color.GRAY
-                );
-
-                lbl.setFont(
-                    Font.font(
-                        fuenteFWClabel.getFamily(),
-                        16
-                    )
-                );
-            }
-        }
-
-        centrarLineaActual(
-            indiceActual
-        );
-    }
-    
-    private static void centrarLineaActual(
-            int indiceActual) {
-
-        if (
-            indiceActual < 0
-            ||
-            indiceActual >= labelsLetra.size()
-        ) {
             return;
         }
 
-        Label lblActual =
-            labelsLetra.get(
-                indiceActual
+        File archivo =
+            resolverArchivo(
+                ruta
             );
 
-        double centroPanel =
-            panelDerecho.getHeight() / 2;
+        if (archivo == null
+            || !archivo.exists()) {
 
-        double posicionLabel =
-            lblActual.getBoundsInParent()
-                     .getMinY();
-
-        double altoLabel =
-            lblActual.getHeight();
-
-        double destino =
-
-            centroPanel
-
-            -
-
-            posicionLabel
-
-            -
-
-            altoLabel / 2;
-
-        if (
-            animacionLetra != null
-        ) {
-
-            animacionLetra.stop();
+            return;
         }
 
-        animacionLetra =
-            new TranslateTransition(
-                Duration.millis(400),
-                panelLetra
+        String clave =
+            archivo
+                .getAbsolutePath()
+            + "|75|75";
+
+        Image imagen =
+            cacheImagenes.get(
+                clave
             );
 
-        animacionLetra.setToY(
-            destino
+        if (imagen != null) {
+
+            vista.setImage(
+                imagen
+            );
+
+            return;
+        }
+
+        Image miniatura =
+            new Image(
+                archivo
+                    .toURI()
+                    .toString(),
+                75,
+                75,
+                false,
+                true,
+                true
+            );
+
+        cacheImagenes.put(
+            clave,
+            miniatura
         );
 
-        animacionLetra.play();
+        vista.setImage(
+            miniatura
+        );
+    }
+
+    // ============================================================
+    // CARGAR IMAGEN OPTIMIZADA
+    // ============================================================
+
+    private Image cargarImagen(
+        String ruta,
+        double ancho,
+        double alto,
+        boolean backgroundLoading
+    ) {
+
+        if (ruta == null
+            || ruta.isBlank()) {
+
+            throw new RuntimeException(
+                "Ruta de imagen vacía"
+            );
+        }
+
+        // --------------------------------------------------------
+        // URL
+        // --------------------------------------------------------
+
+        if (
+            ruta.startsWith("file:")
+            || ruta.startsWith("http:")
+            || ruta.startsWith("https:")
+        ) {
+
+            String clave =
+                ruta
+                + "|"
+                + ancho
+                + "|"
+                + alto;
+
+            Image imagen =
+                cacheImagenes.get(
+                    clave
+                );
+
+            if (imagen != null) {
+                return imagen;
+            }
+
+            imagen =
+                new Image(
+                    ruta,
+                    ancho,
+                    alto,
+                    false,
+                    true,
+                    backgroundLoading
+                );
+
+            cacheImagenes.put(
+                clave,
+                imagen
+            );
+
+            return imagen;
+        }
+
+        // --------------------------------------------------------
+        // ARCHIVO
+        // --------------------------------------------------------
+
+        File archivo =
+            resolverArchivo(
+                ruta
+            );
+
+        if (archivo == null
+            || !archivo.exists()) {
+
+            throw new RuntimeException(
+                "Imagen no encontrada: "
+                + ruta
+            );
+        }
+
+        String clave =
+            archivo
+                .getAbsolutePath()
+            + "|"
+            + ancho
+            + "|"
+            + alto
+            + "|"
+            + backgroundLoading;
+
+        Image imagen =
+            cacheImagenes.get(
+                clave
+            );
+
+        if (imagen != null) {
+            return imagen;
+        }
+
+        imagen =
+            new Image(
+                archivo
+                    .toURI()
+                    .toString(),
+                ancho,
+                alto,
+                false,
+                true,
+                backgroundLoading
+            );
+
+        cacheImagenes.put(
+            clave,
+            imagen
+        );
+
+        return imagen;
+    }
+
+    // ============================================================
+    // RESOLVER RUTA
+    // ============================================================
+
+    private File resolverArchivo(
+        String ruta
+    ) {
+
+        if (ruta == null
+            || ruta.isBlank()) {
+
+            return null;
+        }
+
+        // --------------------------------------------------------
+        // RUTA DIRECTA
+        // --------------------------------------------------------
+
+        File archivo =
+            new File(
+                ruta
+            );
+
+        if (archivo.exists()) {
+            return archivo;
+        }
+
+        // --------------------------------------------------------
+        // DENTRO DE SRC
+        // --------------------------------------------------------
+
+        archivo =
+            new File(
+                "src/" + ruta
+            );
+
+        if (archivo.exists()) {
+            return archivo;
+        }
+
+        // --------------------------------------------------------
+        // SI YA EMPIEZA CON SRC
+        // --------------------------------------------------------
+
+        if (ruta.startsWith("src/")) {
+
+            archivo =
+                new File(
+                    ruta
+                );
+
+            if (archivo.exists()) {
+                return archivo;
+            }
+        }
+
+        return null;
     }
 }

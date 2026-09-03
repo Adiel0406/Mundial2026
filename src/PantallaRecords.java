@@ -4,9 +4,9 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ListCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
 
 import javafx.scene.layout.*;
 
@@ -19,6 +19,8 @@ import javafx.animation.ScaleTransition;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 
 import javafx.util.Duration;
 
@@ -32,6 +34,11 @@ public class PantallaRecords {
 
         BorderPane root =
             new BorderPane();
+
+
+        // =========================
+        // FONDO
+        // =========================
 
         Image fondo =
             new Image(
@@ -65,6 +72,7 @@ public class PantallaRecords {
             new Background(bg)
         );
 
+
         // =========================
         // TITULO
         // =========================
@@ -92,36 +100,6 @@ public class PantallaRecords {
             Color.WHITE
         );
 
-        // =========================
-        // LISTA
-        // =========================
-
-        ListView<Resultado> lista =
-            new ListView<>();
-
-        lista.setPrefWidth(650);
-
-        lista.setPrefHeight(520);
-
-        lista.setStyle(
-
-            "-fx-background-color: rgba(0,0,0,0.45);"
-            +
-
-            "-fx-control-inner-background: rgba(0,0,0,0.45);"
-            +
-
-            "-fx-background-radius: 30;"
-            +
-
-            "-fx-border-radius: 30;"
-            +
-
-            "-fx-border-color: white;"
-            +
-
-            "-fx-border-width: 3;"
-        );
 
         // =========================
         // CARGAR RESULTADOS
@@ -132,32 +110,163 @@ public class PantallaRecords {
 
         ArrayList<Resultado> resultados =
             manager.cargarResultados(
-
                 Archivos.ARCHIVO_RESULTADOS
             );
 
+
         // =========================
-        // ORDENAR
+        // CONSERVAR SOLO EL MEJOR
+        // RESULTADO DE CADA JUGADOR
         // =========================
 
-        resultados.sort(
+        Map<String, Resultado> mejoresResultados =
+            new HashMap<>();
+
+        for (Resultado resultado : resultados) {
+
+            String jugador =
+                resultado.getJugador();
+
+            if (
+                !mejoresResultados.containsKey(jugador)
+                ||
+                resultado.getPuntaje()
+                >
+                mejoresResultados
+                    .get(jugador)
+                    .getPuntaje()
+            ) {
+
+                mejoresResultados.put(
+                    jugador,
+                    resultado
+                );
+            }
+        }
+
+
+        // =========================
+        // CONVERTIR MAP A LISTA
+        // =========================
+
+        ArrayList<Resultado> mejores =
+            new ArrayList<>(
+                mejoresResultados.values()
+            );
+
+
+        // =========================
+        // ORDENAR DE MAYOR A MENOR
+        // =========================
+
+        mejores.sort(
 
             Comparator.comparingInt(
                 Resultado::getPuntaje
             ).reversed()
         );
-        
-        lista.getItems().addAll(
-            resultados
+
+
+        // =========================
+        // LISTA
+        // =========================
+
+        ListView<Resultado> lista =
+            new ListView<>();
+
+        lista.setPrefWidth(1500);
+
+        lista.setPrefHeight(450);
+
+
+        // Quitamos el borde propio de ListView
+        // porque el contenedor tendrá el borde.
+
+        lista.setStyle(
+
+            "-fx-background-color: transparent;"
+            +
+
+            "-fx-control-inner-background: transparent;"
+            +
+
+            "-fx-background-insets: 0;"
         );
 
+
+        lista.getItems().addAll(
+            mejores
+        );
+
+
         // =========================
-        // MOSTRAR
+        // ENCABEZADOS
         // =========================
-        
+
+        Label encabezadoPosicion =
+            crearEncabezado(
+                "#",
+                70
+            );
+
+        Label encabezadoJugador =
+            crearEncabezado(
+                "JUGADOR",
+                380
+            );
+
+        Label encabezadoPuntaje =
+            crearEncabezado(
+                "PUNTAJE",
+                250
+            );
+
+        Label encabezadoDificultad =
+            crearEncabezado(
+                "DIFICULTAD",
+                300
+            );
+
+        Label encabezadoPreguntas =
+            crearEncabezado(
+                "PREGUNTAS",
+                220
+            );
+
+
+        HBox encabezados =
+            new HBox();
+
+        encabezados.setAlignment(
+            Pos.CENTER_LEFT
+        );
+
+        encabezados.setPadding(
+            new Insets(
+                10,
+                20,
+                10,
+                20
+            )
+        );
+
+        encabezados.getChildren().addAll(
+
+            encabezadoPosicion,
+            encabezadoJugador,
+            encabezadoPuntaje,
+            encabezadoDificultad,
+            encabezadoPreguntas
+        );
+
+
+        // =========================
+        // CELDAS
+        // =========================
+
         lista.setCellFactory(param -> {
 
-            return new javafx.scene.control.ListCell<Resultado>() {
+            return new ListCell<Resultado>() {
 
                 @Override
                 protected void updateItem(
@@ -165,10 +274,16 @@ public class PantallaRecords {
                     boolean empty
                 ) {
 
-                    super.updateItem(item, empty);
+                    super.updateItem(
+                        item,
+                        empty
+                    );
+
 
                     if (
-                        empty || item == null
+                        empty
+                        ||
+                        item == null
                     ) {
 
                         setGraphic(null);
@@ -177,16 +292,9 @@ public class PantallaRecords {
 
                     } else {
 
-                        HBox fila =
-                            new HBox(25);
-
-                        fila.setAlignment(
-                            Pos.CENTER_LEFT
-                        );
-
-                        fila.setPadding(
-                            new Insets(15)
-                        );
+                        // =========================
+                        // POSICION
+                        // =========================
 
                         Label posicion =
                             new Label(
@@ -198,12 +306,20 @@ public class PantallaRecords {
                         );
 
                         posicion.setFont(
-
                             Font.font(
                                 "Arial",
                                 24
                             )
                         );
+
+                        posicion.setPrefWidth(
+                            70
+                        );
+
+
+                        // =========================
+                        // JUGADOR
+                        // =========================
 
                         Label jugador =
                             new Label(
@@ -215,20 +331,20 @@ public class PantallaRecords {
                         );
 
                         jugador.setFont(
-
                             Font.font(
                                 "Arial",
                                 22
                             )
                         );
 
-                        Region espacio =
-                            new Region();
-
-                        HBox.setHgrow(
-                            espacio,
-                            Priority.ALWAYS
+                        jugador.setPrefWidth(
+                            380
                         );
+
+
+                        // =========================
+                        // PUNTAJE
+                        // =========================
 
                         Label puntaje =
                             new Label(
@@ -242,86 +358,198 @@ public class PantallaRecords {
                         );
 
                         puntaje.setFont(
-
                             Font.font(
                                 "Arial",
                                 22
                             )
                         );
 
+                        puntaje.setPrefWidth(
+                            250
+                        );
+
+
+                        // =========================
+                        // DIFICULTAD
+                        // =========================
+
+                        Label dificultad =
+                            new Label(
+                                item.getDificultad()
+                            );
+
+                        dificultad.setTextFill(
+                            Color.WHITE
+                        );
+
+                        dificultad.setFont(
+                            Font.font(
+                                "Arial",
+                                22
+                            )
+                        );
+
+                        dificultad.setPrefWidth(
+                            300
+                        );
+
+
+                        // =========================
+                        // PREGUNTAS
+                        // =========================
+
+                        Label preguntas =
+                            new Label(
+                                String.valueOf(
+                                    item.getCantidadPreguntas()
+                                )
+                            );
+
+                        preguntas.setTextFill(
+                            Color.WHITE
+                        );
+
+                        preguntas.setFont(
+                            Font.font(
+                                "Arial",
+                                22
+                            )
+                        );
+
+                        preguntas.setPrefWidth(
+                            220
+                        );
+
+
+                        // =========================
+                        // FILA
+                        // =========================
+
+                        HBox fila =
+                            new HBox();
+
+                        fila.setAlignment(
+                            Pos.CENTER_LEFT
+                        );
+
+                        fila.setPadding(
+                            new Insets(15)
+                        );
+
                         fila.getChildren().addAll(
 
                             posicion,
                             jugador,
-                            espacio,
-                            puntaje
+                            puntaje,
+                            dificultad,
+                            preguntas
                         );
 
-                        setGraphic(fila);
+
+                        setGraphic(
+                            fila
+                        );
+
+
+                        // =========================
+                        // ESTILO DE LA FILA
+                        // =========================
 
                         setStyle(
 
-                            "-fx-background-color: rgba(255,255,255,0.08);"
+                            "-fx-background-color:"
+                            +
+                            "rgba(255,255,255,0.08);"
                             +
 
                             "-fx-background-radius: 20;"
                             +
 
-                            "-fx-padding: 5 10 5 10;"
+                            "-fx-padding:"
+                            +
+                            "5 10 5 10;"
                         );
                     }
                 }
             };
         });
 
+
         // =========================
         // BOTON ATRAS
         // =========================
 
         ImageView btnAtras =
-    	   new ImageView(
-    	        new Image(
-    	            "images/FWC/atras.png"
-    	        )
-    	    );
+            new ImageView(
+                new Image(
+                    "images/FWC/atras.png"
+                )
+            );
 
-    	btnAtras.setFitWidth(55);
+        btnAtras.setFitWidth(
+            55
+        );
 
-    	btnAtras.setPreserveRatio(true);
+        btnAtras.setPreserveRatio(
+            true
+        );
 
-    	btnAtras.setCursor(
-    	    javafx.scene.Cursor.HAND
-    	);
-    	   		
-    	ScaleTransition agrandar =
-    	    new ScaleTransition(
-    	        Duration.millis(150),
-    	        btnAtras
-    	    );
+        btnAtras.setCursor(
+            javafx.scene.Cursor.HAND
+        );
 
-    	agrandar.setToX(1.12);
 
-    	agrandar.setToY(1.12);
+        // =========================
+        // ANIMACION BOTON
+        // =========================
 
-    	ScaleTransition achicar =
-    	    new ScaleTransition(
-    	        Duration.millis(150),
-    	        btnAtras
-    	    );
+        ScaleTransition agrandar =
+            new ScaleTransition(
+                Duration.millis(150),
+                btnAtras
+            );
 
-    	achicar.setToX(1);
+        agrandar.setToX(
+            1.12
+        );
 
-   	   	achicar.setToY(1);
+        agrandar.setToY(
+            1.12
+        );
 
-   		btnAtras.setOnMouseEntered(e -> {
 
-   	   		    agrandar.playFromStart();
-   		});
+        ScaleTransition achicar =
+            new ScaleTransition(
+                Duration.millis(150),
+                btnAtras
+            );
 
-   		btnAtras.setOnMouseExited(e -> {
+        achicar.setToX(
+            1
+        );
 
-   		    achicar.playFromStart();
-   		});
+        achicar.setToY(
+            1
+        );
+
+
+        btnAtras.setOnMouseEntered(e -> {
+
+            agrandar.playFromStart();
+
+        });
+
+
+        btnAtras.setOnMouseExited(e -> {
+
+            achicar.playFromStart();
+
+        });
+
+
+        // =========================
+        // ACCION BOTON ATRAS
+        // =========================
 
         btnAtras.setOnMouseClicked(e -> {
 
@@ -331,30 +559,18 @@ public class PantallaRecords {
             Scene scene =
                 test.crearScene(stage);
 
-            stage.setScene(scene);
-            
-            stage.setMaximized(true);
+            stage.setScene(
+                scene
+            );
+
+            stage.setMaximized(
+                true
+            );
         });
 
-        // =========================
-        // TOP
-        // =========================
-
-        VBox centro =
-            new VBox(20);
-
-        centro.setAlignment(
-            Pos.CENTER
-        );
-
-        centro.getChildren().addAll(
-
-            titulo,
-            lista
-        );
 
         // =========================
-        // BOTON
+        // BARRA SUPERIOR
         // =========================
 
         HBox topBar =
@@ -372,6 +588,86 @@ public class PantallaRecords {
             btnAtras
         );
 
+
+        // =========================
+        // TABLA COMPLETA
+        // =========================
+
+        VBox tabla =
+            new VBox();
+
+        tabla.setAlignment(
+            Pos.TOP_CENTER
+        );
+
+        tabla.setMaxWidth(
+            Double.MAX_VALUE
+        );
+
+        tabla.setMaxHeight(
+            Double.MAX_VALUE
+        );
+
+        tabla.setStyle(
+
+            "-fx-background-color:"
+            +
+            "rgba(0,0,0,0.45);"
+            +
+
+            "-fx-background-radius: 30;"
+            +
+
+            "-fx-border-radius: 30;"
+            +
+
+            "-fx-border-color: white;"
+            +
+
+            "-fx-border-width: 3;"
+        );
+
+
+        tabla.getChildren().addAll(
+
+            encabezados,
+            lista
+        );
+
+
+        // =========================
+        // CENTRO
+        // =========================
+
+        VBox centro =
+            new VBox(20);
+
+        centro.setAlignment(
+            Pos.CENTER
+        );
+
+        centro.setPadding(
+            new Insets(
+                0,
+                0,
+                20,
+                0
+            )
+        );
+
+        centro.getChildren().addAll(
+
+            titulo,
+            tabla
+        );
+
+
+        VBox.setVgrow(
+            tabla,
+            Priority.ALWAYS
+        );
+
+
         // =========================
         // ROOT
         // =========================
@@ -384,6 +680,7 @@ public class PantallaRecords {
             topBar
         );
 
+
         // =========================
         // SCENE
         // =========================
@@ -395,6 +692,40 @@ public class PantallaRecords {
                 720
             );
 
+
         return scene;
+    }
+
+
+    // =====================================================
+    // METODO PARA CREAR ENCABEZADOS
+    // =====================================================
+
+    private Label crearEncabezado(
+        String texto,
+        double ancho
+    ) {
+
+        Label label =
+            new Label(
+                texto
+            );
+
+        label.setTextFill(
+            Color.WHITE
+        );
+
+        label.setFont(
+            Font.font(
+                "Arial",
+                18
+            )
+        );
+
+        label.setPrefWidth(
+            ancho
+        );
+
+        return label;
     }
 }
