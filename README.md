@@ -48,16 +48,15 @@ Cuando existe un empate entre tres o más selecciones, se utiliza una mini tabla
 La organización puede variar según la configuración del proyecto en el IDE.
 
 ```text
-FWC2026/
-├── .setings/
-│    ├── org.eclipse.core.resources.prefs
-│    └── org.eclipse.jdt.core.prefs
+TutorMundial/
+├── .settings/
+│   ├── org.eclipse.core.resources.prefs
+│   └── org.eclipse.jdt.core.prefs
 ├── src/
 │   ├── fonts/
 │   │   └── FWC2026.ttf
 │   ├── images/
 │   │   ├── FWC/
-│   │   │   ├── .DS_Store
 │   │   │   ├── anterior.png
 │   │   │   ├── atras.png
 │   │   │   ├── fondo.png
@@ -68,14 +67,146 @@ FWC2026/
 │   │   │   ├── siguiente.png
 │   │   │   └── we_are_26.png
 │   │   ├── estadios/
+│   │   │   ├── can1.jpg
+│   │   │   ├── can2.jpg
+│   │   │   ├── mex1.jpg
+│   │   │   ├── mex2.jpg
+│   │   │   ├── mex3.jpg
+│   │   │   ├── usa1.jpg
+│   │   │   ├── usa2.jpg
+│   │   │   ├── usa3.jpg
+│   │   │   ├── usa4.jpg
+│   │   │   ├── usa5.jpg
+│   │   │   ├── usa6.jpg
+│   │   │   ├── usa7.jpg
+│   │   │   ├── usa8.jpg
+│   │   │   ├── usa9.jpg
+│   │   │   ├── usa10.jpg
+│   │   │   └── usa11.jpg
 │   │   ├── historia/
+│   │   │   ├── 1930.jpg
+│   │   │   ├── 1934.jpg
+│   │   │   ├── 1938.jpg
+│   │   │   ├── 1950.jpg
+│   │   │   ├── 1954.jpg
+│   │   │   ├── 1958.jpg
+│   │   │   ├── 1962.jpg
+│   │   │   ├── 1966.jpg
+│   │   │   ├── 1970.jpg
+│   │   │   ├── 1974.jpg
+│   │   │   ├── 1978.jpg
+│   │   │   ├── 1982.jpg
+│   │   │   ├── 1986.jpg
+│   │   │   ├── 1990.jpg
+│   │   │   ├── 1994.jpg
+│   │   │   ├── 1998.jpg
+│   │   │   ├── 2002.jpg
+│   │   │   ├── 2006.jpg
+│   │   │   ├── 2010.jpg
+│   │   │   ├── 2014.jpg
+│   │   │   ├── 2018.jpg
+│   │   │   └── 2022.jpg
 │   │   ├── imagenes_musica/
+│   │   │   ├── blessings.jpg
+│   │   │   ├── champion.jpg
+│   │   │   ├── dai_dai.jpg
+│   │   │   ├── disco.png
+│   │   │   ├── echo.jpg
+│   │   │   ├── energy.jpg
+│   │   │   ├── game_time.jpg
+│   │   │   ├── goals.jpg
+│   │   │   ├── illuminate.jpg
+│   │   │   ├── in_the_stars.jpg
+│   │   │   ├── lighter.jpg
+│   │   │   ├── love_always_wins.jpg
+│   │   │   ├── mi_mexico_lindo.jpg
+│   │   │   ├── no_place_like_home.jpg
+│   │   │   ├── partidazo.jpg
+│   │   │   ├── por_ella.jpg
+│   │   │   ├── show_me.jpg
+│   │   │   ├── siir_siir.jpg
+│   │   │   └── three_nations.jpg
 │   │   ├── menu/
-│   │   ├── paises/
-│   │   └── .DS_Store
+│   │   │   ├── estadios.png
+│   │   │   ├── fifa_sound.png
+│   │   │   ├── fixture.png
+│   │   │   ├── historia.png
+│   │   │   ├── test.png
+│   │   │   └── tour_mundial.png
+│   │   └── paises/
+│   │       ├── alg.png
+│   │       ├── arg.png
+│   │       ├── aus.png
+│   │       ├── aut.png
+│   │       ├── bel.png
+│   │       ├── bih.png
+│   │       ├── bra.png
+│   │       ├── can.png
+│   │       ├── civ.png
+│   │       ├── cod.png
+│   │       ├── col.png
+│   │       ├── cpv.png
+│   │       ├── cro.png
+│   │       ├── cuw.png
+│   │       ├── cze.png
+│   │       ├── ecu.png
+│   │       ├── egy.png
+│   │       ├── eng.png
+│   │       ├── esp.png
+│   │       ├── fra.png
+│   │       ├── ger.png
+│   │       ├── gha.png
+│   │       ├── hai.png
+│   │       ├── irn.png
+│   │       ├── irq.png
+│   │       ├── jor.png
+│   │       ├── jpn.png
+│   │       ├── kor.png
+│   │       ├── ksa.png
+│   │       ├── mar.png
+│   │       ├── mex.png
+│   │       ├── ned.png
+│   │       ├── nor.png
+│   │       ├── nzl.png
+│   │       ├── pan.png
+│   │       ├── par.png
+│   │       ├── por.png
+│   │       ├── qat.png
+│   │       ├── rsa.png
+│   │       ├── sco.png
+│   │       ├── sen.png
+│   │       ├── sui.png
+│   │       ├── swe.png
+│   │       ├── tun.png
+│   │       ├── tur.png
+│   │       ├── uru.png
+│   │       ├── usa.png
+│   │       └── uzb.png
 │   ├── sounds/
+│   │   ├── fifa_sound/
+│   │   │   ├── blessings.mp3
+│   │   │   ├── champion.mp3
+│   │   │   ├── dai_dai.mp3
+│   │   │   ├── echo.mp3
+│   │   │   ├── energy.mp3
+│   │   │   ├── game_time.mp3
+│   │   │   ├── goals.mp3
+│   │   │   ├── illuminate.mp3
+│   │   │   ├── in_the_stars.mp3
+│   │   │   ├── lighter.mp3
+│   │   │   ├── love_always_wins.mp3
+│   │   │   ├── mi_mexico_lindo.mp3
+│   │   │   ├── no_place_like_home.mp3
+│   │   │   ├── partidazo.mp3
+│   │   │   ├── por_ella.mp3
+│   │   │   ├── show_me.mp3
+│   │   │   ├── siir_siir.mp3
+│   │   │   └── three_nations.mp3
+│   │   └── inicio/
+│   │       ├── ambiente_inicio.mp3
+│   │       └── inicio.mp3
 │   ├── styles/
-│   ├── .DS_Store
+│   │   └── fifaSound.css
 │   ├── Archivos.java
 │   ├── Cancion.java
 │   ├── Cantante.java
@@ -123,20 +254,20 @@ FWC2026/
 │   ├── PreguntaVF.java
 │   ├── Quiz.java
 │   └── Resultado.java
+├── bin/                         # Archivos compilados y recursos copiados
+├── canciones.txt
+├── estadios.txt
+├── historia.txt
+├── mundial.dat
+├── paises.txt
 ├── preguntasD.dat
 ├── preguntasF.dat
 ├── preguntasM.dat
-├── paises.txt
-├── mundial.dat
-├── historia.txt
-├── estadios.txt
-├── canciones.txt
 ├── resultados.dat
-├── .project
-├── .gitignore
-├── .gitattributes
 ├── .classpath
-├── .DS_Store
+├── .gitattributes
+├── .gitignore
+├── .project
 └── README.md
 ```
 
