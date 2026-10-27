@@ -49,23 +49,79 @@ La organización puede variar según la configuración del proyecto en el IDE.
 
 ```text
 FWC2026/
+├── .setings/
+│    ├── org.eclipse.core.resources.prefs
+│    └── org.eclipse.jdt.core.prefs
 ├── src/
-│   ├── ManagerGrupo.java
-│   ├── ManagerTerceros.java
-│   ├── ManagerFixture.java
-│   ├── ManagerMundial.java
-│   ├── Grupo.java
+│   ├── fonts/
+│   │   └── FWC2026.ttf
+│   ├── images/
+│   │   ├── FWC
+│   ├── sounds/
+│   ├── styles/
+│   ├── .DS_Store
+│   ├── Archivos.java
+│   ├── Cancion.java
+│   ├── Cantante.java
 │   ├── EquipoGrupo.java
-│   ├── Partido.java
+│   ├── Estadio.java
 │   ├── FechaMundial.java
+│   ├── Grupo.java
+│   ├── HistoriaMundial.java
+│   ├── Jugador.java
+│   ├── LineaLetra.java
+│   ├── LlaveEliminatoria.java
+│   ├── Main.java
+│   ├── ManagerCancion.java
+│   ├── ManagerEstadio.java
+│   ├── ManagerFixture.java
+│   ├── ManagerGrupo.java
+│   ├── ManagerHistoria.java
+│   ├── ManagerMundial.java
+│   ├── ManagerPais.java
+│   ├── ManagerPregunta.java
+│   ├── ManagerResultado.java
+│   ├── ManagerTerceros.java
+│   ├── MiniTabla.java
 │   ├── Mundial.java
+│   ├── Pais.java
+│   ├── PantallaAdmin.java
+│   ├── PantallaAgregarPregunta.java
+│   ├── PantallaEstadios.java
+│   ├── PantallaFifaSound.java
 │   ├── PantallaGrupo.java
-│   └── PantallaFixtureMenu.java
-├── images/
-│   └── FWC/
-├── fonts/
-├── README.md
-└── ...
+│   ├── PantallaHistoria.java
+│   ├── PantallaInicio.java
+│   ├── PantallaLetra.java
+│   ├── PantallaMenu.java
+│   ├── PantallaPais.java
+│   ├── PantallaPartidosMenu.java
+│   ├── PantallaQuiz.java
+│   ├── PantallaRecords.java
+│   ├── PantallaTest.java
+│   ├── PantallaTourMundial.java
+│   ├── Participante.java
+│   ├── Partido.java
+│   ├── Pregunta.java
+│   ├── PreguntaOpMultiple.java
+│   ├── PreguntaVF.java
+│   ├── Quiz.java
+│   └── Resultado.java
+├── preguntasD.dat
+├── preguntasF.dat
+├── preguntasM.dat
+├── paises.txt
+├── mundial.dat
+├── historia.txt
+├── estadios.txt
+├── canciones.txt
+├── resultados.dat
+├── .project
+├── .gitignore
+├── .gitattributes
+├── .classpath
+├── .DS_Store
+└── README.md
 ```
 
 ## ⚙️ Requisitos
@@ -80,7 +136,7 @@ FWC2026/
 ### 1. Clonar el repositorio
 
 ```bash
-git clone URL_DE_TU_REPOSITORIO
+git clone https://github.com/Adiel0406/TutorMundial.git
 ```
 
 ### 2. Abrir el proyecto
@@ -121,9 +177,10 @@ Desarrollar un simulador funcional del Mundial 2026 que permita aplicar concepto
 
 Proyecto académico desarrollado de manera colaborativa.
 
+*Adiel Jose Imaña Castillo
+*Miguel Mateo Ramos Rodas
+
 ## 📄 Licencia
 
 Proyecto académico. La licencia y las condiciones de distribución quedan sujetas a lo que establezcan sus autores.
 ```
-
-**Importante:** sustituye `URL_DE_TU_REPOSITORIO` por la URL real de tu repositorio de GitHub. También revisa la estructura de carpetas para que coincida con la de tu proyecto.
