@@ -56,7 +56,23 @@ FWC2026/
 │   ├── fonts/
 │   │   └── FWC2026.ttf
 │   ├── images/
-│   │   ├── FWC
+│   │   ├── FWC/
+│   │   │   ├── .DS_Store
+│   │   │   ├── anterior.png
+│   │   │   ├── atras.png
+│   │   │   ├── fondo.png
+│   │   │   ├── logo_FWC.png
+│   │   │   ├── pausa.png
+│   │   │   ├── play.png
+│   │   │   ├── reproducir.png
+│   │   │   ├── siguiente.png
+│   │   │   └── we_are_26.png
+│   │   ├── estadios/
+│   │   ├── historia/
+│   │   ├── imagenes_musica/
+│   │   ├── menu/
+│   │   ├── paises/
+│   │   └── .DS_Store
 │   ├── sounds/
 │   ├── styles/
 │   ├── .DS_Store
