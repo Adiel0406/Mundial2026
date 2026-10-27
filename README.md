@@ -1,25 +1,27 @@
 
-# 🏆 FIFA World Cup 2026 Simulator
+# 🏆 FIFA World Cup 2026
 
 ## 📌 Descripción
 
-Simulador de la Copa Mundial de la FIFA 2026 desarrollado en Java con JavaFX. El proyecto permite gestionar los grupos, registrar resultados de los partidos, calcular las tablas de posiciones y determinar qué selecciones clasifican a la siguiente fase.
+Tutor completo sobre la FIFA World Cup 2026. De la cual se muestran detalles de los 12 países clasificados, un test, todos los estadios que participan en el mundial, la historia de todos los campeones, un simulador de fase de grupos y todas las canciones de la FIFA World Cup 2026.
 
-El sistema incorpora criterios de desempate para ordenar correctamente a las selecciones, incluyendo el enfrentamiento directo y la resolución de empates múltiples mediante una mini tabla.
+El sistema esta desarrollado en base a los conocimientos aprendidos en JavaFX y Java. El IDE utilizado es el Eclipse y maneja varias formas de persistencia de datos. Funciona con un menú interactivo y varias opciones a realizar.
+
+**El proyecto logro el primer lugar de la Work-Shop en la Universidad Católica Boliviana en la categoría de tercer semestre.**
 
 ## ✨ Funcionalidades
 
-- 🌎 Gestión de los 12 grupos del Mundial (A–L).
-- ⚽ Registro y administración de resultados de los partidos.
-- 📊 Actualización automática de las tablas de posiciones.
-- 🥇 Ordenamiento de selecciones según los criterios de desempate.
-- 🤝 Resolución de empates entre dos o más selecciones mediante enfrentamientos directos y mini tablas.
-- 🎟️ Clasificación automática de los dos primeros equipos de cada grupo.
-- ⭐ Selección de los ocho mejores terceros.
-- 🟢 Identificación visual de las selecciones clasificadas.
-- 🔴 Identificación visual de las selecciones eliminadas.
-- 💾 Guardado y recuperación de los datos del torneo.
-- 🎨 Interfaz gráfica desarrollada con JavaFX.
+- Gestión de los 48 paises del Mundial.
+- Observar los datos de los países clasificados.
+- Quiz interactivo para ver cuanto sabe de futbol.
+- Panel de Admin para modificar las preguntas en el registro.
+- Registro y administración de resultados de los partidos.
+- Vista de todos los estadios que participan en el Mundial.
+- Un pequeño museo de todos los campeones del mundo.
+- Un apartado en donde se ven todas las canciones del Mundial.
+- Un sector donde se ven las letras sincronizadas
+- Guardado y recuperación de los datos mediante persistencia.
+- Interfaz gráfica desarrollada con JavaFX.
 
 ## 🛠️ Tecnologías utilizadas
 
@@ -29,19 +31,8 @@ El sistema incorpora criterios de desempate para ordenar correctamente a las sel
 - **Colecciones de Java:** gestión y ordenamiento de equipos y grupos.
 - **Persistencia de archivos:** almacenamiento y recuperación de los datos del torneo.
 - **Git y GitHub:** control de versiones y colaboración.
-
-## 📋 Criterios de desempate
-
-El simulador utiliza los siguientes criterios para ordenar a las selecciones que terminan con la misma cantidad de puntos:
-
-1. Mayor cantidad de puntos.
-2. Resultado del enfrentamiento directo entre las selecciones empatadas.
-3. Mayor diferencia de goles.
-4. Mayor cantidad de goles a favor.
-
-Cuando existe un empate entre tres o más selecciones, se utiliza una mini tabla que considera los resultados de los partidos disputados exclusivamente entre los equipos empatados.
-
-> **Nota:** Los criterios implementados corresponden a la lógica de desempate definida en el proyecto. Para una reproducción reglamentaria completa del Mundial 2026, deben verificarse e incorporarse todos los criterios oficiales aplicables.
+- **Canva:** imágenes editadas y bien elaboradas.
+- **Eclipse:** IDE utilizado para programar el proyecto 
 
 ## 📁 Estructura del proyecto
 
@@ -318,14 +309,14 @@ Para contribuir:
 
 ## 🎯 Objetivo del proyecto
 
-Desarrollar un simulador funcional del Mundial 2026 que permita aplicar conceptos de programación orientada a objetos, gestión de colecciones, ordenamiento de datos, algoritmos de desempate, persistencia y diseño de interfaces gráficas.
+Alcanzar a mas personas este conocimiento del futbol. Es uno de los eventos mas importantes en el mundo y varias personas desconocen la historia de este. A modo de que sirva también como un recuerdo de lo que fue la Copa Mundial de la FIFA 2026.  
 
 ## 👨‍💻 Autores
 
 Proyecto académico desarrollado de manera colaborativa.
 
-*Adiel Jose Imaña Castillo
-*Miguel Mateo Ramos Rodas
+- Adiel Jose Imaña Castillo
+- Miguel Mateo Ramos Rodas
 
 ## 📄 Licencia
 
